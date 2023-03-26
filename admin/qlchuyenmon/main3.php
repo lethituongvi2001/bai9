@@ -1,11 +1,4 @@
 <?php include("head1.php"); ?>
-
-
-
-
-
-
-
 <!-- Page Wrapper -->
 <div class="page-wrapper">
     <div class="content container-fluid">

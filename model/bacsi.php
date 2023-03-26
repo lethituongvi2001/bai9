@@ -49,13 +49,13 @@ class BACSI
     }
 
     // Thêm mới
-    public function thembacsi($Name, $Gender, $DOB, $Email, $PhoneNumber, $id_speciality, $LicenseNumber, $Address, $image)
+    public function thembacsi($Name, $Gender, $DOB, $Email, $PhoneNumber, $id_speciality, $LicenseNumber, $Address, $image, $id_account)
     {
         $dbcon = DATABASE::connect();
         try {
             //INSERT INTO `doctors`(`ID`, `Name`,`Gender`, `DOB`, `Email`, `Phone Number`, `Specialty`, `License Number`, `Address`, `image`)
-            $sql = "INSERT INTO doctors(Name,Gender,DOB,Email,PhoneNumber,id_speciality,LicenseNumber,Address,image) 
-				VALUES(:Name,:Gender,:DOB,:Email,:PhoneNumber,:id_speciality,:LicenseNumber,:Address,:image)";
+            $sql = "INSERT INTO doctors(Name,Gender,DOB,Email,PhoneNumber,id_speciality,LicenseNumber,Address,image, id_account) 
+				VALUES(:Name,:Gender,:DOB,:Email,:PhoneNumber,:id_speciality,:LicenseNumber,:Address,:image,:id_account)";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":Name", $Name);
             $cmd->bindValue(":Gender", $Gender);
@@ -66,6 +66,7 @@ class BACSI
             $cmd->bindValue(":LicenseNumber", $LicenseNumber);
             $cmd->bindValue(":Address", $Address);
             $cmd->bindValue(":image", $image);
+            $cmd->bindValue(":id_account", $id_account);
             $result = $cmd->execute();
             // return $result;
         } catch (PDOException $e) {

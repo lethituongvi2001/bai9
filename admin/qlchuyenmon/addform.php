@@ -7,9 +7,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Thêm chuyên môn</h5>
-                <button type="button" class="close" href="main3.php" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <a href="../qlchuyenmon/index.php">
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button></a>
             </div>
             <div class="modal-body">
                 <form method="post" enctype="multipart/form-data">

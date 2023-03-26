@@ -1,4 +1,4 @@
-<?php include("../view/top.php"); ?>
+<?php include("../../view_doctor/top.php"); ?>
 
 <div class="col-md-7 col-lg-8 col-xl-9">
 

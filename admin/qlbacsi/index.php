@@ -5,6 +5,7 @@
 require("../../model/database.php");
 require("../../model/bacsi.php");
 require("../../model/chuyenmon.php");
+require("../../model/nguoidung.php");
 
 
 // Xét xem có thao tác nào được chọn
@@ -16,7 +17,7 @@ if (isset($_REQUEST["action"])) {
 
 $bs = new BACSI();
 $cm = new CHUYENMON();
-
+$tk = new NGUOIDUNG();
 switch ($action) {
 
     case "xem":
@@ -44,7 +45,10 @@ switch ($action) {
 
         $LicenseNumber = $_POST["txtLicenseNumber"];
         $Address = $_POST["txtAddress"];
-        $bs->thembacsi($Name, $Gender, $DOB, $Email, $PhoneNumber, $id_speciality, $LicenseNumber, $Address, $image);
+        //them tk
+        $id_moi_nhat = $tk->themnguoidung($Email, '123', 2);
+        //them bs
+        $bs->thembacsi($Name, $Gender, $DOB, $Email, $PhoneNumber, $id_speciality, $LicenseNumber, $Address, $image, $id_moi_nhat);
         $bacsi = $bs->laybacsi();
 
         include("main.php");

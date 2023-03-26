@@ -57,11 +57,31 @@ class NGUOIDUNG
 		}
 	}
 	// lấy thông tin người dùng có $email
-	public function laythongtinnguoidung($Email)
+	public function kiemtra_role($Email)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = "SELECT * FROM account WHERE Email=:Email";
+			$sql = 'select role from account where Email=:Email';
+			$cmd = $db->prepare($sql);
+			$cmd->bindValue(":Email", $Email);
+			$cmd->execute();
+			$ketqua = $cmd->fetch();
+
+			$cmd->closeCursor();
+			return $ketqua;
+		} catch (PDOException $e) {
+			$error_message = $e->getMessage();
+			echo "<p>Lỗi truy vấn: $error_message</p>";
+			exit();
+		}
+	}
+	public function laythongtinnguoidung($Email, $loai_tk)
+	{
+		$db = DATABASE::connect();
+		try {
+			$sql = 'select * from account where Email=:Email';
+			if ($loai_tk == 2)
+				$sql = "select * from account as a, doctors as d where a.Email=:Email and a.ID = d.id_account";
 			$cmd = $db->prepare($sql);
 			$cmd->bindValue(":Email", $Email);
 			$cmd->execute();
@@ -115,16 +135,14 @@ class NGUOIDUNG
 	}
 
 	// Thêm nd mới, trả về khóa của dòng mới thêm
-	public function themnguoidung($Email, $Password, $sodt, $name, $role)
+	public function themnguoidung($Email, $Password, $role)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = "INSERT INTO account(Email,Password,PhoneNumber,Name,role) VALUES(:Email,:Password,:sodt,:name,:role)";
+			$sql = "INSERT INTO account(Email,Password,role) VALUES(:Email,:Password,:role)";
 			$cmd = $db->prepare($sql);
 			$cmd->bindValue(':Email', $Email);
 			$cmd->bindValue(':Password', md5($Password));
-			$cmd->bindValue(':sodt', $sodt);
-			$cmd->bindValue(':name', $name);
 			$cmd->bindValue(':role', $role);
 			$cmd->execute();
 			$id = $db->lastInsertId();

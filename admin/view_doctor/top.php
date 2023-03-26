@@ -9,17 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
     <!-- Favicons -->
-    <link href="../assets/img/favicon.png" rel="icon">
+    <link href="../assets_doctor/img/favicon.png" rel="icon">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets_doctor/css/bootstrap.min.css">
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets_doctor/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../assets_doctor/plugins/fontawesome/css/all.min.css">
 
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets_doctor/css/style.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -81,8 +81,7 @@
                                         <img src="../assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
                                     </a>
                                     <div class="profile-det-info">
-                                        <h3>Dr. Darren Elder</h3>
-
+                                        <h3><?php echo $_SESSION['nguoidung']['Name'] == '' ? $_SESSION['nguoidung']['Email'] : $_SESSION['nguoidung']['Name']   ?></h3>
                                         <div class="patient-details">
                                             <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
                                         </div>
@@ -111,7 +110,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../qllichbacsi/index.php">
+                                            <a href="../doctor/qllichbacsi/index.php">
                                                 <i class="fas fa-hourglass-start"></i>
                                                 <span>Lịch của tôi</span>
                                             </a>
@@ -154,7 +153,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="../ktnguoidung/index.php?action=dangxuat1">
+                                            <a href="../kttknguoidung/index.php?action=dangxuat1">
                                                 <i class="fas fa-sign-out-alt"></i>
                                                 <span>Logout</span>
                                             </a>

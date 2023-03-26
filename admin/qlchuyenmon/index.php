@@ -27,7 +27,8 @@ switch ($action) {
     case "xulythem":
         // xử lý file upload
         $image = "assets/img/specialities/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
-        $duongdan = "../../" . $image; // nơi lưu file upload
+        $duongdan = "../" . $image; // nơi lưu file upload
+        // print($duongdan);
         move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
         // xử lý thêm		
         $Speciality = $_POST["txtSpeciality"];

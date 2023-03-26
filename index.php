@@ -117,7 +117,7 @@ switch ($action) {
         $email = $_POST["your_name"];
         $matkhau = $_POST["your_pass"];
         if ($nd->kiemtranguoidunghople($email, $matkhau, 0) == TRUE) {
-            $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
+            $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email, $loai_tk);
 
             $tongmh = $mh->demtongsomathang();
             $soluong = 8;

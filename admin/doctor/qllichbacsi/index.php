@@ -2,9 +2,9 @@
 if (!isset($_SESSION["nguoidung"])) {
     header("location:../index.php");
 }
-require("../../model/database.php");
-require("../../model/bacsi.php");
-require("../../model/lichbacsi.php");
+require("../../../model/database.php");
+require("../../../model/bacsi.php");
+require("../../../model/lichbacsi.php");
 
 
 // Xét xem có thao tác nào được chọn
@@ -45,16 +45,16 @@ switch ($action) {
         $lichbacsi = $lbs->laylichbacsi();
         include("main1.php");
         break;
-        // case "sua":
-        //     if (isset($_GET["id"])) {
-        //         $b = $bs->laylichbacsitheoid($_GET["ID"]);
-        //         // $bacsi = $bs->laybacsi();
-        //         include("updateform.php");
-        //     } else {
-        //         $lichbacsi = $lbs->laylichbacsi();
-        //         include("main.php");
-        //     }
-        //     break;
+    case "sua":
+        if (isset($_GET["id"])) {
+            $b = $lbs->laylichbacsitheobacsi($_GET["ID"]);
+            // $bacsi = $bs->laybacsi();
+            include("updateform.php");
+        } else {
+            $lichbacsi = $lbs->laylichbacsi();
+            include("main.php");
+        }
+        break;
     case "xulysua":
         //$id, $DoctorID,$scheduleDate,$scheduleDay,$startTime,$endTime,$bookAvail
         $id = $_POST["txtid"];
