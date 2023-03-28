@@ -3,7 +3,6 @@ class LICHBACSI
 {
 
 
-
     // Lấy danh sách
     public function laylichbacsi()
     {

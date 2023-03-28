@@ -26,9 +26,9 @@
 <script src="../assets/js/script.js"></script>
 
 
-
-
-
+<!-- Datatables JS -->
+<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatables/datatables.min.js"></script>
 
 </body>
 

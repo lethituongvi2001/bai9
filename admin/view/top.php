@@ -29,7 +29,8 @@
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
 
 </head>
 
@@ -185,7 +186,7 @@
                             <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                         </li>
                         <li>
-                            <a href="appointment-list.html"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+                            <a href="../qlcuochen/index.php"><i class="fe fe-layout"></i> <span>Cuộc hẹn</span></a>
                         </li>
                         <li>
                             <a href="../qlchuyenmon/index.php"><i class="fe fe-users"></i> <span>Chuyên môn</span></a>
@@ -197,7 +198,7 @@
                             <a href="../qlbenhnhan/index.php"><i class="fe fe-user"></i> <span>Bệnh nhân</span></a>
                         </li>
                         <li>
-                            <a href="reviews.html"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
+                            <a href="../qllichbacsi/index.php"><i class="fe fe-star-o"></i> <span>Lịch của bác sĩ</span></a>
                         </li>
                         <li>
                             <a href="transactions-list.html"><i class="fe fe-activity"></i> <span>Transactions</span></a>

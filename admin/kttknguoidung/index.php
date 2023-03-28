@@ -4,14 +4,15 @@ require("../../model/nguoidung.php");
 
 // Biến cho biết ng dùng đăng nhập chưa
 $isLogin = isset($_SESSION["nguoidung"]);
-
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } elseif ($isLogin == FALSE) {
-    $action = "dangnhap";
+    $action = "dangxuat1";
 } else {
     $action = "macdinh";
 }
+
+
 
 $nguoidung = new NGUOIDUNG();
 $tb = "";
@@ -26,13 +27,17 @@ switch ($action) {
                     include("../doctor/main.php");
                     break;
                 }
+            default: {
+                    unset($_SESSION["nguoidung"]);
+                    $tb = "Cảm ơn!";
+                    include("login.php");
+                    break;
+                }
         }
         $action = '';
         break;
     case "dangxuat1":
-
         unset($_SESSION["nguoidung"]);
-
         $tb = "Cảm ơn!";
         //SignIn.php
         //loginform.php

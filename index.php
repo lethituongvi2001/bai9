@@ -154,7 +154,7 @@ switch ($action) {
         $email = $_POST["txtemail"];
         $matkhau = $_POST["txtmatkhau"];
         $nlmatkhau = $_POST["txtnlmatkhau"];
-        if ($nd->laythongtinnguoidung($email)) {   // có thể kiểm tra thêm số đt không trùng
+        if ($nd->laythongtinnguoidung($email, $loai_tk)) {   // có thể kiểm tra thêm số đt không trùng
             $tb = "Email này đã được cấp tài khoản!";
             include("SignUp.php");
             break;

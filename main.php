@@ -5,8 +5,8 @@
     <div class="container-fluid">
         <div class="banner-wrapper">
             <div class="banner-header text-center">
-                <h1>Search Doctor, Make an Appointment</h1>
-                <p>Discover the best doctors, clinic & hospital the city nearest to you.</p>
+                <h1>Tìm bác sĩ, đặt lịch hẹn</h1>
+                <p>Khám phá các bác sĩ tốt nhất thành phố gần bạn nhất.</p>
             </div>
 
             <!-- Search -->
@@ -34,8 +34,8 @@
 <section class="section section-specialities">
     <div class="container-fluid">
         <div class="section-header text-center">
-            <h2>Clinic and Specialities</h2>
-            <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h2>Chuyên khoa</h2>
+            <p class="sub-title">Chọn bác sĩ theo chuyên môn mà bạn cần</p>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-9">
@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="section-header ">
-                    <h2>Book Our Doctor</h2>
+                    <h2>Đặt bác sĩ của chúng tôi</h2>
                     <p>Lorem Ipsum is simply dummy text </p>
                 </div>
                 <div class="about-content">
