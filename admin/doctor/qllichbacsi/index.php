@@ -72,6 +72,15 @@ switch ($action) {
         include("main1.php");
         break;
 
+    case "xemnhom":
+        if (isset($_REQUEST["mabs"]))
+            $mabs = $_REQUEST["mabs"];
+
+
+        $lichbacsi = $lbs->laylichtheobacsi($mabs);
+        include("main1.php");
+
+        break;
     default:
         break;
 }

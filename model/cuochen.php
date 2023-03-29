@@ -21,23 +21,7 @@ class CUOCHEN
             exit();
         }
     }
-    // Lấy danh sách mặt hàng thuộc 1 danh mục
-    // public function laylichbacsitheobacsi($Doctor_ID)
-    // {
-    //     $dbcon = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM doctorschedule WHERE Doctor_ID=:mabs";
-    //         $cmd = $dbcon->prepare($sql);
-    //         $cmd->bindValue(":mabs", $Doctor_ID);
-    //         $cmd->execute();
-    //         $result = $cmd->fetchAll();
-    //         return $result;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+
 
     // Lấy mặt hàng theo id
     public function laycuochentheoid($id)
@@ -59,19 +43,20 @@ class CUOCHEN
 
 
     // Thêm mới
-    public function themcuochen($DoctorID, $scheduleDate, $scheduleDay, $startTime, $endTime, $bookAvail)
+    public function themcuochen($PatientID, $DoctorID, $ScheduleID, $Date, $Reason, $Expected_cost, $Status)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "INSERT INTO appointments(DoctorID,scheduleDate,scheduleDay,startTime,endTime,bookAvail) 
-				VALUES(:DoctorID,:scheduleDate,:scheduleDay,:startTime,:endTime,:bookAvail)";
+            $sql = "INSERT INTO appointments(PatientID,DoctorID,ScheduleID,Date,Reason,Expected_cost,Status) 
+				VALUES(:PatientID,:DoctorID,:ScheduleID,:Date,:Reason,:Expected_cost,:Status)";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":Doctor ID", $DoctorID);
-            $cmd->bindValue(":scheduleDate", $scheduleDate);
-            $cmd->bindValue(":scheduleDay", $scheduleDay);
-            $cmd->bindValue(":startTime", $startTime);
-            $cmd->bindValue(":endTime", $endTime);
-            $cmd->bindValue(":bookAvail", $bookAvail);
+            $cmd->bindValue(":PatientID", $PatientID);
+            $cmd->bindValue(":DoctorID", $DoctorID);
+            $cmd->bindValue(":ScheduleID", $ScheduleID);
+            $cmd->bindValue(":Date", $Date);
+            $cmd->bindValue(":Reason", $Reason);
+            $cmd->bindValue(":Expected_cost", $Expected_cost);
+            $cmd->bindValue(":Status", $Status);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -99,25 +84,27 @@ class CUOCHEN
     }
 
     // Cập nhật 
-    public function suacuochen($id, $DoctorID, $scheduleDate, $scheduleDay, $startTime, $endTime, $bookAvail)
+    public function suacuochen($id, $PatientID, $DoctorID, $ScheduleID, $Date, $Reason, $Expected_cost, $Status)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE appointments SET Doctor ID=:Doctor ID,
-										scheduleDate=:scheduleDate,
-										scheduleDay=:scheduleDay,
-										startTime=:startTime,
-										endTime=:endTime,
-										bookAvail=:bookAvail
-										WHERE id=:id";
+            $sql = "UPDATE appointments SET PatientID=:PatientID,
+                                        DoctorID=:DoctorID,
+										ScheduleID=:ScheduleID,
+										Date=:Date,
+										Reason=:Reason,
+										Expected_cost=:Expected_cost,
+										Status=:Status
+										WHERE ID=:ID";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":Doctor ID", $DoctorID);
-            $cmd->bindValue(":scheduleDate", $scheduleDate);
-            $cmd->bindValue(":scheduleDay", $scheduleDay);
-            $cmd->bindValue(":startTime", $startTime);
-            $cmd->bindValue(":endTime", $endTime);
-            $cmd->bindValue(":bookAvail", $bookAvail);
-            $cmd->bindValue(":id", $id);
+            $cmd->bindValue(":PatientID", $PatientID);
+            $cmd->bindValue(":DoctorID", $DoctorID);
+            $cmd->bindValue(":ScheduleID", $ScheduleID);
+            $cmd->bindValue(":Date", $Date);
+            $cmd->bindValue(":Reason", $Reason);
+            $cmd->bindValue(":Expected_cost", $Expected_cost);
+            $cmd->bindValue(":Status", $Status);
+            $cmd->bindValue(":ID", $id);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

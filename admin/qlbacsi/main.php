@@ -1,4 +1,8 @@
 <?php include("../view/top.php"); ?>
+
+<!-- Page Wrapper -->
+
+
 <div class="page-wrapper">
 	<div class="content container-fluid">
 		<h3>Quản lý bác sĩ</h3>

@@ -32,6 +32,13 @@
     <!-- Datatables CSS -->
     <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
 
+
+    <!-- addform3 thêm lịch bác sĩ -->
+    <link href="../assets/css/material.css" rel="stylesheet">
+    <link href="../assets/css/time/bootstrap-clockpicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
 </head>
 
 <body>
@@ -80,8 +87,8 @@
                     </a>
                     <div class="dropdown-menu notifications">
                         <div class="topnav-dropdown-header">
-                            <span class="notification-title">Notifications</span>
-                            <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                            <span class="notification-title">Thông báo</span>
+                            <a href="javascript:void(0)" class="clear-noti"> Xoá tất cả </a>
                         </div>
                         <div class="noti-content">
                             <ul class="notification-list">
@@ -124,23 +131,11 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media">
-                                            <span class="avatar avatar-sm">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="../assets/img/patients/patient3.jpg">
-                                            </span>
-                                            <div class="media-body">
-                                                <p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
-                                                <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="#">View all Notifications</a>
+                            <a href="#">Xem tất cả thông báo</a>
                         </div>
                     </div>
                 </li>
@@ -158,12 +153,12 @@
                             </div>
                             <div class="user-text">
                                 <h6><?php $_SESSION['nguoidung']['Email'] ?></h6>
-                                <!-- <p class="text-muted mb-0">Administrator</p> -->
+                                <p class="text-muted mb-0">Administrator</p>
                             </div>
                         </div>
-                        <a class="dropdown-item" href="profile.html">Hồ sơ</a>
-                        <a class="dropdown-item" href="settings.html">Cài đặt</a>
-                        <a class="dropdown-item" href="../kttknguoidung/index.php?action=dangxuat1">Logout</a>
+                        <a class="dropdown-item" href="../kttknguoidung/profile.php">Hồ sơ</a>
+                        <!-- <a class="dropdown-item" href="settings.html">Cài đặt</a> -->
+                        <a class="dropdown-item" href="../kttknguoidung/index.php?action=dangxuat1">Đăng xuất</a>
                     </div>
                 </li>
                 <!-- /User Menu -->
@@ -183,7 +178,7 @@
                             <span>Main</span>
                         </li>
                         <li class="active">
-                            <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                            <a href="index.html"><i class="fe fe-home"></i> <span>Bảng điều khiển</span></a>
                         </li>
                         <li>
                             <a href="../qlcuochen/index.php"><i class="fe fe-layout"></i> <span>Cuộc hẹn</span></a>
@@ -201,88 +196,13 @@
                             <a href="../qllichbacsi/index.php"><i class="fe fe-star-o"></i> <span>Lịch của bác sĩ</span></a>
                         </li>
                         <li>
-                            <a href="transactions-list.html"><i class="fe fe-activity"></i> <span>Transactions</span></a>
+                            <a href="transactions-list.html"><i class="fe fe-activity"></i> <span>Phản hồi</span></a>
                         </li>
-                        <li>
-                            <a href="settings.html"><i class="fe fe-vector"></i> <span>Settings</span></a>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="invoice-report.html">Invoice Reports</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-title">
-                            <span>Pages</span>
-                        </li>
-                        <li>
-                            <a href="profile.html"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fe fe-document"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="login.html"> Login </a></li>
-                                <li><a href="register.html"> Register </a></li>
-                                <li><a href="forgot-password.html"> Forgot Password </a></li>
-                                <li><a href="lock-screen.html"> Lock Screen </a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fe fe-warning"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="error-404.html">404 Error </a></li>
-                                <li><a href="error-500.html">500 Error </a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="blank-page.html"><i class="fe fe-file"></i> <span>Blank Page</span></a>
-                        </li>
-                        <li class="menu-title">
-                            <span>UI Interface</span>
-                        </li>
-                        <li>
-                            <a href="components.html"><i class="fe fe-vector"></i> <span>Components</span></a>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fe fe-layout"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="form-basic-inputs.html">Basic Inputs </a></li>
-                                <li><a href="form-input-groups.html">Input Groups </a></li>
-                                <li><a href="form-horizontal.html">Horizontal Form </a></li>
-                                <li><a href="form-vertical.html"> Vertical Form </a></li>
-                                <li><a href="form-mask.html"> Form Mask </a></li>
-                                <li><a href="form-validation.html"> Form Validation </a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="#"><i class="fe fe-table"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="tables-basic.html">Basic Tables </a></li>
-                                <li><a href="data-tables.html">Data Table </a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i class="fe fe-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li class="submenu">
-                                    <a href="javascript:void(0);"> <span>Level 1</span> <span class="menu-arrow"></span></a>
-                                    <ul style="display: none;">
-                                        <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
-                                        <li class="submenu">
-                                            <a href="javascript:void(0);"> <span> Level 2</span> <span class="menu-arrow"></span></a>
-                                            <ul style="display: none;">
-                                                <li><a href="javascript:void(0);">Level 3</a></li>
-                                                <li><a href="javascript:void(0);">Level 3</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="javascript:void(0);"> <span>Level 2</span></a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);"> <span>Level 1</span></a>
-                                </li>
-                            </ul>
-                        </li>
+
+
+
+
+
                     </ul>
                 </div>
             </div>

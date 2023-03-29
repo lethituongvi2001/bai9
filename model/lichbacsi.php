@@ -25,7 +25,7 @@ class LICHBACSI
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM doctorschedule WHERE Doctor_ID=:mabs";
+            $sql = "SELECT * FROM doctorschedule WHERE DoctorID=:mabs";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":mabs", $Doctor_ID);
             $cmd->execute();
@@ -58,15 +58,14 @@ class LICHBACSI
 
 
     // Thêm mới
-    public function themlichbacsi($DoctorID, $scheduleDate, $scheduleDay, $startTime, $endTime, $bookAvail)
+    public function themlichbacsi($DoctorID, $scheduleDay, $startTime, $endTime, $bookAvail)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "INSERT INTO doctorschedule(DoctorID,scheduleDate,scheduleDay,startTime,endTime,bookAvail) 
-				VALUES(:DoctorID,:scheduleDate,:scheduleDay,:startTime,:endTime,:bookAvail)";
+            $sql = "INSERT INTO doctorschedule(DoctorID,scheduleDay,startTime,endTime,bookAvail) 
+				VALUES(:DoctorID,:scheduleDay,:startTime,:endTime,:bookAvail)";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":Doctor ID", $DoctorID);
-            $cmd->bindValue(":scheduleDate", $scheduleDate);
+            $cmd->bindValue(":DoctorID", $DoctorID);
             $cmd->bindValue(":scheduleDay", $scheduleDay);
             $cmd->bindValue(":startTime", $startTime);
             $cmd->bindValue(":endTime", $endTime);
@@ -98,26 +97,41 @@ class LICHBACSI
     }
 
     // Cập nhật 
-    public function sualichbacsi($id, $DoctorID, $scheduleDate, $scheduleDay, $startTime, $endTime, $bookAvail)
+    public function sualichbacsi($id, $DoctorID,  $scheduleDay, $startTime, $endTime, $bookAvail)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE doctorschedule SET Doctor ID=:Doctor ID,
-										scheduleDate=:scheduleDate,
+            $sql = "UPDATE doctorschedule SET DoctorID=:DoctorID,										
 										scheduleDay=:scheduleDay,
 										startTime=:startTime,
 										endTime=:endTime,
 										bookAvail=:bookAvail
 										WHERE id=:id";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":Doctor ID", $DoctorID);
-            $cmd->bindValue(":scheduleDate", $scheduleDate);
+            $cmd->bindValue(":DoctorID", $DoctorID);
             $cmd->bindValue(":scheduleDay", $scheduleDay);
             $cmd->bindValue(":startTime", $startTime);
             $cmd->bindValue(":endTime", $endTime);
             $cmd->bindValue(":bookAvail", $bookAvail);
             $cmd->bindValue(":id", $id);
             $result = $cmd->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    //SELECT * FROM `doctorschedule` WHERE `Doctor ID` = 2
+    public function laylichtheobacsi($Doctor_ID)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM doctorschedule WHERE DoctorID=:mabs";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":mabs", $Doctor_ID);
+            $cmd->execute();
+            $result = $cmd->fetchAll();
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
