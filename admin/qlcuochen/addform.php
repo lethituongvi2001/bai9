@@ -32,26 +32,6 @@
 
                                     <input type="hidden" name="action" value="xulythem">
 
-
-                                    <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="date">
-                                            Date
-                                            <span class="asteriskField">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar">
-                                                    </i>
-                                                </div>
-                                                <input class="form-control" id="date" name="date" type="text" required />
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="scheduleday">
                                             Bệnh nhân
@@ -60,7 +40,7 @@
                                             </span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <select class="select form-control" id="scheduleday1" name="otpDoctor" required>
+                                            <select class="select form-control" id="scheduleday1" name="txtPatientID" required>
 
 
                                                 <?php
@@ -83,7 +63,7 @@
                                             </span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <select class="select form-control" id="scheduleday1" name="otpDoctor" required>
+                                            <select class="select form-control" id="scheduleday1" name="txtDoctorID" required>
 
 
                                                 <?php
@@ -105,31 +85,30 @@
                                             </span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar">
-                                                    </i>
-                                                </div>
-                                                <input class="form-control" id="date" name="date" type="text" required />
+                                            <div class="input-group ">
+
+                                                <input class="form-control" name="txtDate" type="date" required />
                                             </div>
                                         </div>
                                     </div>
+
+
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="scheduleday">
-                                            Giờ bắt đầu
+                                            Giờ bắt đầu(ID lịch bác sĩ)
                                             <span class="asteriskField">
                                                 *
                                             </span>
                                         </label>
                                         <div class="col-sm-10">
 
-                                            <select class="select form-control" id="scheduleday1" name="otpDoctor" required>
+                                            <select class="select form-control" id="scheduleday1" name="txtScheduleID" required>
 
 
                                                 <?php
                                                 foreach ($lichbacsi as $l) :
                                                 ?>
-                                                    <option value="<?php echo $b["ID"]; ?>"><?php echo $l["startTime"]; ?></option>
+                                                    <option><?php echo $b["ID"]; ?></option>
                                                 <?php
                                                 endforeach;
                                                 ?>
@@ -140,9 +119,8 @@
 
 
 
-
                                     <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="endtime">
+                                        <label class="control-label col-sm-2 requiredField" for="name">
                                             Lí do
                                             <span class="asteriskField">
                                                 *
@@ -153,15 +131,16 @@
                                             <div class="input-group" data-align="top" data-autoclose="true">
 
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-eye">
+                                                    <i class="fa fa-user">
                                                     </i>
                                                 </div>
-                                                <input class="form-control" id="endtime" name="txtendTime" type="text" required />
+                                                <input class="form-control" name="txtReason" type="text" required />
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="starttime">
+                                        <label class="control-label col-sm-2 requiredField" for="name">
                                             Giá dự kiến
                                             <span class="asteriskField">
                                                 *
@@ -169,15 +148,18 @@
                                         </label>
 
                                         <div class="col-sm-10">
-                                            <div class="input-group " data-align="top" data-autoclose="true">
+                                            <div class="input-group" data-align="top" data-autoclose="true">
+
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-money">
                                                     </i>
                                                 </div>
-                                                <input class="form-control" id="starttime" name="txtstartTime" type="number" required />
+                                                <input class="form-control" name="txtExpected_cost" type="number" required />
                                             </div>
                                         </div>
                                     </div>
+
+
 
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="bookavail">
@@ -187,7 +169,7 @@
                                             </span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <select class="select form-control" id="bookavail" name="otpbookAvail" required>
+                                            <select class="select form-control" id="bookavail" name="txtStatus" required>
                                                 <option value="Đang diễn ra">
                                                     Đang diễn ra
                                                 </option>

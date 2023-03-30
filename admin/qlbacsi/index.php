@@ -1,7 +1,7 @@
 <?php
-// if (!isset($_SESSION["nguoidung"])) {
-//     header("location:../index.php");
-// }
+if (!isset($_SESSION["nguoidung"])) {
+    header("location:../index.php");
+}
 require("../../model/database.php");
 require("../../model/bacsi.php");
 require("../../model/chuyenmon.php");
@@ -26,7 +26,7 @@ switch ($action) {
         break;
     case "them":
         $chuyenmon = $cm->laychuyenmon();
-        include("addform.php");
+        include("addform3.php");
         break;
     case "xulythem":
 
@@ -61,7 +61,7 @@ switch ($action) {
         include("main.php");
         break;
     case "sua":
-        if (isset($_GET["id"])) {
+        if (isset($_GET["ID"])) {
             $b = $bs->laybacsitheoid($_GET["ID"]);
             $chuyenmon = $cm->laychuyenmon();
             include("updateform.php");
@@ -85,7 +85,7 @@ switch ($action) {
         // upload file mới (nếu có)
         if ($_FILES["filehinhanh"]["name"] != "") {
             // xử lý file upload -- Cần bổ dung kiểm tra: dung lượng, kiểu file, ...       
-            $image = "assets/img/doctors" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn lưu csdl
+            $image = "assets/img/doctors/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn lưu csdl
             $duongdan = "../" . $image; // đường dẫn lưu upload file        
             move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
         }
@@ -95,6 +95,7 @@ switch ($action) {
 
         // hiển thị ds mặt hàng
         $bacsi = $bs->laybacsi();
+
         include("main.php");
         break;
 

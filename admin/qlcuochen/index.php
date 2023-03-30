@@ -39,7 +39,9 @@ switch ($action) {
         $PatientID = $_POST["txtPatientID"];
         $DoctorID = $_POST["txtDoctorID"];
         $ScheduleID = $_POST["txtScheduleID"];
-        $Date = $_POST["txtDate"];
+        $newDate = $_POST["txtDate"];
+        $Date = date("Y-m-d", strtotime($newDate));
+
         $Reason = $_POST["txtReason"];
         $Expected_cost = $_POST["txtExpected_cost"];
         $Status = $_POST["txtStatus"];

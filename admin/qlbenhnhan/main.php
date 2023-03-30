@@ -1,45 +1,86 @@
 <?php include("../view/top.php"); ?>
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+	<div class="content container-fluid">
+		<h3 class="page-title">Bệnh nhân</h3>
+		<!-- Page Header -->
+		<div class="page">
 
-<h3>Quản lý bệnh nhân</h3>
-<br>
-<a href="index.php?action=them" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Thêm bệnh nhân</a>
-<br> <br>
-<table class="table table-hover">
-	<tr>
-		<th>Họ tên</th>
-		<th>Email</th>
-		<th>Số điện thoai</th>
-		<th>Địa chỉ</th>
-		<th>Ngày sinh</th>
-		<th>Sửa</th>
-		<th>Xoá</th>
-	</tr>
+			<div class="row">
 
-	<?php
-	//$id, $Name, $Email, $PhoneNumber, $Address, $DOB, $Gender, $Password
-	foreach ($benhnhan as $b) :
-	?>
+				<div class="col-sm-12">
 
-		<?php
 
-		foreach ($nguoidung as $nd) :
-		?>
-			<tr>
-				<td><?php echo $b["Name"]; ?></td>
-				<td><?php echo $nd["Email"]; ?></td>
-				<td><?php echo $b["PhoneNumber"]; ?></td>
-				<td><?php echo $b["Address"]; ?></td>
-				<td><?php echo $b["DOB"]; ?></td>
-				<td><?php echo $b["Gender"]; ?></td>
-				<td><a class="btn btn-warning" href="index.php?action=sua&ID=<?php echo $b["ID"]; ?>"><span class="glyphicon glyphicon-edit"> </span></a></td>
-				<td><a class="btn btn-danger" href="index.php?action=xoa&ID=<?php echo $b["ID"]; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
-			</tr>
-		<?php
-		endforeach;
-		?>
-	<?php
-	endforeach;
-	?>
-</table>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html">Bảng điều khiển</a></li>
 
+						<li class="breadcrumb-item active">Bệnh nhân</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Header -->
+
+		<div class="row">
+
+			<div class="col-sm-12">
+				<a href="index.php?action=them" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Thêm Bệnh nhân</a>
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>Họ tên</th>
+										<th>Email</th>
+										<th>Số điện thoai</th>
+										<th>Địa chỉ</th>
+										<th>Ngày sinh</th>
+										<th>Giới tính</th>
+										<th>Sửa</th>
+										<th>Xoá</th>
+
+									</tr>
+								</thead>
+
+								<?php
+
+								foreach ($benhnhan as $b) :
+								?>
+									<tbody>
+										<tr>
+
+											<td><?php echo $b["Name"]; ?></td>
+											<td><?php echo $b["Email"]; ?></td>
+											<td><?php echo $b["PhoneNumber"]; ?></td>
+											<td><?php echo $b["Address"]; ?></td>
+											<td><?php echo $b["DOB"]; ?></td>
+											<td><?php echo $b["Gender"]; ?></td>
+
+											<td><a class="btn btn-warning" href="index.php?action=sua&ID=<?php echo $b["ID"]; ?>"><span class="glyphicon glyphicon-edit"> </span></a></td>
+											<td><a class="btn btn-danger" href="index.php?action=xoa&ID=<?php echo $b["ID"]; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+										</tr>
+
+
+
+									<?php
+								endforeach;
+									?>
+
+									</tbody>
+
+							</table>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+<!-- /Page Wrapper -->
 <?php include("../view/bottom.php"); ?>

@@ -22,10 +22,10 @@ switch ($action) {
         $benhnhan = $bn->laybenhnhan();
         include("main.php");
         break;
-        // case "them":
-        //     $bacsi = $bs->laybacsi();
-        //     include("addform.php");
-        //     break;
+    case "them":
+
+        include("addform.php");
+        break;
     case "xulythem":
         //$id, $Name, $Email(nguoidung), $PhoneNumber, $Address, $DOB, $Gender
         $Name = $_POST["txtName"];
@@ -35,7 +35,7 @@ switch ($action) {
         $DOB = $_POST["txtDOB"];
         $Gender = $_POST["txtGender"];
         $bn->thembenhnhan($Name, $Email, $PhoneNumber, $Address, $DOB, $Gender);
-        $benhnhan = $lbs->laybenhnhan();
+        $benhnhan = $bn->laybenhnhan();
         include("main.php");
         break;
     case "xoa":
@@ -44,16 +44,16 @@ switch ($action) {
         $benhnhan = $bn->laybenhnhan();
         include("main.php");
         break;
-        // case "sua":
-        //     if (isset($_GET["id"])) {
-        //         $b = $bs->laybenhnhantheoid($_GET["ID"]);
-        //         
-        //         include("updateform.php");
-        //     } else {
-        //         $benhnhan = $lbs->laybenhnhan();
-        //         include("main.php");
-        //     }
-        //     break;
+    case "sua":
+        if (isset($_GET["ID"])) {
+            $b = $bn->laybenhnhantheoid($_GET["ID"]);
+
+            include("updateform.php");
+        } else {
+            $benhnhan = $bn->laybenhnhan();
+            include("main.php");
+        }
+        break;
     case "xulysua":
         //$id, $Name, $Email, $PhoneNumber, $Address, $DOB, $Gender
         $id = $_POST["txtid"];

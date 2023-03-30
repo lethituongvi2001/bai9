@@ -140,7 +140,7 @@
 								<img src="../assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
 							</div>
 							<div class="user-text">
-								<h6><?php $_SESSION['nguoidung']['Email'] ?></h6>
+								<h6><?php $_SESSION['nguoidung'] ?></h6>
 								<p class="text-muted mb-0">Administrator</p>
 							</div>
 						</div>

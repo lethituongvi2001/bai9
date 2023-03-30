@@ -1,63 +1,78 @@
 <?php include("../view/top.php"); ?>
+<!-- Page Wrapper -->
 <div class="page-wrapper">
 	<div class="content container-fluid">
-		<h3>Quản lý chuyên môn</h3>
-		<br>
-		<table class="table table-hover">
-			<tr>
-				<th>Tên danh mục</th>
-				<th>Hình ảnh</th>
-				<th>Sửa</th>
-				<th>Xóa</th>
-			</tr>
-			<?php
-			foreach ($chuyenmon as $c) :
-				if ($c["ID"] == $idsua) {
-			?>
-					<form method="post">
-						<input type="hidden" name="txtid" value="<?php echo $c["ID"]; ?>">
-						<input type="hidden" name="action" value="capnhat">
-						<tr>
-							<td><input type="text" class="form-control" name="txtten" value="<?php echo $c["Speciality"]; ?>"></td>
-							<td><input type="text" class="form-control" value="<?php echo $c["image"]; ?>"></td>
-							<td><input type="submit" class="btn btn-warning" value="Sửa"></td>
-							<td><a href="index.php?action=xoa&id=<?php echo $c["ID"]; ?>">Xóa</a></td>
-						</tr>
-					</form>
-				<?php
-				} else {
-				?>
-					<tr>
-						<td><?php echo $c["Speciality"]; ?></td>
-						<td><a href="index.php?action=sua&id=<?php echo $c["ID"]; ?>">Sửa</a></td>
-						<td><a href="index.php?action=xoa&id=<?php echo $c["ID"]; ?>">Xóa</a></td>
-					</tr>
-			<?php
-				}
-			endforeach;
-			?>
-		</table>
-		<div id="buttonthem">
-			<a class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Thêm danh mục</a>
+		<h3 class="page-title">Chuyên môn</h3>
+		<!-- Page Header -->
+		<div class="page">
+
+			<div class="row">
+
+				<div class="col-sm-12">
+
+
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html">Bảng điều khiển</a></li>
+
+						<li class="breadcrumb-item active">Chuyên môn</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<br>
-		<div id="formthem">
-			<form class="form-inline" method="post">
-				<input type="text" class="form-control" name="txtten" placeholder="Nhập tên danh mục">
-				<input class="form-control" type="file" name="filehinhanh">
-				<input type="hidden" name="action" value="them">
-				<input type="submit" class="btn btn-warning" value="Thêm">
-			</form>
+		<!-- /Page Header -->
+
+		<div class="row">
+
+			<div class="col-sm-12">
+				<a href="index.php?action=them" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Thêm chuyên môn</a>
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>Mã</th>
+										<th>Chuyên môn</th>
+										<th>Ảnh</th>
+										<th>Sửa</th>
+										<th>Xoá</th>
+
+									</tr>
+								</thead>
+
+								<?php
+								foreach ($chuyenmon as $c) :
+								?>
+									<tbody>
+										<tr>
+
+											<td><?php echo $c["ID"]; ?></td>
+											<td><?php echo $c["Speciality"]; ?></td>
+											<td><img src="../../<?php echo $c["image"]; ?>" width="80" class="img-thumbnail"></td>
+											<td><a class="btn btn-warning" href="index.php?action=sua&ID=<?php echo $c["ID"]; ?>"><span class="glyphicon glyphicon-edit"> </span></a></td>
+											<td><a class="btn btn-danger" href="index.php?action=xoa&ID=<?php echo $c["ID"]; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+										</tr>
+
+
+
+									<?php
+								endforeach;
+									?>
+
+									</tbody>
+
+							</table>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
 		</div>
+
+
 	</div>
 </div>
-<script>
-	$(document).ready(function() {
-		$("#formthem").hide();
-		$("#buttonthem").click(function() {
-			$("#formthem").toggle(1000);
-		});
-	});
-</script>
-
+<!-- /Page Wrapper -->
 <?php include("../view/bottom.php"); ?>

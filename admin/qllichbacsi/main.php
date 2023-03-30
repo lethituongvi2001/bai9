@@ -4,7 +4,7 @@
 	<div class="content container-fluid">
 		<h3 class="page-title">Lịch bác sĩ</h3>
 		<!-- Page Header -->
-		<div class="page-header">
+		<div class="page">
 
 			<div class="row">
 

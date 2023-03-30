@@ -5,7 +5,7 @@
 	<div class="content container-fluid">
 		<h3 class="page-title">Cuộc hẹn</h3>
 		<!-- Page Header -->
-		<div class="page-header">
+		<div>
 			<div class="row">
 				<div class="col">
 
