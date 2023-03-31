@@ -41,7 +41,6 @@ switch ($action) {
         $ScheduleID = $_POST["txtScheduleID"];
         $newDate = $_POST["txtDate"];
         $Date = date("Y-m-d", strtotime($newDate));
-
         $Reason = $_POST["txtReason"];
         $Expected_cost = $_POST["txtExpected_cost"];
         $Status = $_POST["txtStatus"];

@@ -61,7 +61,7 @@
                     </div>
                     <ul class="main-nav">
                         <li class="active">
-                            <a href="index-2.html">Home</a>
+                            <a href="index.php">Trang chủ</a>
                         </li>
                         <li class="has-submenu">
                             <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
@@ -118,7 +118,7 @@
                             <a href="admin/index.php" target="_blank">Admin</a>
                         </li>
                         <li class="login-link">
-                            <a href="login.html">Login / Signup</a>
+                            <a href="login.html">Đăng nhập / Đăng xuất</a>
                         </li>
                     </ul>
                 </div>
@@ -128,12 +128,12 @@
                             <i class="far fa-hospital"></i>
                         </div>
                         <div class="header-contact-detail">
-                            <p class="contact-header">Contact</p>
-                            <p class="contact-info-header"> +1 315 369 5943</p>
+                            <p class="contact-header">Liên hệ </p>
+                            <p class="contact-info-header"> 0364528586</p>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link header-login" href="login.html">login / Signup </a>
+                        <a class="nav-link header-login" href="login.php">Đăng nhập / Đăng xuất </a>
                     </li>
                 </ul>
             </nav>

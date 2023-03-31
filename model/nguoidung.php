@@ -81,7 +81,8 @@ class NGUOIDUNG
 		try {
 			$sql = 'select * from account where Email=:Email';
 			if ($loai_tk == 2)
-				$sql = "select * from account as a, doctors as d where a.Email=:Email and a.ID = d.id_account";
+				$sql = "select a.role, a.ActiveStatus, d.* from account as a, doctors as d 
+				where a.Email=:Email and a.ID = d.id_account";
 			$cmd = $db->prepare($sql);
 			$cmd->bindValue(":Email", $Email);
 			$cmd->execute();

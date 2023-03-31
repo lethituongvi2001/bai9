@@ -21,6 +21,9 @@ $lbs = new LICHBACSI();
 switch ($action) {
     case "xem":
         $lichbacsi = $lbs->laylichbacsi();
+        for ($i = 0; $i < count($lichbacsi); $i++) {
+            $lichbacsi[$i]['STT'] = $i + 1;
+        }
         $bacsi = $bs->laybacsi();
         include("main.php");
         break;
@@ -30,6 +33,7 @@ switch ($action) {
         break;
     case "xulythem":
         //$DoctorID,$scheduleDate,$scheduleDay,$startTime,$endTime,$bookAvail
+
         $DoctorID = $_POST["otpDoctor"];
         // $scheduleDate = $_POST["txtscheduleDate"];
         $scheduleDay = $_POST["otpcheduleDay"];
@@ -38,6 +42,11 @@ switch ($action) {
         $bookAvail = $_POST["otpbookAvail"];
         $lbs->themlichbacsi($DoctorID, $scheduleDay, $startTime, $endTime, $bookAvail);
         $lichbacsi = $lbs->laylichbacsi();
+
+        for ($i = 0; $i < count($lichbacsi); $i++) {
+            $lichbacsi[$i]['STT'] = $i + 1;
+        }
+        $bacsi = $bs->laybacsi();
         include("main.php");
         break;
     case "xoa":

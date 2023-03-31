@@ -20,7 +20,8 @@ $lbs = new LICHBACSI();
 
 switch ($action) {
     case "xem":
-        $lichbacsi = $lbs->laylichbacsi();
+        $lichbacsi = $lbs->laylichbacsitheoid($_SESSION['nguoidung']['ID']);
+
         include("main1.php");
         break;
     case "them":
@@ -52,7 +53,7 @@ switch ($action) {
             include("updateform.php");
         } else {
             $lichbacsi = $lbs->laylichbacsi();
-            include("main.php");
+            include("main1.php");
         }
         break;
     case "xulysua":

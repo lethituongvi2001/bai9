@@ -11,13 +11,13 @@
                             <div class="dash-widget dct-border-rht">
                                 <div class="circle-bar circle-bar1">
                                     <div class="circle-graph1" data-percent="75">
-                                        <img src="../assets/img/icon-01.png" class="img-fluid" alt="patient">
+                                        <img src="../assets_doctor/img/icon-01.png" class="img-fluid" alt="patient">
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Total Patient</h6>
+                                    <h6>Tổng số bệnh nhân</h6>
                                     <h3>1500</h3>
-                                    <p class="text-muted">Till Today</p>
+                                    <p class="text-muted">Cho đến hôm nay</p>
                                 </div>
                             </div>
                         </div>
@@ -26,13 +26,13 @@
                             <div class="dash-widget dct-border-rht">
                                 <div class="circle-bar circle-bar2">
                                     <div class="circle-graph2" data-percent="65">
-                                        <img src="../assets/img/icon-02.png" class="img-fluid" alt="Patient">
+                                        <img src="../assets_doctor/img/icon-02.png" class="img-fluid" alt="Patient">
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Today Patient</h6>
+                                    <h6>Bệnh nhân hôm nay</h6>
                                     <h3>160</h3>
-                                    <p class="text-muted">06, Nov 2019</p>
+                                    <p class="text-muted">04/04/2023</p>
                                 </div>
                             </div>
                         </div>
@@ -41,13 +41,13 @@
                             <div class="dash-widget">
                                 <div class="circle-bar circle-bar3">
                                     <div class="circle-graph3" data-percent="50">
-                                        <img src="../assets/img/icon-03.png" class="img-fluid" alt="Patient">
+                                        <img src="../assets_doctor/img/icon-03.png" class="img-fluid" alt="Patient">
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Appoinments</h6>
+                                    <h6>Cuộc hẹn</h6>
                                     <h3>85</h3>
-                                    <p class="text-muted">06, Apr 2019</p>
+                                    <p class="text-muted">04/04/2023</p>
                                 </div>
                             </div>
                         </div>
@@ -59,13 +59,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h4 class="mb-4">Patient Appoinment</h4>
+            <h4 class="mb-4">Cuộc hẹn với bệnh nhân</h4>
             <div class="appointment-tab">
 
                 <!-- Appointment Tab -->
                 <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Upcoming</a>
+                        <a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Sắp tới</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#today-appointments" data-toggle="tab">Today</a>

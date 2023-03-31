@@ -24,6 +24,7 @@ class BENHNHAN
         $this->tenbenhnhan = $value;
     }
 
+
     // Lấy danh sách
     public function laybenhnhan()
     {
@@ -82,6 +83,7 @@ class BENHNHAN
         }
     }
 
+
     // Cập nhật 
     public function suabenhnhan($id, $Name, $Email, $PhoneNumber, $Address, $DOB, $Gender)
     {
@@ -92,7 +94,7 @@ class BENHNHAN
 										PhoneNumber=:PhoneNumber,
                                         Address=:Address,
                                         DOB=:DOB,
-                                        Gender=:Gender,																												
+                                        Gender=:Gender																											
 										WHERE ID=:ID";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":Name", $Name);
@@ -111,7 +113,9 @@ class BENHNHAN
         }
     }
 
-    // Lấy danh mục theo id
+
+
+    // Lấy bệnh nhơn theo id
     public function laybenhnhantheoid($id)
     {
         $dbcon = DATABASE::connect();

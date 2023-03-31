@@ -31,6 +31,7 @@
 							<table class="datatable table table-hover table-center mb-0">
 								<thead>
 									<tr>
+										<th>STT</th>
 										<th>Bác sĩ</th>
 										<th>Ngày hẹn</th>
 										<th>Giờ bắt đầu</th>
@@ -46,10 +47,10 @@
 								?>
 									<tbody>
 										<tr>
+											<td><?php echo $l["STT"]; ?></td>
 											<td>
 												<h2 class="table-avatar">
-
-													<a href="profile.html"><?php echo $l["DoctorID"]; ?></a>
+													<a href="profile.html"><?php echo $l["Name"]; ?></a>
 												</h2>
 											</td>
 											<td><?php echo $l["scheduleDay"]; ?></td>

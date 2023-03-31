@@ -9,17 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
     <!-- Favicons -->
-    <link href="../assets_doctor/img/favicon.png" rel="icon">
+    <link href="../../assets_doctor/img/favicon.png" rel="icon">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../assets_doctor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets_doctor/css/bootstrap.min.css">
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="../assets_doctor/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../assets_doctor/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets_doctor/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../assets_doctor/plugins/fontawesome/css/all.min.css">
 
 
-    <link rel="stylesheet" href="../assets_doctor/css/style.css">
+    <link rel="stylesheet" href="../../assets_doctor/css/style.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -80,7 +80,7 @@
                             <div class="widget-profile pro-widget-content">
                                 <div class="profile-info-widget">
                                     <a href="#" class="booking-doc-img">
-                                        <img src="../assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+                                        <img src="../../assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
                                     </a>
                                     <div class="profile-det-info">
                                         <h3><?php echo $_SESSION['nguoidung']['Name'] == '' ? $_SESSION['nguoidung']['Email'] : $_SESSION['nguoidung']['Name']   ?></h3>
@@ -150,7 +150,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="kttknguoidung/index.php?action=dangxuat1">
+                                            <a href="../../kttknguoidung/index.php?action=dangxuat1">
                                                 <i class="fas fa-sign-out-alt"></i>
                                                 <span>Đăng xuất</span>
                                             </a>

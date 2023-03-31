@@ -18,7 +18,7 @@ $nd = new NGUOIDUNG();
 
 switch ($action) {
     case "xem":
-        $nguoidung = $nd->laydanhsachnguoidung();
+
         $benhnhan = $bn->laybenhnhan();
         include("main.php");
         break;
@@ -32,9 +32,12 @@ switch ($action) {
         $Email = $_POST["txtEmail"];
         $PhoneNumber = $_POST["txtPhoneNumber"];
         $Address = $_POST["txtAddress"];
-        $DOB = $_POST["txtDOB"];
+        $newDate = $_POST["txtDOB"];
+        $DOB = date("Y-m-d", strtotime($newDate));
         $Gender = $_POST["txtGender"];
-        $bn->thembenhnhan($Name, $Email, $PhoneNumber, $Address, $DOB, $Gender);
+        //them tk
+        $id_moi_nhat = $tk->themnguoidung($Email, '123', 3);
+        $bn->thembenhnhan($Name, $Email, $PhoneNumber, $Address, $DOB, $Gender, $id_moi_nhat);
         $benhnhan = $bn->laybenhnhan();
         include("main.php");
         break;

@@ -1,689 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include("../view_doctor/top.php"); ?>
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+	<div class="content container-fluid">
+		<h3 class="page-title">Lịch bác sĩ</h3>
+		<!-- Page Header -->
+		<div class="page">
 
-<!-- doccure/schedule-timings.html  30 Nov 2019 04:12:09 GMT -->
+			<div class="row">
 
-<head>
-    <meta charset="utf-8">
-    <title>Doccure</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+				<div class="col-sm-12">
 
-    <!-- Favicons -->
-    <link href="../assets/img/favicon.png" rel="icon">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html">Bảng điều khiển</a></li>
 
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/all.min.css">
+						<li class="breadcrumb-item active">Lịch bác sĩ</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Header -->
 
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" href="../assets/plugins/select2/css/select2.min.css">
+		<div class="row">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+			<div class="col-sm-14">
+				<a href="index.php?action=them" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Thêm lịch bác sĩ</a>
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>Bác sĩ</th>
+										<th>Ngày hẹn</th>
+										<th>Giờ bắt đầu</th>
+										<th>Giờ kết thúc</th>
+										<th>Trạng thái</th>
+										<th>Sửa</th>
+										<th>Xoá</th>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-			<script src="assets/js/html5shiv.min.js"></script>
-			<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
+									</tr>
+								</thead>
+								<?php
+								foreach ($lichbacsi as $l) :
+								?>
+									<tbody>
+										<tr>
+											<td>
+												<h2 class="table-avatar">
 
-</head>
+													<a href="profile.html"><?php echo $l["DoctorID"]; ?></a>
+												</h2>
+											</td>
+											<td><?php echo $l["scheduleDay"]; ?></td>
 
-<body>
+											<td><?php echo $l["startTime"]; ?> </td>
 
-    <!-- Main Wrapper -->
-    <div class="main-wrapper">
+											<td><?php echo $l["endTime"]; ?></td>
+											<td><?php echo $l["bookAvail"]; ?></td>
 
+											<td><a class="btn btn-warning" href="index.php?action=sua&ID=<?php echo $l["ID"]; ?>"><span class="glyphicon glyphicon-edit"> </span></a></td>
+											<td><a class="btn btn-danger" href="index.php?action=xoa&ID=<?php echo $l["ID"]; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+										</tr>
 
 
-        <!-- Breadcrumb -->
-        <div class="breadcrumb-bar">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-md-12 col-12">
-                        <nav aria-label="breadcrumb" class="page-breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Schedule Timings</li>
-                            </ol>
-                        </nav>
-                        <h2 class="breadcrumb-title">Schedule Timings</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Breadcrumb -->
 
-        <!-- Page Content -->
-        <div class="content">
-            <div class="container-fluid">
+									<?php
+								endforeach;
+									?>
 
-                <div class="row">
-                    <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+									</tbody>
 
-                        <!-- Profile Sidebar -->
-                        <div class="profile-sidebar">
-                            <div class="widget-profile pro-widget-content">
-                                <div class="profile-info-widget">
-                                    <a href="#" class="booking-doc-img">
-                                        <img src="../assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
-                                    </a>
-                                    <div class="profile-det-info">
-                                        <h3>Dr. Darren Elder</h3>
+							</table>
 
-                                        <div class="patient-details">
-                                            <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dashboard-widget">
-                                <nav class="dashboard-menu">
-                                    <ul>
-                                        <li>
-                                            <a href="doctor-dashboard.html">
-                                                <i class="fas fa-columns"></i>
-                                                <span>Dashboard</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="appointments.html">
-                                                <i class="fas fa-calendar-check"></i>
-                                                <span>Appointments</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="my-patients.html">
-                                                <i class="fas fa-user-injured"></i>
-                                                <span>My Patients</span>
-                                            </a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="schedule-timings.html">
-                                                <i class="fas fa-hourglass-start"></i>
-                                                <span>Schedule Timings</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="invoices.html">
-                                                <i class="fas fa-file-invoice"></i>
-                                                <span>Invoices</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="reviews.html">
-                                                <i class="fas fa-star"></i>
-                                                <span>Reviews</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="chat-doctor.html">
-                                                <i class="fas fa-comments"></i>
-                                                <span>Message</span>
-                                                <small class="unread-msg">23</small>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="doctor-profile-settings.html">
-                                                <i class="fas fa-user-cog"></i>
-                                                <span>Profile Settings</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="social-media.html">
-                                                <i class="fas fa-share-alt"></i>
-                                                <span>Social Media</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="doctor-change-password.html">
-                                                <i class="fas fa-lock"></i>
-                                                <span>Change Password</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="index-2.html">
-                                                <i class="fas fa-sign-out-alt"></i>
-                                                <span>Logout</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                        <!-- /Profile Sidebar -->
+						</div>
 
-                    </div>
+					</div>
 
-                    <div class="col-md-7 col-lg-8 col-xl-9">
+				</div>
+			</div>
+		</div>
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Schedule Timings</h4>
-                                        <div class="profile-box">
-                                            <div class="row">
 
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label>Timing Slot Duration</label>
-                                                        <select class="select form-control">
-                                                            <option>-</option>
-                                                            <option>15 mins</option>
-                                                            <option selected="selected">30 mins</option>
-                                                            <option>45 mins</option>
-                                                            <option>1 Hour</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card schedule-widget mb-0">
-
-                                                        <!-- Schedule Header -->
-                                                        <div class="schedule-header">
-
-                                                            <!-- Schedule Nav -->
-                                                            <div class="schedule-nav">
-                                                                <ul class="nav nav-tabs nav-justified">
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" data-toggle="tab" href="#slot_sunday">Sunday</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link active" data-toggle="tab" href="#slot_monday">Monday</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" data-toggle="tab" href="#slot_tuesday">Tuesday</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" data-toggle="tab" href="#slot_wednesday">Wednesday</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" data-toggle="tab" href="#slot_thursday">Thursday</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" data-toggle="tab" href="#slot_friday">Friday</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" data-toggle="tab" href="#slot_saturday">Saturday</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <!-- /Schedule Nav -->
-
-                                                        </div>
-                                                        <!-- /Schedule Header -->
-
-                                                        <!-- Schedule Content -->
-                                                        <div class="tab-content schedule-cont">
-
-                                                            <!-- Sunday Slot -->
-                                                            <div id="slot_sunday" class="tab-pane fade">
-                                                                <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span>
-                                                                    <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
-                                                                <p class="text-muted mb-0">Not Available</p>
-                                                            </div>
-                                                            <!-- /Sunday Slot -->
-
-                                                            <!-- Monday Slot -->
-                                                            <div id="slot_monday" class="tab-pane fade show active">
-                                                                <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span>
-                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot"><i class="fa fa-edit mr-1"></i>Edit</a>
-                                                                </h4>
-
-                                                                <!-- Slot List -->
-                                                                <div class="doc-times">
-                                                                    <div class="doc-slot-list">
-                                                                        8:00 pm - 11:30 pm
-                                                                        <a href="javascript:void(0)" class="delete_schedule">
-                                                                            <i class="fa fa-times"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="doc-slot-list">
-                                                                        11:30 pm - 1:30 pm
-                                                                        <a href="javascript:void(0)" class="delete_schedule">
-                                                                            <i class="fa fa-times"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="doc-slot-list">
-                                                                        3:00 pm - 5:00 pm
-                                                                        <a href="javascript:void(0)" class="delete_schedule">
-                                                                            <i class="fa fa-times"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="doc-slot-list">
-                                                                        6:00 pm - 11:00 pm
-                                                                        <a href="javascript:void(0)" class="delete_schedule">
-                                                                            <i class="fa fa-times"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- /Slot List -->
-
-                                                            </div>
-                                                            <!-- /Monday Slot -->
-
-                                                            <!-- Tuesday Slot -->
-                                                            <div id="slot_tuesday" class="tab-pane fade">
-                                                                <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span>
-                                                                    <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
-                                                                <p class="text-muted mb-0">Not Available</p>
-                                                            </div>
-                                                            <!-- /Tuesday Slot -->
-
-                                                            <!-- Wednesday Slot -->
-                                                            <div id="slot_wednesday" class="tab-pane fade">
-                                                                <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span>
-                                                                    <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
-                                                                <p class="text-muted mb-0">Not Available</p>
-                                                            </div>
-                                                            <!-- /Wednesday Slot -->
-
-                                                            <!-- Thursday Slot -->
-                                                            <div id="slot_thursday" class="tab-pane fade">
-                                                                <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span>
-                                                                    <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
-                                                                <p class="text-muted mb-0">Not Available</p>
-                                                            </div>
-                                                            <!-- /Thursday Slot -->
-
-                                                            <!-- Friday Slot -->
-                                                            <div id="slot_friday" class="tab-pane fade">
-                                                                <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span>
-                                                                    <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
-                                                                <p class="text-muted mb-0">Not Available</p>
-                                                            </div>
-                                                            <!-- /Friday Slot -->
-
-                                                            <!-- Saturday Slot -->
-                                                            <div id="slot_saturday" class="tab-pane fade">
-                                                                <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span>
-                                                                    <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
-                                                                <p class="text-muted mb-0">Not Available</p>
-                                                            </div>
-                                                            <!-- /Saturday Slot -->
-
-                                                        </div>
-                                                        <!-- /Schedule Content -->
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        <!-- /Page Content -->
-
-        <!-- Footer -->
-        <footer class="footer">
-
-            <!-- Footer Top -->
-            <div class="footer-top">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-
-                            <!-- Footer Widget -->
-                            <div class="footer-widget footer-about">
-                                <div class="footer-logo">
-                                    <img src="../assets/img/footer-logo.png" alt="logo">
-                                </div>
-                                <div class="footer-about-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    <div class="social-icon">
-                                        <ul>
-                                            <li>
-                                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Footer Widget -->
-
-                        </div>
-
-                        <div class="col-lg-3 col-md-6">
-
-                            <!-- Footer Widget -->
-                            <div class="footer-widget footer-menu">
-                                <h2 class="footer-title">For Patients</h2>
-                                <ul>
-                                    <li><a href="search.html"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
-                                    <li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-                                    <li><a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
-                                    <li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a></li>
-                                    <li><a href="patient-dashboard.html"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
-                                </ul>
-                            </div>
-                            <!-- /Footer Widget -->
-
-                        </div>
-
-                        <div class="col-lg-3 col-md-6">
-
-                            <!-- Footer Widget -->
-                            <div class="footer-widget footer-menu">
-                                <h2 class="footer-title">For Doctors</h2>
-                                <ul>
-                                    <li><a href="appointments.html"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
-                                    <li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
-                                    <li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-                                    <li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
-                                    <li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
-                                </ul>
-                            </div>
-                            <!-- /Footer Widget -->
-
-                        </div>
-
-                        <div class="col-lg-3 col-md-6">
-
-                            <!-- Footer Widget -->
-                            <div class="footer-widget footer-contact">
-                                <h2 class="footer-title">Contact Us</h2>
-                                <div class="footer-contact-info">
-                                    <div class="footer-address">
-                                        <span><i class="fas fa-map-marker-alt"></i></span>
-                                        <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
-                                    </div>
-                                    <p>
-                                        <i class="fas fa-phone-alt"></i>
-                                        +1 315 369 5943
-                                    </p>
-                                    <p class="mb-0">
-                                        <i class="fas fa-envelope"></i>
-                                        doccure@example.com
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- /Footer Widget -->
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- /Footer Top -->
-
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="container-fluid">
-
-                    <!-- Copyright -->
-                    <div class="copyright">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6">
-                                <div class="copyright-text">
-                                    <p class="mb-0"><a href="templateshub.net">Templates Hub</a></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-
-                                <!-- Copyright Menu -->
-                                <div class="copyright-menu">
-                                    <ul class="policy-menu">
-                                        <li><a href="term-condition.html">Terms and Conditions</a></li>
-                                        <li><a href="privacy-policy.html">Policy</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /Copyright Menu -->
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Copyright -->
-
-                </div>
-            </div>
-            <!-- /Footer Bottom -->
-
-        </footer>
-        <!-- /Footer -->
-
-    </div>
-    <!-- /Main Wrapper -->
-
-    <!-- Add Time Slot Modal -->
-    <div class="modal fade custom-modal" id="add_time_slot">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Time Slots</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="hours-info">
-                            <div class="row form-row hours-cont">
-                                <div class="col-12 col-md-10">
-                                    <div class="row form-row">
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label>Start Time</label>
-                                                <select class="form-control">
-                                                    <option>-</option>
-                                                    <option>12.00 am</option>
-                                                    <option>12.30 am</option>
-                                                    <option>1.00 am</option>
-                                                    <option>1.30 am</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label>End Time</label>
-                                                <select class="form-control">
-                                                    <option>-</option>
-                                                    <option>12.00 am</option>
-                                                    <option>12.30 am</option>
-                                                    <option>1.00 am</option>
-                                                    <option>1.30 am</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="add-more mb-3">
-                            <a href="javascript:void(0);" class="add-hours"><i class="fa fa-plus-circle"></i> Add More</a>
-                        </div>
-                        <div class="submit-section text-center">
-                            <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Add Time Slot Modal -->
-
-    <!-- Edit Time Slot Modal -->
-    <div class="modal fade custom-modal" id="edit_time_slot">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Time Slots</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="hours-info">
-                            <div class="row form-row hours-cont">
-                                <div class="col-12 col-md-10">
-                                    <div class="row form-row">
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label>Start Time</label>
-                                                <select class="form-control">
-                                                    <option>-</option>
-                                                    <option selected>12.00 am</option>
-                                                    <option>12.30 am</option>
-                                                    <option>1.00 am</option>
-                                                    <option>1.30 am</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label>End Time</label>
-                                                <select class="form-control">
-                                                    <option>-</option>
-                                                    <option>12.00 am</option>
-                                                    <option selected>12.30 am</option>
-                                                    <option>1.00 am</option>
-                                                    <option>1.30 am</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row form-row hours-cont">
-                                <div class="col-12 col-md-10">
-                                    <div class="row form-row">
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label>Start Time</label>
-                                                <select class="form-control">
-                                                    <option>-</option>
-                                                    <option>12.00 am</option>
-                                                    <option selected>12.30 am</option>
-                                                    <option>1.00 am</option>
-                                                    <option>1.30 am</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label>End Time</label>
-                                                <select class="form-control">
-                                                    <option>-</option>
-                                                    <option>12.00 am</option>
-                                                    <option>12.30 am</option>
-                                                    <option selected>1.00 am</option>
-                                                    <option>1.30 am</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-2"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>
-                            </div>
-
-                            <div class="row form-row hours-cont">
-                                <div class="col-12 col-md-10">
-                                    <div class="row form-row">
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label>Start Time</label>
-                                                <select class="form-control">
-                                                    <option>-</option>
-                                                    <option>12.00 am</option>
-                                                    <option>12.30 am</option>
-                                                    <option selected>1.00 am</option>
-                                                    <option>1.30 am</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label>End Time</label>
-                                                <select class="form-control">
-                                                    <option>-</option>
-                                                    <option>12.00 am</option>
-                                                    <option>12.30 am</option>
-                                                    <option>1.00 am</option>
-                                                    <option selected>1.30 am</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-2"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>
-                            </div>
-
-                        </div>
-
-                        <div class="add-more mb-3">
-                            <a href="javascript:void(0);" class="add-hours"><i class="fa fa-plus-circle"></i> Add More</a>
-                        </div>
-                        <div class="submit-section text-center">
-                            <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Edit Time Slot Modal -->
-
-    <!-- jQuery -->
-    <script src="../assets/js/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JS -->
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-
-    <!-- Sticky Sidebar JS -->
-    <script src="../assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
-    <script src="../assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
-
-    <!-- Select2 JS -->
-    <script src="../assets/plugins/select2/js/select2.min.js"></script>
-
-    <!-- Custom JS -->
-    <script src="../assets/js/script.js"></script>
-
-</body>
-
-<!-- doccure/schedule-timings.html  30 Nov 2019 04:12:09 GMT -->
-
-</html>
+	</div>
+</div>
+<!-- /Page Wrapper -->
+<?php include("../view_doctor/bottom.php"); ?>

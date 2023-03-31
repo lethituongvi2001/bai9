@@ -147,12 +147,12 @@
 
 
                                                 <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input type="radio" name="txtGender" value="Nam" checked="<?php echo $b["Gender"]; ?>">
+                                                    <input type="radio" name="txtGender" value="Nam">
                                                     <label class="form-check-label" for="inlineRadio1">Nam</label>
 
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input type="radio" name="txtGender" value="Nữ" checked="<?php echo $b["Gender"]; ?>">
+                                                    <input type="radio" name="txtGender" value="Nữ">
                                                     <label class="form-check-label" for="inlineRadio2">Nữ</label>
                                                 </div>
 

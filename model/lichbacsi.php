@@ -8,7 +8,7 @@ class LICHBACSI
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM doctorschedule";
+            $sql = "SELECT d.Name, dc.* FROM doctorschedule as dc, doctors as d where dc.DoctorID = d.ID";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -20,6 +20,7 @@ class LICHBACSI
             exit();
         }
     }
+
     // Lấy danh sách mặt hàng thuộc 1 danh mục
     public function laylichbacsitheobacsi($Doctor_ID)
     {
@@ -43,11 +44,12 @@ class LICHBACSI
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM doctorschedule WHERE ID=:ID";
+            $sql = "SELECT * FROM doctorschedule WHERE DoctorID = :id";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":ID", $id);
+            $cmd->bindValue(":id", $id);
             $cmd->execute();
-            $result = $cmd->fetch();
+            $result = $cmd->fetchAll();
+            rsort($result);
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();

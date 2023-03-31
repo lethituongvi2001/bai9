@@ -63,9 +63,7 @@
                                             </span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <select class="select form-control" id="scheduleday1" name="txtDoctorID" required>
-
-
+                                            <select onchange="onChange_select_bacsi()" class="select form-control" id="selected_bacsi" name="txtDoctorID" required>
                                                 <?php
                                                 foreach ($bacsi as $b) :
                                                 ?>
@@ -73,7 +71,6 @@
                                                 <?php
                                                 endforeach;
                                                 ?>
-
                                             </select>
                                         </div>
                                     </div>
@@ -253,6 +250,10 @@
     });
 </script>
 <script type="text/javascript">
+    function onChange_select_bacsi() {
+        d = document.getElementById("selected_bacsi").value;
+        // alert(d);
+    }
     /*
         Please consider that the JS part isn't production ready at all, I just code it to show the concept of merging filters and titles together !
         */

@@ -130,7 +130,7 @@ class BACSI
         }
     }
 
-    // Lấy danh mục theo id
+    // Lấy bác sĩ theo id
     public function laybacsitheoid($id)
     {
         $dbcon = DATABASE::connect();
