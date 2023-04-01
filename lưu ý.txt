@@ -1,4 +1,4 @@
- đường dẫn hình ảnh( filehinhanh hk xác định) thì coi lại có class="input-group" chưa và có thể cop nguyên nút submit từ bài cũ qua
+ . đường dẫn hình ảnh( filehinhanh hk xác định) thì coi lại có class="input-group" chưa và có thể cop nguyên nút submit từ bài cũ qua
 (sửa ảnh lỗi là do đường dẫn trong index)
 
 -qlchuyenmon- xong
