@@ -33,7 +33,7 @@ switch ($action) {
         $sodt = $_POST["txtdienthoai"];
         $name = $_POST["txthoten"];
         $rolend = $_POST["optloaind"];
-        if ($nguoidung->laythongtinnguoidung($Email)) {   // có thể kiểm tra thêm số đt không trùng
+        if ($nguoidung->laythongtinnguoidung($Email, $loai_tk)) {   // có thể kiểm tra thêm số đt không trùng
             $tb = "Email này đã được cấp tài khoản!";
         } else {
             if (!$nguoidung->themnguoidung($Email, $Password, $sodt, $name, $relond)) {

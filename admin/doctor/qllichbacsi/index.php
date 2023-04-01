@@ -20,53 +20,59 @@ $lbs = new LICHBACSI();
 
 switch ($action) {
     case "xem":
-        $lichbacsi = $lbs->laylichbacsitheoid($_SESSION['nguoidung']['ID']);
+        $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
 
         include("main1.php");
         break;
+
     case "them":
         $bacsi = $bs->laybacsi();
         include("addform.php");
         break;
     case "xulythem":
         //$DoctorID,$scheduleDate,$scheduleDay,$startTime,$endTime,$bookAvail
-        $DoctorID = $_POST["txtDoctorID"];
-        $scheduleDate = $_POST["txtscheduleDate"];
-        $scheduleDay = $_POST["txtscheduleDay"];
+        $DoctorID = $_POST["otpDoctor"];
+        // $scheduleDate = $_POST["txtscheduleDate"];
+        $scheduleDay = $_POST["otpcheduleDay"];
         $startTime = $_POST["txtstartTime"];
         $endTime = $_POST["txtendTime"];
-        $bookAvail = $_POST["txtbookAvail"];
-        $lbs->themlichbacsi($DoctorID, $scheduleDate, $scheduleDay, $startTime, $endTime, $bookAvail);
-        $lichbacsi = $lbs->laylichbacsi();
+        $bookAvail = $_POST["otpbookAvail"];
+        $lbs->themlichbacsi($DoctorID, $scheduleDay, $startTime, $endTime, $bookAvail);
+        // $lichbacsi = $lbs->laylichbacsi();
+        $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
         include("main1.php");
         break;
     case "xoa":
         if (isset($_GET["ID"]))
             $lbs->xoalichbacsi($_GET["ID"]);
-        $lichbacsi = $lbs->laylichbacsi();
+        $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
         include("main1.php");
         break;
     case "sua":
-        if (isset($_GET["id"])) {
-            $b = $lbs->laylichbacsitheobacsi($_GET["ID"]);
-            // $bacsi = $bs->laybacsi();
+
+        if (isset($_GET["ID"])) {
+            $l = $lbs->laylichbacsitheoid($_GET["ID"]);
+            $bacsi = $bs->laybacsi();
             include("updateform.php");
         } else {
-            $lichbacsi = $lbs->laylichbacsi();
+            $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
+            for ($i = 0; $i < count($lichbacsi); $i++) {
+                $lichbacsi[$i]['STT'] = $i + 1;
+            }
             include("main1.php");
         }
         break;
     case "xulysua":
         //$id, $DoctorID,$scheduleDate,$scheduleDay,$startTime,$endTime,$bookAvail
         $id = $_POST["txtid"];
-        $DoctorID = $_POST["txtDoctorID"];
-        $scheduleDate = $_POST["txtscheduleDate"];
-        $scheduleDay = $_POST["txtscheduleDay"];
+        $DoctorID = $_POST["otpDoctor"];
+        // $scheduleDate = $_POST["txtscheduleDate"];
+        $scheduleDay = $_POST["optcheduleDay"];
         $startTime = $_POST["txtstartTime"];
         $endTime = $_POST["txtendTime"];
-        $bookAvail = $_POST["txtbookAvail"];
+        $bookAvail = $_POST["otpbookAvail"];
         // sửa lịch bác sĩ
-        $lbs->sualichbacsi($id, $DoctorID, $scheduleDate, $scheduleDay, $startTime, $endTime, $bookAvail);
+        $lbs->sualichbacsi($id, $DoctorID, $scheduleDay, $startTime, $endTime, $bookAvail);
 
         // hiển thị ds lịch bác sĩ
         $lichbacsi = $lbs->laylichbacsi();

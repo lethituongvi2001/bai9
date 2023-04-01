@@ -20,27 +20,43 @@ class LICHBACSI
             exit();
         }
     }
+    // public function laylichbacsi1()
+    // {
+    //     $dbcon = DATABASE::connect();
+    //     try {
+    //         $sql = "SELECT * FROM doctorschedule ";
+    //         $cmd = $dbcon->prepare($sql);
+    //         $cmd->execute();
+    //         $result = $cmd->fetchAll();
+    //         rsort($result); // sắp xếp giảm thay cho order by desc
+    //         return $result;
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
 
     // Lấy danh sách mặt hàng thuộc 1 danh mục
-    public function laylichbacsitheobacsi($Doctor_ID)
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "SELECT * FROM doctorschedule WHERE DoctorID=:mabs";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":mabs", $Doctor_ID);
-            $cmd->execute();
-            $result = $cmd->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
-    }
+    // public function laylichbacsitheobacsi($Doctor_ID)
+    // {
+    //     $dbcon = DATABASE::connect();
+    //     try {
+    //         $sql = "SELECT * FROM doctorschedule WHERE DoctorID=:mabs";
+    //         $cmd = $dbcon->prepare($sql);
+    //         $cmd->bindValue(":mabs", $Doctor_ID);
+    //         $cmd->execute();
+    //         $result = $cmd->fetchAll();
+    //         return $result;
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
 
     // Lấy mặt hàng theo id
-    public function laylichbacsitheoid($id)
+    public function laylichbacsitheoidbacsi($id)
     {
         $dbcon = DATABASE::connect();
         try {
@@ -58,6 +74,24 @@ class LICHBACSI
         }
     }
 
+
+    // Lấy bác sĩ theo id
+    public function laylichbacsitheoid($id)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM doctorschedule WHERE ID=:ID";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":ID", $id);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 
     // Thêm mới
     public function themlichbacsi($DoctorID, $scheduleDay, $startTime, $endTime, $bookAvail)

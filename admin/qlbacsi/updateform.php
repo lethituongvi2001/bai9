@@ -56,33 +56,32 @@
                                         </div>
                                     </div>
 
+
+
+
                                     <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="gender">
+                                        <label class="control-label col-sm-2 requiredField" for="bookavail">
                                             Giới tính
                                             <span class="asteriskField">
                                                 *
                                             </span>
                                         </label>
-                                        <br>
-
-                                        <div class="col-sm-5">
-                                            <div class="input-group" data-align="align" data-autoclose="true" checked="<?php echo $b["Gender"]; ?>">
-
-
-                                                <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input type="radio" name="txtGender" value="Nam" checked="<?php echo $b["Gender"]; ?>">
-                                                    <label class="form-check-label" for="inlineRadio1">Nam</label>
-
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" name="txtGender" value="Nữ" checked="<?php echo $b["Gender"]; ?>">
-                                                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
-                                                </div>
-
-
-                                            </div>
+                                        <div class="col-sm-10">
+                                            <select class="select form-control" id="bookavail" name="txtGender" required value="<?php echo $b["Gender"]; ?>">
+                                                <option value="Nam">
+                                                    Nam
+                                                </option>
+                                                <option value="Nữ">
+                                                    Nữ
+                                                </option>
+                                                <option value="Khác">
+                                                    Khác
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
+
+
 
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="date">

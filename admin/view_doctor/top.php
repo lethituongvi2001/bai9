@@ -44,6 +44,12 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <!-- Thêm lịch bác sĩ-->
+    <link href="../assets/css/material.css" rel="stylesheet">
+    <link href="../assets/css/time/bootstrap-clockpicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
 </head>
 
 <body>
@@ -106,7 +112,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="my-patients.html">
+                                            <a href="../doctor/qlbenhnhan/index.php">
                                                 <i class="fas fa-user-injured"></i>
                                                 <span>Danh sách bệnh nhân </span>
                                             </a>

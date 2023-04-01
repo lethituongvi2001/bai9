@@ -14,7 +14,7 @@ if (isset($_REQUEST["action"])) {
 }
 
 $bn = new BENHNHAN();
-$nd = new NGUOIDUNG();
+$tk = new NGUOIDUNG();
 
 switch ($action) {
     case "xem":
@@ -39,6 +39,7 @@ switch ($action) {
         $id_moi_nhat = $tk->themnguoidung($Email, '123', 3);
         $bn->thembenhnhan($Name, $Email, $PhoneNumber, $Address, $DOB, $Gender, $id_moi_nhat);
         $benhnhan = $bn->laybenhnhan();
+
         include("main.php");
         break;
     case "xoa":

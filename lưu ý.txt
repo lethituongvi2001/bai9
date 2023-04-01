@@ -1,0 +1,20 @@
+ đường dẫn hình ảnh( filehinhanh hk xác định) thì coi lại có class="input-group" chưa và có thể cop nguyên nút submit từ bài cũ qua
+(sửa ảnh lỗi là do đường dẫn trong index)
+
+-qlchuyenmon- xong
+-------------------------------------
+-qlcuochen - lỗi id bác sĩ của cuộc hẹn với id bác sĩ của lịch bác sĩ chưa làm ăn đc j
+
+-qllichbacsi- sửa lịch bác sĩ admin và bác sĩ chưa load được thứ trên combobox
+
+-qlbacsi:
++sửa bác sĩ chưa load được giới tính
+
+-qlbenhnhan:
++sửa bệnh nhân load chưa được giới tính
+
+-qlcuochen - lỗi id bác sĩ chưa làm ăn đc j
+éo thêm đc
+Lỗi truy vấn: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '2023-03-31' for column 'endTime' at row 1
+
+email bị trùng cũng chịu nữa

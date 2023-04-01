@@ -42,14 +42,30 @@ class BENHNHAN
         }
     }
 
+    public function laybenhnhantheobacsi()
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT d.Name, dc.* FROM doctorschedule as dc, doctors as d where dc.DoctorID = d.ID";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->execute();
+            $result = $cmd->fetchAll();
+            rsort($result); // sắp xếp giảm thay cho order by desc
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Thêm mới
-    public function thembenhnhan($Name, $Email, $PhoneNumber, $Address, $DOB, $Gender)
+    public function thembenhnhan($Name, $Email, $PhoneNumber, $Address, $DOB, $Gender, $id_account)
     {
         $dbcon = DATABASE::connect();
         try {
             //INSERT INTO `doctors`(`ID`, `Name`, `Last Name`, `Gender`, `DOB`, `Email`, `Phone Number`, `Specialty`, `License Number`, `Address`, `image`)
-            $sql = "INSERT INTO patients(Name,Email,PhoneNumber,Address,DOB,Gender) 
-				VALUES(:Name,:Email,:PhoneNumber,:Address,:DOB,:Gender)";
+            $sql = "INSERT INTO patients(Name,Email,PhoneNumber,Address,DOB,Gender,id_account) 
+				VALUES(:Name,:Email,:PhoneNumber,:Address,:DOB,:Gender,:id_account)";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":Name", $Name);
             $cmd->bindValue(":Email", $Email);
@@ -57,6 +73,7 @@ class BENHNHAN
             $cmd->bindValue(":Address", $Address);
             $cmd->bindValue(":DOB", $DOB);
             $cmd->bindValue(":Gender", $Gender);
+            $cmd->bindValue(":id_account", $id_account);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -125,6 +142,26 @@ class BENHNHAN
             $cmd->bindValue(":ID", $id);
             $cmd->execute();
             $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
+
+
+    public function laylichbacsitheoidbacsi($id)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT p.*, dc.DoctorID FROM `doctorschedule` as dc, patients as p, appointments as a WHERE p.ID = a.PatientID and dc.DoctorID = :DoctorID group by dc.DoctorID";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":DoctorID", $id);
+            $cmd->execute();
+            $result = $cmd->fetchAll();
+            rsort($result);
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();

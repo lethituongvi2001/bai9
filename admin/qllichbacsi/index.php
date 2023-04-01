@@ -62,6 +62,9 @@ switch ($action) {
             include("updateform.php");
         } else {
             $lichbacsi = $lbs->laylichbacsi();
+            for ($i = 0; $i < count($lichbacsi); $i++) {
+                $lichbacsi[$i]['STT'] = $i + 1;
+            }
             include("main.php");
         }
         break;
@@ -79,6 +82,9 @@ switch ($action) {
 
         // hiển thị ds lịch bác sĩ
         $lichbacsi = $lbs->laylichbacsi();
+        for ($i = 0; $i < count($lichbacsi); $i++) {
+            $lichbacsi[$i]['STT'] = $i + 1;
+        }
         include("main.php");
         break;
 
