@@ -1,6 +1,10 @@
 <?php
 require("../../model/database.php");
 require("../../model/nguoidung.php");
+require("../../model/bacsi.php");
+require("../../model/chuyenmon.php");
+require("../../model/benhnhan.php");
+require("../../model/cuochen.php");
 
 // Biến cho biết ng dùng đăng nhập chưa
 $isLogin = isset($_SESSION["nguoidung"]);
@@ -12,12 +16,15 @@ if (isset($_REQUEST["action"])) {
     $action = "macdinh";
 }
 
-
-
+$ch = new CUOCHEN();
+$bn = new BENHNHAN();
+$cm = new CHUYENMON();
+$bs = new BACSI();
 $nguoidung = new NGUOIDUNG();
 $tb = "";
 switch ($action) {
     case "macdinh":
+        // $tongbs = $bs->demtongbacsi();
         switch ($_SESSION["nguoidung"]['role']) {
             case 1: {
                     include("main.php");
@@ -98,6 +105,7 @@ switch ($action) {
             $nguoidung->doimatkhau($_POST["your_name"], $_POST["txtmatkhaumoi"]);
         include("main.php");
         break;
+
 
         // bac si
         // case "macdinh":

@@ -31,7 +31,7 @@ switch ($action) {
     case "xulythem":
 
         // xử lý file upload 
-        $image = "assets/img/doctors" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
+        $image = "assets/img/doctors/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
         $duongdan = "../../" . $image; // nơi lưu file upload
         move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
         // xử lý thêm	$FirstName, $LastName, $Gender, $DOB, $Email, $PhoneNumber, $Specialty, $LicenseNumber, $Address, $image
@@ -86,7 +86,7 @@ switch ($action) {
         if ($_FILES["filehinhanh"]["name"] != "") {
             // xử lý file upload -- Cần bổ dung kiểm tra: dung lượng, kiểu file, ...       
             $image = "assets/img/doctors/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn lưu csdl
-            $duongdan = "../" . $image; // đường dẫn lưu upload file        
+            $duongdan = "../../" . $image; // đường dẫn lưu upload file        
             move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
         }
 

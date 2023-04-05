@@ -9,7 +9,7 @@ class CUOCHEN
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM appointments";
+            $sql = "SELECT a.*, p.Name FROM `appointments` as a, patients as p WHERE a.PatientID = p.ID";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -43,15 +43,15 @@ class CUOCHEN
 
 
     // Thêm mới
-    public function themcuochen($PatientID, $DoctorID, $ScheduleID, $Date, $Reason, $Expected_cost, $Status)
+    public function themcuochen($PatientID, $ScheduleID, $Date, $Reason, $Expected_cost, $Status)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "INSERT INTO appointments(PatientID,DoctorID,ScheduleID,Date,Reason,Expected_cost,Status) 
-				VALUES(:PatientID,:DoctorID,:ScheduleID,:Date,:Reason,:Expected_cost,:Status)";
+            $sql = "INSERT INTO appointments(PatientID,ScheduleID,Date,Reason,Expected_cost,Status) 
+				VALUES(:PatientID,:ScheduleID,:Date,:Reason,:Expected_cost,:Status)";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":PatientID", $PatientID);
-            $cmd->bindValue(":DoctorID", $DoctorID);
+
             $cmd->bindValue(":ScheduleID", $ScheduleID);
             $cmd->bindValue(":Date", $Date);
             $cmd->bindValue(":Reason", $Reason);
@@ -84,12 +84,12 @@ class CUOCHEN
     }
 
     // Cập nhật 
-    public function suacuochen($id, $PatientID, $DoctorID, $ScheduleID, $Date, $Reason, $Expected_cost, $Status)
+    public function suacuochen($id, $PatientID, $ScheduleID, $Date, $Reason, $Expected_cost, $Status)
     {
         $dbcon = DATABASE::connect();
         try {
             $sql = "UPDATE appointments SET PatientID=:PatientID,
-                                        DoctorID=:DoctorID,
+                                       
 										ScheduleID=:ScheduleID,
 										Date=:Date,
 										Reason=:Reason,
@@ -98,7 +98,7 @@ class CUOCHEN
 										WHERE ID=:ID";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":PatientID", $PatientID);
-            $cmd->bindValue(":DoctorID", $DoctorID);
+
             $cmd->bindValue(":ScheduleID", $ScheduleID);
             $cmd->bindValue(":Date", $Date);
             $cmd->bindValue(":Reason", $Reason);
@@ -106,6 +106,23 @@ class CUOCHEN
             $cmd->bindValue(":Status", $Status);
             $cmd->bindValue(":ID", $id);
             $result = $cmd->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
+    public function demtongcuochen()
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(*) FROM appointments";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->execute();
+            $result = $cmd->fetchColumn();
+            //rsort($result); // sắp xếp giảm thay cho order by desc
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();

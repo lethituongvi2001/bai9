@@ -53,6 +53,9 @@ switch ($action) {
         if (isset($_GET["ID"]))
             $lbs->xoalichbacsi($_GET["ID"]);
         $lichbacsi = $lbs->laylichbacsi();
+        for ($i = 0; $i < count($lichbacsi); $i++) {
+            $lichbacsi[$i]['STT'] = $i + 1;
+        }
         include("main.php");
         break;
     case "sua":

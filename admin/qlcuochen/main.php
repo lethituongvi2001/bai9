@@ -31,7 +31,7 @@
 								<thead>
 									<tr>
 										<th>Bệnh nhân</th>
-										<th>Bác sĩ</th>
+
 										<th>Mã lịch hẹn</th>
 										<th>Ngày</th>
 										<th>Lí do</th>
@@ -46,11 +46,11 @@
 								?>
 									<tbody>
 										<tr>
-											<td><?php echo $c["PatientID"]; ?></td>
-											<td><?php echo $c["DoctorID"]; ?></td>
+											<td><?php echo $c["Name"]; ?></td>
+
 											<td><?php echo $c["ScheduleID"]; ?></td>
 											<td><?php echo $c["Date"]; ?></td>
-											<td><?php echo $c["Reason"]; ?>/04/25</td>
+											<td><?php echo $c["Reason"]; ?></td>
 											<td><?php echo $c["Expected_cost"]; ?></td>
 											<td><?php echo $c["Status"]; ?></td>
 											<td><a class="btn btn-warning" href="index.php?action=sua&ID=<?php echo $c["ID"]; ?>"><span class="glyphicon glyphicon-edit"> </span></a></td>

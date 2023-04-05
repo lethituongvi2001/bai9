@@ -15,7 +15,7 @@
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-about">
 							<div class="footer-logo">
-								<img src="assets/img/footer-logo.png" alt="logo">
+								<img src="../assets_doctor/img/footer-logo.png" alt="logo">
 							</div>
 							<div class="footer-about-content">
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>

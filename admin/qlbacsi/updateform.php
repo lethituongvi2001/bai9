@@ -67,16 +67,16 @@
                                             </span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <select class="select form-control" id="bookavail" name="txtGender" required value="<?php echo $b["Gender"]; ?>">
-                                                <option value="Nam">
-                                                    Nam
+                                            <select class="select form-control" name="txtGender" required ">
+                                            <option><?php echo $b["Gender"]; ?></option>
+                                                <option>-------</option>
+                                                <option value=" Nam">
+                                                Nam
                                                 </option>
                                                 <option value="Nữ">
                                                     Nữ
                                                 </option>
-                                                <option value="Khác">
-                                                    Khác
-                                                </option>
+
                                             </select>
                                         </div>
                                     </div>

@@ -112,4 +112,21 @@ class CHUYENMON
             exit();
         }
     }
+
+    public function demtongchuyenmon()
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(*) FROM speciality";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->execute();
+            $result = $cmd->fetchColumn();
+            //rsort($result); // sắp xếp giảm thay cho order by desc
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

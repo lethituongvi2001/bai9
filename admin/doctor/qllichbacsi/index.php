@@ -75,17 +75,11 @@ switch ($action) {
         $lbs->sualichbacsi($id, $DoctorID, $scheduleDay, $startTime, $endTime, $bookAvail);
 
         // hiển thị ds lịch bác sĩ
-        $lichbacsi = $lbs->laylichbacsi();
+        $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
         include("main1.php");
         break;
 
-    case "xemnhom":
-        if (isset($_REQUEST["mabs"]))
-            $mabs = $_REQUEST["mabs"];
 
-
-        $lichbacsi = $lbs->laylichtheobacsi($mabs);
-        include("main1.php");
 
         break;
     default:

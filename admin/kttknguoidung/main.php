@@ -27,11 +27,11 @@
                                 <i class="fe fe-users"></i>
                             </span>
                             <div class="dash-count">
-                                <h3>168</h3>
+                                <h3><?php echo $bs->demtongbacsi(); ?></h3>
                             </div>
                         </div>
                         <div class="dash-widget-info">
-                            <h6 class="text-muted">Doctors</h6>
+                            <h6 class="text-muted">Bác sĩ</h6>
                             <div class="progress progress-sm">
                                 <div class="progress-bar bg-primary w-50"></div>
                             </div>
@@ -47,12 +47,12 @@
                                 <i class="fe fe-credit-card"></i>
                             </span>
                             <div class="dash-count">
-                                <h3>487</h3>
+                                <h3><?php echo $bn->demtongbenhnhan(); ?></h3>
                             </div>
                         </div>
                         <div class="dash-widget-info">
 
-                            <h6 class="text-muted">Patients</h6>
+                            <h6 class="text-muted">Bệnh nhân</h6>
                             <div class="progress progress-sm">
                                 <div class="progress-bar bg-success w-50"></div>
                             </div>
@@ -68,12 +68,12 @@
                                 <i class="fe fe-money"></i>
                             </span>
                             <div class="dash-count">
-                                <h3>485</h3>
+                                <h3><?php echo $ch->demtongcuochen(); ?></h3>
                             </div>
                         </div>
                         <div class="dash-widget-info">
 
-                            <h6 class="text-muted">Appointment</h6>
+                            <h6 class="text-muted">Cuộc hẹn</h6>
                             <div class="progress progress-sm">
                                 <div class="progress-bar bg-danger w-50"></div>
                             </div>
@@ -89,12 +89,12 @@
                                 <i class="fe fe-folder"></i>
                             </span>
                             <div class="dash-count">
-                                <h3>$62523</h3>
+                                <h3><?php echo $cm->demtongchuyenmon(); ?></h3>
                             </div>
                         </div>
                         <div class="dash-widget-info">
 
-                            <h6 class="text-muted">Revenue</h6>
+                            <h6 class="text-muted">Chuyên môn</h6>
                             <div class="progress progress-sm">
                                 <div class="progress-bar bg-warning w-50"></div>
                             </div>

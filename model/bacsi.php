@@ -148,6 +148,24 @@ class BACSI
         }
     }
 
+    // Lấy bác sĩ theo id
+    public function laybacsitheoidbacsi($id)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM doctors WHERE ID=:ID";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":ID", $id);
+            $cmd->execute();
+            $result = $cmd->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
     public function laybacsitheochuyenmon($id_speciality)
     {
         $dbcon = DATABASE::connect();
@@ -157,6 +175,24 @@ class BACSI
             $cmd->bindValue(":macm", $id_speciality);
             $cmd->execute();
             $result = $cmd->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
+    //dếm số bác sĩ
+    public function demtongbacsi()
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(*) FROM doctors";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->execute();
+            $result = $cmd->fetchColumn();
+            //rsort($result); // sắp xếp giảm thay cho order by desc
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();

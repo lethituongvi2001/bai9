@@ -55,25 +55,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="scheduleday">
-                                            Bác sĩ
-                                            <span class="asteriskField">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <select onchange="onChange_select_bacsi()" class="select form-control" id="selected_bacsi" name="txtDoctorID" required>
-                                                <?php
-                                                foreach ($bacsi as $b) :
-                                                ?>
-                                                    <option value="<?php echo $b["ID"]; ?>"><?php echo $b["Name"]; ?></option>
-                                                <?php
-                                                endforeach;
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
+
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="date">
                                             Ngày
@@ -92,7 +74,7 @@
 
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="scheduleday">
-                                            Giờ bắt đầu(ID lịch bác sĩ)
+                                            Mã cuộc hẹn
                                             <span class="asteriskField">
                                                 *
                                             </span>
@@ -105,7 +87,8 @@
                                                 <?php
                                                 foreach ($lichbacsi as $l) :
                                                 ?>
-                                                    <option><?php echo $b["ID"]; ?></option>
+                                                    <option><?php echo $l["ID"];
+                                                            ?> </option>
                                                 <?php
                                                 endforeach;
                                                 ?>
@@ -117,7 +100,7 @@
 
 
                                     <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="name">
+                                        <label class="control-label col-sm-2 requiredField" for="reason">
                                             Lí do
                                             <span class="asteriskField">
                                                 *
@@ -127,10 +110,7 @@
                                         <div class="col-sm-10">
                                             <div class="input-group" data-align="top" data-autoclose="true">
 
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-user">
-                                                    </i>
-                                                </div>
+
                                                 <input class="form-control" name="txtReason" type="text" required />
                                             </div>
                                         </div>
@@ -250,10 +230,10 @@
     });
 </script>
 <script type="text/javascript">
-    function onChange_select_bacsi() {
-        d = document.getElementById("selected_bacsi").value;
-        // alert(d);
-    }
+    // function onChange_select_bacsi() {
+    //     d = document.getElementById("selected_bacsi").value;
+    //     // alert(d);
+    // }
     /*
         Please consider that the JS part isn't production ready at all, I just code it to show the concept of merging filters and titles together !
         */

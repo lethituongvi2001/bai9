@@ -52,25 +52,25 @@
 								<div class="form-group">
 									<input type="hidden" name="action" value="xldangnhap">
 									<input class="btn btn-primary btn-user btn-block" name="signin" id="signin" type="submit" value="Đăng nhập">
-									<button class="btn btn-primary btn-block" name="signin" type="submit">Login</button>
+									<!-- <button class="btn btn-primary btn-block" name="signin" type="submit">Login</button> -->
 								</div>
 							</form>
 							<!-- /Form -->
 
-							<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>
+							<div class="text-center forgotpass"><a href="forgot-password.html">Quên mật khẩu?</a></div>
 							<div class="login-or">
 								<span class="or-line"></span>
 								<span class="span-or">or</span>
 							</div>
 
 							<!-- Social Login -->
-							<div class="social-login">
+							<!-- <div class="social-login">
 								<span>Login with</span>
 								<a href="#" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" class="google"><i class="fa fa-google"></i></a>
-							</div>
+							</div> -->
 							<!-- /Social Login -->
 
-							<div class="text-center dont-have">Don’t have an account? <a href="register.html">Register</a></div>
+							<div class="text-center dont-have">Bạn chưa có tài khoản? <a href="register.html">Đăng ký</a></div>
 						</div>
 					</div>
 				</div>

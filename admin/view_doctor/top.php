@@ -100,13 +100,13 @@
                                 <nav class="dashboard-menu">
                                     <ul>
                                         <li class="active">
-                                            <a href="doctor-dashboard.html">
+                                            <a href="../kttknguoidung/index.php">
                                                 <i class="fas fa-columns"></i>
                                                 <span>Bảng điều khiển</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="appointments.html">
+                                            <a href="../doctor/qlcuochen/index.php">
                                                 <i class="fas fa-calendar-check"></i>
                                                 <span>Các cuộc hẹn</span>
                                             </a>
@@ -123,18 +123,8 @@
                                                 <span>Lịch của tôi</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="invoices.html">
-                                                <i class="fas fa-file-invoice"></i>
-                                                <span>Hoá đơn</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="reviews.html">
-                                                <i class="fas fa-star"></i>
-                                                <span>Đánh giá</span>
-                                            </a>
-                                        </li>
+
+
                                         <li>
                                             <a href="chat-doctor.html">
                                                 <i class="fas fa-comments"></i>
@@ -143,9 +133,9 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="doctor-profile-settings.html">
+                                            <a href="../doctor/qlbacsi/index.php">
                                                 <i class="fas fa-user-cog"></i>
-                                                <span>Cài đặt hồ sơ</span>
+                                                <span>Tài khoản</span>
                                             </a>
                                         </li>
 
@@ -156,7 +146,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="kttknguoidung/index.php?action=dangxuat1">
+                                            <a href="../kttknguoidung/index.php?action=dangxuat1">
                                                 <i class="fas fa-sign-out-alt"></i>
                                                 <span>Đăng xuất</span>
                                             </a>

@@ -178,7 +178,7 @@
                             <span>Main</span>
                         </li>
                         <li class="active">
-                            <a href="index.html"><i class="fe fe-home"></i> <span>Bảng điều khiển</span></a>
+                            <a href="../kttknguoidung/index.php"><i class="fe fe-home"></i> <span>Bảng điều khiển</span></a>
                         </li>
                         <li>
                             <a href="../qlcuochen/index.php"><i class="fe fe-layout"></i> <span>Cuộc hẹn</span></a>

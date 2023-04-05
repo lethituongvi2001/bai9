@@ -65,8 +65,8 @@ switch ($action) {
         // upload file mới (nếu có)
         if ($_FILES["filehinhanh"]["name"] != "") {
             // xử lý file upload -- Cần bổ dung kiểm tra: dung lượng, kiểu file, ...       
-            $image = "assets/img/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn lưu csdl
-            $duongdan = "../" . $image; // đường dẫn lưu upload file        
+            $image = "assets/img/specialities/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn lưu csdl
+            $duongdan = "../../" . $image; // đường dẫn lưu upload file        
             move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
         }
 

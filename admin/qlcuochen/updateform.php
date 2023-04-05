@@ -1,4 +1,4 @@
-<?php include("../view_doctor/top.php"); ?>
+<?php include("../view/top.php"); ?>
 
 <div class="page-wrapper">
     <div class="content container-fluid">
@@ -6,11 +6,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="page-header">
-                    Thêm lịch bác sĩ
+                    Sửa lịch bác sĩ
                 </h3>
 
             </div>
-
         </div>
         <!-- Page Heading end-->
 
@@ -19,7 +18,7 @@
 
             <!-- panel heading starat -->
             <div class="panel-heading">
-                <h3 class="panel-title">Thêm lịch</h3>
+                <h3 class="panel-title">Sửa lịch</h3>
             </div>
             <!-- panel heading end -->
 
@@ -31,16 +30,99 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <form class="form-horizontal" method="post" action="index.php">
 
-                                    <input type="hidden" name="action" value="xulythem">
+                                    <input type="hidden" name="action" value="xulysua">
 
 
+                                    <input type="hidden" name="txtid" value="<?php echo $c["ID"]; ?>">
 
+
+                                    <div class="form-group form-group-lg">
+                                        <label class="control-label col-sm-2 requiredField" for="scheduleday">
+                                            Bệnh nhân
+                                            <span class="asteriskField">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <select class="select form-control" id="scheduleday1" name="txtPatientID" required>
+
+                                                <option><?php echo $c["PatientID"]; ?></option>
+
+                                                <?php
+                                                foreach ($benhnhan as $b) :
+                                                ?>
+                                                    <option value="<?php echo $b["ID"]; ?>"><?php echo $b["ID"]; ?>-<?php echo $b["Name"]; ?></option>
+                                                <?php
+                                                endforeach;
+                                                ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group form-group-lg">
+                                        <label class="control-label col-sm-2 requiredField" for="date">
+                                            Ngày
+                                            <span class="asteriskField">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group ">
+
+                                                <input class="form-control" name="txtDate" type="date" value="<?php echo $c["Date"]; ?>" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group form-group-lg">
+                                        <label class="control-label col-sm-2 requiredField" for="scheduleday">
+                                            Mã cuộc hẹn
+                                            <span class="asteriskField">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-sm-10">
+
+                                            <select class="select form-control" id="scheduleday1" name="txtScheduleID" required>
+
+                                                <option><?php echo $c["ScheduleID"]; ?> </option>
+                                                <?php
+                                                foreach ($lichbacsi as $l) :
+                                                ?>
+                                                    <option><?php echo $l["ID"]; ?> </option>
+                                                <?php
+                                                endforeach;
+                                                ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
 
 
 
                                     <div class="form-group form-group-lg">
+                                        <label class="control-label col-sm-2 requiredField" for="reason">
+                                            Lí do
+                                            <span class="asteriskField">
+                                                *
+                                            </span>
+                                        </label>
+
+                                        <div class="col-sm-10">
+                                            <div class="input-group" data-align="top" data-autoclose="true">
+
+
+                                                <input class="form-control" name="txtReason" type="text" value="<?php echo $c["Reason"]; ?>" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="name">
-                                            Họ Tên
+                                            Giá dự kiến
                                             <span class="asteriskField">
                                                 *
                                             </span>
@@ -50,110 +132,16 @@
                                             <div class="input-group" data-align="top" data-autoclose="true">
 
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-user">
+                                                    <i class="fa fa-money">
                                                     </i>
                                                 </div>
-                                                <input disabled=false class="form-control" name="otpDoctor" type="text" required value="<?php echo $_SESSION['nguoidung']['ID']; ?>" />
+                                                <input class="form-control" name="txtExpected_cost" type="number" required value="<?php echo $c["Expected_cost"]; ?>" />
                                             </div>
                                         </div>
                                     </div>
 
 
 
-                                    <!-- <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="scheduleday">
-                                            Bác sĩ
-                                            <span class="asteriskField">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <select class="select form-control" id="scheduleday1" name="otpDoctor" required>
-
-
-                                                <?php
-                                                foreach ($bacsi as $b) :
-                                                ?>
-                                                    <option><?php echo $_SESSION['nguoidung']['ID']; ?></option>
-                                                <?php
-                                                endforeach;
-                                                ?>
-
-                                            </select>
-                                        </div>
-                                    </div> -->
-
-
-
-
-                                    <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="scheduleday">
-                                            Thứ
-                                            <span class="asteriskField">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <select class="select form-control" id="scheduleday" name="otpcheduleDay" required>
-                                                <option value="Thứ hai">
-                                                    Thứ hai
-                                                </option>
-                                                <option value="Thứ ba">
-                                                    Thứ ba
-                                                </option>
-                                                <option value="Thứ tư">
-                                                    Thứ tư
-                                                </option>
-                                                <option value="Thứ năm">
-                                                    Thứ năm
-                                                </option>
-                                                <option value="Thứ sáu">
-                                                    Thứ sáu
-                                                </option>
-                                                <option value="Thứ bảy">
-                                                    Thứ bảy
-                                                </option>
-                                                <option value="Chủ nhật">
-                                                    Chủ nhật
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="starttime">
-                                            Giờ bắt đầu
-                                            <span class="asteriskField">
-                                                *
-                                            </span>
-                                        </label>
-
-                                        <div class="col-sm-10">
-                                            <div class="input-group clockpicker" data-align="top" data-autoclose="true">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-clock-o">
-                                                    </i>
-                                                </div>
-                                                <input class="form-control" id="starttime" name="txtstartTime" type="text" required />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-group-lg">
-                                        <label class="control-label col-sm-2 requiredField" for="endtime">
-                                            Giờ kết thúc
-                                            <span class="asteriskField">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <div class="input-group clockpicker" data-align="top" data-autoclose="true">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-clock-o">
-                                                    </i>
-                                                </div>
-                                                <input class="form-control" id="endtime" name="txtendTime" type="text" required />
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="bookavail">
                                             Trạng thái
@@ -162,12 +150,18 @@
                                             </span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <select class="select form-control" id="bookavail" name="otpbookAvail" required>
-                                                <option value="Có sẵn">
-                                                    Có sẵn
+                                            <select class="select form-control" id="bookavail" name="txtStatus" required>
+
+                                                <option><?php echo $c["Status"]; ?></option>
+                                                <option>-------------</option>
+                                                <option value="Đang diễn ra">
+                                                    Đang diễn ra
                                                 </option>
-                                                <option value="Không có sẵn">
-                                                    Không có sẵn
+                                                <option value="Hoàn thành">
+                                                    Hoàn thành
+                                                </option>
+                                                <option value="Đã Hủy">
+                                                    Đã Hủy
                                                 </option>
                                             </select>
                                         </div>
@@ -290,4 +284,4 @@
     });
 </script>
 
-<?php include("../view_doctor/bottom.php"); ?>
+<?php include("../view/bottom.php"); ?>

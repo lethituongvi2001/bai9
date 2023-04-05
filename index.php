@@ -1,14 +1,16 @@
 <?php
 require("model/database.php");
 require("model/chuyenmon.php");
-require("model/bacsi.php");
 require("model/benhnhan.php");
+require("model/cuochen.php");
+require("model/bacsi.php");
 require("model/lichbacsi.php");
 require("model/nguoidung.php");
 
+$ch = new CUOCHEN();
+$bn = new BENHNHAN();
 $cm = new CHUYENMON();
 $bs = new BACSI();
-$bn = new BENHNHAN();
 $lbs = new LICHBACSI();
 $nd = new NGUOIDUNG();
 

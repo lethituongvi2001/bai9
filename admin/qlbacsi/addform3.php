@@ -62,24 +62,15 @@
                                                 *
                                             </span>
                                         </label>
-                                        <br>
-
-                                        <div class="col-sm-5">
-                                            <div class="input-group" data-align="align" data-autoclose="true">
-
-
-                                                <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input type="radio" checked="checked" name="txtGender" value="Nam">
-                                                    <label class="form-check-label" for="inlineRadio1">Nam</label>
-
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" name="txtGender" value="Nữ">
-                                                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
-                                                </div>
-
-
-                                            </div>
+                                        <div class="col-sm-10">
+                                            <select class="select form-control" name="txtGender" required>
+                                                <option value="Nam">
+                                                    Nam
+                                                </option>
+                                                <option value="Nữ">
+                                                    Nữ
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
 

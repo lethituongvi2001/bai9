@@ -53,7 +53,9 @@
                                                         </span>
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <select class="select form-control" id="scheduleday" name="optcheduleDay" required value="<?php echo $l["scheduleDay"]; ?>">
+                                                        <select class="select form-control" id="scheduleday" name="optcheduleDay" required>
+                                                            <option> <?php echo $l["scheduleDay"]; ?></option>
+
                                                             <option value="Thứ hai">
                                                                 Thứ hai
                                                             </option>
