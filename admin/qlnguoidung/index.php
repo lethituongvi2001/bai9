@@ -10,6 +10,7 @@ if (isset($_REQUEST["action"])) {
 } else {
     $action = "macdinh";
 }
+$sitemap = 'dashboard';
 
 $nguoidung = new NGUOIDUNG();
 //INSERT INTO `admin_users`(`ID`,$Name, $Password, $Gender, $Email, $PhoneNumber, $ActiveStatus)

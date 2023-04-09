@@ -177,25 +177,25 @@
                         <li class="menu-title">
                             <span>Main</span>
                         </li>
-                        <li class="active">
+                        <li <?php if ($sitemap == 'dashboard') { ?>class="active" <?php } ?>>
                             <a href="../kttknguoidung/index.php"><i class="fe fe-home"></i> <span>Bảng điều khiển</span></a>
                         </li>
-                        <li>
+                        <li <?php if ($sitemap == 'cuochen') { ?>class="active" <?php } ?>>
                             <a href="../qlcuochen/index.php"><i class="fe fe-layout"></i> <span>Cuộc hẹn</span></a>
                         </li>
-                        <li>
+                        <li <?php if ($sitemap == 'chuyenmon') { ?>class="active" <?php } ?>>
                             <a href="../qlchuyenmon/index.php"><i class="fe fe-users"></i> <span>Chuyên môn</span></a>
                         </li>
-                        <li>
+                        <li <?php if ($sitemap == 'bacsi') { ?>class="active" <?php } ?>>
                             <a href="../qlbacsi/index.php"><i class="fe fe-user-plus"></i> <span>Bác sĩ</span></a>
                         </li>
-                        <li>
+                        <li <?php if ($sitemap == 'benhnhan') { ?>class="active" <?php } ?>>
                             <a href="../qlbenhnhan/index.php"><i class="fe fe-user"></i> <span>Bệnh nhân</span></a>
                         </li>
-                        <li>
+                        <li <?php if ($sitemap == 'lichbacsi') { ?>class="active" <?php } ?>>
                             <a href="../qllichbacsi/index.php"><i class="fe fe-star-o"></i> <span>Lịch của bác sĩ</span></a>
                         </li>
-                        <li>
+                        <li <?php if ($sitemap == 'phanhoi') { ?>class="active" <?php } ?>>
                             <a href="transactions-list.html"><i class="fe fe-activity"></i> <span>Phản hồi</span></a>
                         </li>
 

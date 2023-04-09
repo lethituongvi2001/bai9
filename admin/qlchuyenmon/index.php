@@ -13,6 +13,7 @@ if (isset($_REQUEST["action"])) {
 } else {
     $action = "xem";
 }
+$sitemap = 'chuyenmon';
 
 
 $cm = new CHUYENMON();

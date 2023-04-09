@@ -14,6 +14,7 @@ if (isset($_REQUEST["action"])) {
 } else {
     $action = "xem";
 }
+$sitemap = 'bacsi';
 
 $bs = new BACSI();
 $cm = new CHUYENMON();

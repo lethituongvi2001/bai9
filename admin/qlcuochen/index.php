@@ -21,17 +21,79 @@ $lbs = new LICHBACSI();
 $bn = new BENHNHAN();
 $bs = new BACSI();
 $ch = new CUOCHEN();
+$sitemap = 'cuochen';
 
 $cuochen = $ch->laycuochen();
+function getDateOfCurrentWeek($day)
+{
+    $weekStart = strtotime('this week');
+    $dayStart = strtotime($day, $weekStart);
+    return date('d/m/Y', $dayStart);
+}
+function convertDateToEng($ngay)
+{
+    $result = '';
+    switch ($ngay) {
+        case "Thứ hai":
+            $result = 'Monday';
+            break;
+        case "Thứ ba":
+            $result = 'Tuesday';
+            break;
+        case "Thứ tư":
+            $result = 'Wednesday';
+            break;
+        case "Thứ năm":
+            $result = 'Thursday';
+            break;
+        case "Thứ sáu":
+            $result = 'Friday';
+            break;
+        case "Thứ bảy":
+            $result = 'Saturday';
+            break;
+        case "Chủ nhật":
+            $result = 'Sunday';
+            break;
+    }
+    return $result;
+}
+
+function getSundayOfWeek($date)
+{
+    $sunday = strtotime('last Sunday', strtotime($date));
+    return date('d-m-Y', $sunday);
+}
+
 switch ($action) {
+    case "get-cuoc-hen-by-doctor":
+        $selectedDoctorID = $_POST['selectedValue'];
+        $cuochen = $lbs->laylichbacsitheoidbacsi($selectedDoctorID);
+        $appointments = array();
+        foreach ($cuochen as $appointment) {
+            $currentday = getDateOfCurrentWeek(convertDateToEng($appointment["scheduleDay"]));
+            // $sunday = getSundayOfWeek($currentday);
+            // if (strtotime($currentday) <= strtotime('today') || strtotime($currentday) > strtotime($sunday)) {
+            //     continue;
+            // }
+            $appointments[] = array(
+                "value" => $appointment["ID"],
+                "label" => $appointment["scheduleDay"] . " - " . $currentday
+                    . " - " . $appointment["startTime"] . " - " . $appointment["endTime"],
+            );
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($appointments);
+        break;
     case "xem":
         $cuochen = $ch->laycuochen();
         include("main.php");
         break;
     case "them":
         $benhnhan = $bn->laybenhnhan();
-
-        $lichbacsi = $lbs->laylichbacsi();
+        $bacsi = $bs->laybacsi();
+        // $lichbacsi = $lbs->laylichbacsi($_SESSION['nguoidung']['ID']);
         $cuochen = $ch->laycuochen();
         include("addform.php");
         break;

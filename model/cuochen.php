@@ -41,7 +41,6 @@ class CUOCHEN
         }
     }
 
-
     // Thêm mới
     public function themcuochen($PatientID, $ScheduleID, $Date, $Reason, $Expected_cost, $Status)
     {
@@ -115,6 +114,23 @@ class CUOCHEN
     }
 
     public function demtongcuochen()
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(*) FROM appointments";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->execute();
+            $result = $cmd->fetchColumn();
+            //rsort($result); // sắp xếp giảm thay cho order by desc
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
+    public function cuochen_year()
     {
         $dbcon = DATABASE::connect();
         try {

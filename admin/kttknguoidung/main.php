@@ -109,7 +109,7 @@
                 <!-- Sales Chart -->
                 <div class="card card-chart">
                     <div class="card-header">
-                        <h4 class="card-title">Revenue</h4>
+                        <h4 class="card-title">Thống kê cuộc hẹn</h4>
                     </div>
                     <div class="card-body">
                         <div id="morrisArea"></div>
@@ -123,7 +123,7 @@
                 <!-- Invoice Chart -->
                 <div class="card card-chart">
                     <div class="card-header">
-                        <h4 class="card-title">Status</h4>
+                        <h4 class="card-title">Thống kê thành viên</h4>
                     </div>
                     <div class="card-body">
                         <div id="morrisLine"></div>

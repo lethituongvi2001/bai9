@@ -8,7 +8,7 @@ class LICHBACSI
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT d.Name, dc.* FROM doctorschedule as dc, doctors as d where dc.DoctorID = d.ID";
+            $sql = "SELECT d.Name, ds.* FROM doctorschedule as ds, doctors as d where ds.DoctorID = d.ID ";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -60,7 +60,7 @@ class LICHBACSI
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM doctorschedule WHERE DoctorID = :id";
+            $sql = "SELECT * FROM doctorschedule WHERE DoctorID = :id and bookAvail = 'Có sẵn'";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":id", $id);
             $cmd->execute();

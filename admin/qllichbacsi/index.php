@@ -16,6 +16,7 @@ if (isset($_REQUEST["action"])) {
 
 $bs = new BACSI();
 $lbs = new LICHBACSI();
+$sitemap = 'lichbacsi';
 
 
 switch ($action) {

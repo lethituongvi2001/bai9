@@ -99,7 +99,7 @@
                             <div class="dashboard-widget">
                                 <nav class="dashboard-menu">
                                     <ul>
-                                        <li class="active">
+                                        <li>
                                             <a href="../kttknguoidung/index.php">
                                                 <i class="fas fa-columns"></i>
                                                 <span>Bảng điều khiển</span>

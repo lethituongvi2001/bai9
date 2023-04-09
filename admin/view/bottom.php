@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2023</span>
+            <span>Copyright &copy; lttvi_20th@student.agu.edu.vn</span>
         </div>
     </div>
 </footer>
@@ -24,6 +24,10 @@
 
 <!-- Custom JS -->
 <script src="../assets/js/script.js"></script>
+
+
+<!-- My JS -->
+<script src="../../assets/js/my_script.js"></script>
 
 
 <!-- Datatables JS -->

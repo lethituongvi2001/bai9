@@ -31,7 +31,7 @@
                                 <form class="form-horizontal" method="post" action="index.php">
 
                                     <input type="hidden" name="action" value="xulythem">
-
+                                    <!-- Chọn bệnh nhân -->
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="scheduleday">
                                             Bệnh nhân
@@ -41,8 +41,6 @@
                                         </label>
                                         <div class="col-sm-10">
                                             <select class="select form-control" id="scheduleday1" name="txtPatientID" required>
-
-
                                                 <?php
                                                 foreach ($benhnhan as $b) :
                                                 ?>
@@ -54,9 +52,28 @@
                                             </select>
                                         </div>
                                     </div>
-
-
+                                    <!-- Chọn bác sĩ -->
                                     <div class="form-group form-group-lg">
+                                        <label class="control-label col-sm-2 requiredField" for="scheduleday">
+                                            Bác sĩ
+                                            <span class="asteriskField">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <select class="select form-control" id="select_bacsi" name="txtBacSi" required>
+                                                <?php
+                                                foreach ($bacsi as $b) :
+                                                ?>
+                                                    <option value="<?php echo $b["ID"]; ?>"><?php echo $b["Name"]; ?></option>
+                                                <?php
+                                                endforeach;
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Chọn ngày -->
+                                    <!-- <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="date">
                                             Ngày
                                             <span class="asteriskField">
@@ -69,9 +86,8 @@
                                                 <input class="form-control" name="txtDate" type="date" required />
                                             </div>
                                         </div>
-                                    </div>
-
-
+                                    </div> -->
+                                    <!-- Chọn lịch -->
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="scheduleday">
                                             Mã cuộc hẹn
@@ -81,24 +97,11 @@
                                         </label>
                                         <div class="col-sm-10">
 
-                                            <select class="select form-control" id="scheduleday1" name="txtScheduleID" required>
-
-
-                                                <?php
-                                                foreach ($lichbacsi as $l) :
-                                                ?>
-                                                    <option><?php echo $l["ID"];
-                                                            ?> </option>
-                                                <?php
-                                                endforeach;
-                                                ?>
-
+                                            <select class="select form-control" id="select_cuochen" name="txtCuocHen" required>
                                             </select>
                                         </div>
                                     </div>
-
-
-
+                                    <!-- Nhập lý do -->
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="reason">
                                             Lí do
@@ -115,7 +118,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Nhập giá -->
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="name">
                                             Giá dự kiến
@@ -135,9 +138,7 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
+                                    <!-- Chọn trạng thái -->
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="bookavail">
                                             Trạng thái

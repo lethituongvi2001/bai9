@@ -15,6 +15,7 @@ if (isset($_REQUEST["action"])) {
 
 $bn = new BENHNHAN();
 $tk = new NGUOIDUNG();
+$sitemap = 'benhnhan';
 
 switch ($action) {
     case "xem":

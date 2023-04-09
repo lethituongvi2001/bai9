@@ -10,9 +10,11 @@ require("../../model/cuochen.php");
 $isLogin = isset($_SESSION["nguoidung"]);
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
-} elseif ($isLogin == FALSE) {
-    $action = "dangxuat1";
-} else {
+}
+// elseif ($isLogin == FALSE) {
+//     $action = "dangxuat1";
+// } 
+else {
     $action = "macdinh";
 }
 
@@ -22,7 +24,15 @@ $cm = new CHUYENMON();
 $bs = new BACSI();
 $nguoidung = new NGUOIDUNG();
 $tb = "";
+$sitemap = 'dashboard';
+
 switch ($action) {
+    case "get-data-chart":
+
+        header('Content-Type: application/json');
+        echo json_encode($appointments);
+        break;
+
     case "macdinh":
         // $tongbs = $bs->demtongbacsi();
         switch ($_SESSION["nguoidung"]['role']) {
@@ -66,6 +76,7 @@ switch ($action) {
             // print_r($session);
             switch ($session['role']) {
                 case 1: {
+                        $sitemap = 'dashboard';
                         include("main.php");
                         break;
                     }
