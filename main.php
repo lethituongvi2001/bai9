@@ -107,7 +107,7 @@
                                     <i class="fas fa-check-circle verified"></i>
                                 </h3>
 
-                                <p class="speciality" value="<?php echo $bs["id_speciality"]; ?>"><?php echo $cm["Speciality"]; ?></p>
+                                <p class="speciality" value="<?php echo $bs["id_speciality"]; ?>"><?php echo $bs["Speciality"]; ?></p>
 
 
 

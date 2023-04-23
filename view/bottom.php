@@ -13,7 +13,7 @@
 										<img src="assets/img/footer-logo.png" alt="logo">
 									</div>
 									<div class="footer-about-content">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+										<p> Ứng dụng giúp bệnh nhân đặt lịch khám bệnh uy tính nhất Việt Nam </p>
 										<div class="social-icon">
 											<ul>
 												<li>
@@ -43,13 +43,13 @@
 
 								<!-- Footer Widget -->
 								<div class="footer-widget footer-menu">
-									<h2 class="footer-title">For Patients</h2>
+									<h2 class="footer-title">Dành cho bệnh nhân</h2>
 									<ul>
-										<li><a href="search.html"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
-										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										<li><a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
-										<li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a></li>
-										<li><a href="patient-dashboard.html"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
+										<li><a href="search.html"><i class="fas fa-angle-double-right"></i> Tìm kiếm bác sĩ</a></li>
+										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Đăng nhập</a></li>
+										<li><a href="register.html"><i class="fas fa-angle-double-right"></i> Đăng ký</a></li>
+										<li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Đặt lịch hẹn</a></li>
+										<li><a href="patient-dashboard.html"><i class="fas fa-angle-double-right"></i> Bảng điều khiển </a></li>
 									</ul>
 								</div>
 								<!-- /Footer Widget -->
@@ -60,13 +60,13 @@
 
 								<!-- Footer Widget -->
 								<div class="footer-widget footer-menu">
-									<h2 class="footer-title">For Doctors</h2>
+									<h2 class="footer-title">Dành cho bác sĩ</h2>
 									<ul>
-										<li><a href="appointments.html"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
+										<li><a href="appointments.html"><i class="fas fa-angle-double-right"></i> Cuộc hẹn</a></li>
 										<li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
-										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										<li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
-										<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
+										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Đăng nhập</a></li>
+										<li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i> Đăng ký</a></li>
+										<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i>Bảng điều khiển cho bác sĩ</a></li>
 									</ul>
 								</div>
 								<!-- /Footer Widget -->
@@ -111,7 +111,7 @@
 							<div class="row">
 								<div class="col-md-6 col-lg-6">
 									<div class="copyright-text">
-										<p class="mb-0"><a href="admin/index.php">Admin</a></p>
+										<p class="mb-0"><a href="admin/index.php">Quản trị</a></p>
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-6">
@@ -119,8 +119,8 @@
 									<!-- Copyright Menu -->
 									<div class="copyright-menu">
 										<ul class="policy-menu">
-											<li><a href="term-condition.html">Terms and Conditions</a></li>
-											<li><a href="privacy-policy.html">Policy</a></li>
+											<li><a href="#">Lê Thị Tường Vi</a></li>
+											<li><a href="#">DTH195194</a></li>
 										</ul>
 									</div>
 									<!-- /Copyright Menu -->

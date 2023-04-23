@@ -58,7 +58,7 @@ switch ($action) {
         // $macm = $bsct["id_speciality"];
         // $chuyenmon = $bs->laybacsitheochuyenmon($id_speciality);
 
-        $bacsi = $bs->laybacsi();
+        $bacsi = $bs->laybacsitheochuyenmon();
         include("main.php");
         break;
 

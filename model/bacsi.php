@@ -166,13 +166,13 @@ class BACSI
         }
     }
 
-    public function laybacsitheochuyenmon($id_speciality)
+    public function laybacsitheochuyenmon()
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM doctors WHERE id_speciality=:macm";
+            $sql = "SELECT bs.* , cm.Speciality FROM `speciality`as cm , doctors as bs WHERE bs.id_speciality= cm.ID";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":macm", $id_speciality);
+
             $cmd->execute();
             $result = $cmd->fetchAll();
             return $result;
