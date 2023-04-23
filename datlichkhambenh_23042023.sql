@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th4 01, 2023 lúc 04:03 PM
+-- Thời gian đã tạo: Th4 23, 2023 lúc 11:40 AM
 -- Phiên bản máy phục vụ: 5.7.25
 -- Phiên bản PHP: 7.1.26
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `datlichkhambenh1`
+-- Cơ sở dữ liệu: `datlichkhambenh2`
 --
 
 -- --------------------------------------------------------
@@ -46,26 +46,26 @@ INSERT INTO `account` (`ID`, `Password`, `Email`, `ActiveStatus`, `role`, `image
 (3, '202cb962ac59075b964b07152d234b70', 'bacsi@gmail.com', 1, 2, ''),
 (4, '202cb962ac59075b964b07152d234b70', 'levi@gmail.com', 1, 1, ''),
 (5, '123', 'bacsi1@gmail.com', 1, 2, NULL),
-(6, '202cb962ac59075b964b07152d234b70', 'bacsi1@gmail.com', 1, 2, NULL),
+(6, '202cb962ac59075b964b07152d234b70', 'bacsi2@gmail.com', 1, 2, NULL),
 (7, '202cb962ac59075b964b07152d234b70', 'deng@gmail.com', 1, 2, NULL),
 (8, '202cb962ac59075b964b07152d234b70', 'deng1@gmail.com', 1, 2, NULL),
 (9, '202cb962ac59075b964b07152d234b70', 'levi1@gmail.com', 1, 1, NULL),
 (10, '202cb962ac59075b964b07152d234b70', 'ntde@gmail.com', 1, 2, NULL),
 (11, '202cb962ac59075b964b07152d234b70', 'kimsa@gmail.com', 1, 2, NULL),
-(15, '202cb962ac59075b964b07152d234b70', 'levi@gmail.com', 1, 2, NULL),
+(15, '202cb962ac59075b964b07152d234b70', 'levi1@gmail.com', 1, 2, NULL),
 (17, '202cb962ac59075b964b07152d234b70', 'phu@gmail.com', 1, 2, NULL),
-(19, '202cb962ac59075b964b07152d234b70', 'levi@gmail.com', 1, 2, NULL),
+(19, '202cb962ac59075b964b07152d234b70', 'levi2@gmail.com', 1, 2, NULL),
 (21, '202cb962ac59075b964b07152d234b70', 'lechau@gmail.com', 1, 2, NULL),
 (22, '202cb962ac59075b964b07152d234b70', 'ltreu@gmail.com', 1, 2, NULL),
 (24, '202cb962ac59075b964b07152d234b70', 'hhnghi@gmail.com', 1, 2, NULL),
 (25, '202cb962ac59075b964b07152d234b70', 'quan@gmail.com', 1, 2, NULL),
 (27, '202cb962ac59075b964b07152d234b70', 'dauphu@gmail.com', 1, 2, NULL),
 (31, '202cb962ac59075b964b07152d234b70', 'vansi@gmail.com', 1, 2, NULL),
-(32, '202cb962ac59075b964b07152d234b70', 'vansi@gmail.com', 1, 2, NULL),
+(32, '202cb962ac59075b964b07152d234b70', 'vansi1@gmail.com', 1, 2, NULL),
 (33, '202cb962ac59075b964b07152d234b70', 'hdbtran@gmail.com', 1, 2, NULL),
-(34, '202cb962ac59075b964b07152d234b70', 'hdbtran@gmail.com', 1, 2, NULL),
+(34, '202cb962ac59075b964b07152d234b70', 'hdbtran1@gmail.com', 1, 2, NULL),
 (35, '202cb962ac59075b964b07152d234b70', 'bena@gmail.com', 1, 3, NULL),
-(36, '202cb962ac59075b964b07152d234b70', 'bena@gmail.com', 1, 3, NULL);
+(36, '202cb962ac59075b964b07152d234b70', 'bena1@gmail.com', 1, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -81,19 +81,21 @@ CREATE TABLE `appointments` (
   `Date` date NOT NULL,
   `Reason` varchar(255) NOT NULL,
   `Expected_cost` int(50) NOT NULL,
-  `Status` enum('Hoàn thành','Đang diễn ra','Đã Hủy','') NOT NULL
+  `Status` enum('Hoàn thành','Đang diễn ra','Đã Hủy','') NOT NULL,
+  `create_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `appointments`
 --
 
-INSERT INTO `appointments` (`ID`, `PatientID`, `DoctorID`, `ScheduleID`, `Date`, `Reason`, `Expected_cost`, `Status`) VALUES
-(6, 2, 1, 1, '2022-03-10', 'Annual check-up', 50000, 'Hoàn thành'),
-(7, 3, 2, 2, '2022-03-12', 'Sore throat', 0, 'Hoàn thành'),
-(8, 6, 3, 3, '2022-03-14', 'Follow-up on medication', 0, 'Hoàn thành'),
-(9, 1, 4, 4, '2022-03-16', 'Flu-like symptoms', 0, 'Hoàn thành'),
-(10, 2, 5, 5, '2022-03-18', 'Physical therapy', 0, 'Hoàn thành');
+INSERT INTO `appointments` (`ID`, `PatientID`, `DoctorID`, `ScheduleID`, `Date`, `Reason`, `Expected_cost`, `Status`, `create_at`) VALUES
+(6, 2, 1, 1, '2022-03-10', 'Annual check-up', 50000, 'Hoàn thành', '2023-01-01'),
+(7, 3, 2, 2, '2022-03-12', 'Sore throat', 0, 'Hoàn thành', '2023-02-01'),
+(8, 6, 3, 3, '2022-03-14', 'Follow-up on medication', 0, 'Hoàn thành', '2023-03-01'),
+(9, 1, 4, 4, '2022-03-16', 'Flu-like symptoms', 0, 'Hoàn thành', '2023-04-01'),
+(10, 2, 5, 5, '2022-03-18', 'Physical therapy', 0, 'Hoàn thành', '2023-05-01'),
+(11, 3, NULL, NULL, '1970-01-01', 'thaats tinhf', 1000000, 'Đang diễn ra', NULL);
 
 -- --------------------------------------------------------
 
@@ -137,32 +139,33 @@ CREATE TABLE `doctors` (
   `LicenseNumber` varchar(50) NOT NULL,
   `Address` varchar(255) NOT NULL,
   `image` varchar(100) DEFAULT NULL,
-  `id_account` int(11) DEFAULT NULL
+  `id_account` int(11) DEFAULT NULL,
+  `create_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `doctors`
 --
 
-INSERT INTO `doctors` (`ID`, `Name`, `Gender`, `DOB`, `Email`, `PhoneNumber`, `id_speciality`, `LicenseNumber`, `Address`, `image`, `id_account`) VALUES
-(1, 'Võ Tuyết Chanh', 'Nữ', '1991-06-26', 'bacsi@gmail.com', '0937645376', 2, '12345', 'Tà Đảnh, Tri Tôn, An Giang', 'assets/img/doctors/doctor-03.jpg', 3),
-(2, 'Nguyễn Minh Khai', 'Nữ', '1993-05-06', 'nthuy@gmail.com', '0376847562', 2, '048084', 'Kiến An, Chợ Mới, An Giang', 'assets/img/doctorsdoctor-02.jpg', 5),
-(3, 'Nguyễn Thị Chôm', 'Nữ', '1995-07-01', 'ntluom@gmail.com', '555-4824', 12, '345678', 'số 02_Võ Thị Sáu, Đông Xuyên, Long Xuyên, An Giang', 'assets/img/doctors/doctor-04.jpg', 6),
-(4, 'Hồng Hà Nghi', 'Nữ', '1992-03-15', 'hhnghi@gmail.com', '034529468', 11, '45678', 'Vĩnh An, Châu Thành, An giang', 'assets/img/doctors/doctor-07.jpg', 24),
-(5, 'Nguyễn Ngọc Lang Băm', 'Nữ', '1996-06-05', 'nnlanh@gmail.com', '0986980221', 12, '002243', 'Vĩnh Bình, Châu Thành, An Giang', 'assets/img/doctors/doctor-04.jpg', 7),
-(12, 'Bùi Văn Minh', 'Nữ', '1998-09-23', 'abc@abc.com', '785432', 18, '123456', 'Rạch Giá- Kiên Giang', 'assets/img/doctorsdoctor-08.jpg', 34),
-(13, 'Hai Lúa', 'Nữ', '1970-01-01', 'deng1@gmail.com', '122', 19, '2233', '111', 'assets/img/doctors57.jpg', 8),
-(14, 'Lê Văn Tèo', 'Nam', '1999-03-03', 'lvteo@gmail.com', '09837462', 2, '767463', 'Phú Quốc- Kiên Giang', 'assets/img/doctors/doctor-05.jpg', 9),
-(15, 'Nguyễn Thị Dễ', 'Nữ', '1987-07-05', 'ntde@gmail.com', '0928746422', 1, '123456', 'Cái Bè - Tiền Giang', 'assets/img/doctorsdoctor-10.jpg', 10),
-(16, 'Nguyễn Kim Ngân', 'Nữ', '1991-06-12', 'kimngan@gmail.com', '0983734643', 1, '746583', 'Lấp Vò - Đồng Tháp', 'assets/img/doctors/doctor-06.jpg', 11),
-(20, 'naly Bùi', 'Nữ', '1998-12-22', 'levi@gmail.com', '2334443', 2, '123456', 'Hà Tiên- Kiên Giang', 'assets/img/doctors/doctor-11.jpg', 15),
-(22, 'Nguyễn Văn Phú', 'Nữ', '1997-06-30', 'phu@gmail.com', '785432', 1, '767463', 'Phú Quốc- Kiên Giang', 'assets/img/doctors/doctor-12.jpg', 17),
-(26, 'Châu Lê', 'Nữ', '1990-06-13', 'lechau@gmail.com', '2334443', 1, '3453454', 'Châu Thành - An Giang', 'assets/img/doctorsdoctor-thumb-01.jpg', 21),
-(27, 'Lê Thị rêu', 'Nữ', '1995-01-07', 'ltreu@gmail.com', '0986736452', 2, '983349', 'Đồng Văn -  Hà Giang', 'assets/img/doctorsdoctor-thumb-07.jpg', 22),
-(29, 'Táo Quân', 'Nam', '1996-01-07', 'quan@gmail.com', '23344433434433434', NULL, '3453454', 'Châu Phú - An Giang', 'assets/img/doctorsdoctor-12.jpg', 25),
-(30, 'Lê Thị Đậu Phụ', 'Nữ', '1982-06-14', 'dauphu@gmail.com', '2334443', 11, '123456', 'Châu Thành - An Giang', 'assets/img/doctorsdoctor-10.jpg', 27),
-(34, 'Thêm Văn Sĩ', 'Nam', '1987-07-17', 'vansi@gmail.com', '2334443', 1, '3453454', 'Châu Phú - An Giang', 'assets/img/doctorsdoctor-02.jpg', 31),
-(36, 'Huỳnh  Diệp Bảo Trân', 'Nữ', '1989-10-18', 'hdbtran@gmail.com', '785432', 2, '3453454', 'Châu Phú - An Giang', 'assets/img/doctorsdoctor-11.jpg', 33);
+INSERT INTO `doctors` (`ID`, `Name`, `Gender`, `DOB`, `Email`, `PhoneNumber`, `id_speciality`, `LicenseNumber`, `Address`, `image`, `id_account`, `create_at`) VALUES
+(1, 'Võ Tuyết Chanh', 'Nữ', '1991-06-26', 'bacsi@gmail.com', '0937645376', 2, '12345', 'Tà Đảnh, Tri Tôn, An Giang', 'assets/img/doctors/doctor-03.jpg', 3, NULL),
+(2, 'Nguyễn Minh Khai', 'Nữ', '1993-05-06', 'nthuy@gmail.com', '0376847562', 2, '048084', 'Kiến An, Chợ Mới, An Giang', 'assets/img/doctorsdoctor-02.jpg', 5, NULL),
+(3, 'Nguyễn Thị Chôm', 'Nữ', '1995-07-01', 'ntluom@gmail.com', '555-4824', 12, '345678', 'số 02_Võ Thị Sáu, Đông Xuyên, Long Xuyên, An Giang', 'assets/img/doctors/doctor-04.jpg', 6, NULL),
+(4, 'Hồng Hà Nghi', 'Nữ', '1992-03-15', 'hhnghi@gmail.com', '034529468', 11, '45678', 'Vĩnh An, Châu Thành, An giang', 'assets/img/doctors/doctor-07.jpg', 24, NULL),
+(5, 'Nguyễn Ngọc Lang Băm', 'Nữ', '1996-06-05', 'nnlanh@gmail.com', '0986980221', 12, '002243', 'Vĩnh Bình, Châu Thành, An Giang', 'assets/img/doctors/doctor-04.jpg', 7, NULL),
+(12, 'Bùi Văn Minh', 'Nữ', '1998-09-23', 'abc@abc.com', '785432', 18, '123456', 'Rạch Giá- Kiên Giang', 'assets/img/doctorsdoctor-08.jpg', 34, NULL),
+(13, 'Hai Lúa', 'Nữ', '1970-01-01', 'deng1@gmail.com', '122', 19, '2233', '111', 'assets/img/doctors57.jpg', 8, NULL),
+(14, 'Lê Văn Tèo', 'Nam', '1999-03-03', 'lvteo@gmail.com', '09837462', 2, '767463', 'Phú Quốc- Kiên Giang', 'assets/img/doctors/doctor-05.jpg', 9, NULL),
+(15, 'Nguyễn Thị Dễ', 'Nữ', '1987-07-05', 'ntde@gmail.com', '0928746422', 1, '123456', 'Cái Bè - Tiền Giang', 'assets/img/doctorsdoctor-10.jpg', 10, NULL),
+(16, 'Nguyễn Kim Ngân', 'Nữ', '1991-06-12', 'kimngan@gmail.com', '0983734643', 1, '746583', 'Lấp Vò - Đồng Tháp', 'assets/img/doctors/doctor-06.jpg', 11, NULL),
+(20, 'naly Bùi', 'Nữ', '1998-12-22', 'levi@gmail.com', '2334443', 2, '123456', 'Hà Tiên- Kiên Giang', 'assets/img/doctors/doctor-11.jpg', 15, NULL),
+(22, 'Nguyễn Văn Phú', 'Nữ', '1997-06-30', 'phu@gmail.com', '785432', 1, '767463', 'Phú Quốc- Kiên Giang', 'assets/img/doctors/doctor-12.jpg', 17, NULL),
+(26, 'Châu Lê', 'Nữ', '1990-06-13', 'lechau@gmail.com', '2334443', 1, '3453454', 'Châu Thành - An Giang', 'assets/img/doctorsdoctor-thumb-01.jpg', 21, NULL),
+(27, 'Lê Thị rêu', 'Nữ', '1995-01-07', 'ltreu@gmail.com', '0986736452', 2, '983349', 'Đồng Văn -  Hà Giang', 'assets/img/doctorsdoctor-thumb-07.jpg', 22, NULL),
+(29, 'Táo Quân', 'Nam', '1996-01-07', 'quan@gmail.com', '23344433434433434', NULL, '3453454', 'Châu Phú - An Giang', 'assets/img/doctorsdoctor-12.jpg', 25, NULL),
+(30, 'Lê Thị Đậu Phụ', 'Nữ', '1982-06-14', 'dauphu@gmail.com', '2334443', 11, '123456', 'Châu Thành - An Giang', 'assets/img/doctorsdoctor-10.jpg', 27, NULL),
+(34, 'Thêm Văn Sĩ', 'Nam', '1987-07-17', 'vansi@gmail.com', '2334443', 1, '3453454', 'Châu Phú - An Giang', 'assets/img/doctorsdoctor-02.jpg', 31, NULL),
+(36, 'Huỳnh  Diệp Bảo Trân', 'Nữ', '1989-10-18', 'hdbtran@gmail.com', '785432', 2, '3453454', 'Châu Phú - An Giang', 'assets/img/doctorsdoctor-11.jpg', 33, NULL);
 
 -- --------------------------------------------------------
 
@@ -188,7 +191,7 @@ INSERT INTO `doctorschedule` (`ID`, `DoctorID`, `scheduleDay`, `startTime`, `end
 (2, 4, 'Thứ tư', '08:00:00', '09:00:00', 'Có sẵn'),
 (3, 5, 'Thứ tư', '09:00:00', '10:00:00', 'Có sẵn'),
 (5, 1, 'Thứ hai', '02:00:00', '03:00:00', 'Không có sẵn'),
-(15, 1, 'Thứ ba', '09:01:00', '09:30:00', 'Có sẵn'),
+(15, 1, 'Chủ nhật', '09:01:00', '09:30:00', 'Có sẵn'),
 (17, 4, 'Thứ hai', '01:30:00', '02:00:00', 'Có sẵn'),
 (18, 3, 'Thứ hai', '03:00:00', '03:30:00', 'Có sẵn'),
 (19, 4, 'Thứ hai', '01:30:00', '02:00:00', 'Có sẵn'),
@@ -246,23 +249,24 @@ CREATE TABLE `patients` (
   `Address` varchar(255) NOT NULL,
   `DOB` date NOT NULL,
   `Gender` enum('Nam','Nữ','Khác','') NOT NULL,
-  `id_account` int(11) DEFAULT NULL
+  `id_account` int(11) DEFAULT NULL,
+  `create_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `patients`
 --
 
-INSERT INTO `patients` (`ID`, `Name`, `Email`, `PhoneNumber`, `Address`, `DOB`, `Gender`, `id_account`) VALUES
-(1, 'Thái Hoàng Khang', 'thkhang@gmail.com', '0963827364', 'Cai Lậy, Tiền Giang', '1995-06-12', 'Nam', 1),
-(2, 'Nguyễn Thành Lương', 'ltluong@gmail.com', '0348376592', 'Long Xuyên, An Giang', '1988-02-22', 'Nam', NULL),
-(3, 'Nguyễn Vĩnh Cùi', 'vinhcui@gmail.com', '0328300079', 'Chợ Mới, An Giang', '1977-11-04', 'Nam', NULL),
-(4, 'Lê Minh Hổ', 'minhho@gmail.com', '555-1212', 'Chợ Cũ, An Giang', '1999-09-15', 'Nam', NULL),
-(5, 'Lý Bạch', 'lybach@gmail.com', '555-1313', 'Châu Đốc, An Giang', '1992-12-30', 'Nam', 36),
-(6, 'Lê Thị Lựu', 'ltluu@gmail.com', '0364522823', 'Châu Thành, An Giang', '2001-01-07', 'Nữ', NULL),
-(9, 'Bùi Bé Thơ', 'thobui@gmail.com', '2334443', 'Châu Phú - An Giang', '1998-09-02', 'Nữ', NULL),
-(11, 'Bùi Bé Hai', 'behai@gmail.com', '03938437', 'Tân Châu-An Giang', '1986-04-20', 'Nam', NULL),
-(13, 'Bùi Bé Naa', 'bena@gmail.com', '02928373', 'Châu Phú - An Giang', '2004-11-04', 'Nam', 35);
+INSERT INTO `patients` (`ID`, `Name`, `Email`, `PhoneNumber`, `Address`, `DOB`, `Gender`, `id_account`, `create_at`) VALUES
+(1, 'Thái Hoàng Khang', 'thkhang@gmail.com', '0963827364', 'Cai Lậy, Tiền Giang', '1995-06-12', 'Nam', 1, NULL),
+(2, 'Nguyễn Thành Lương', 'ltluong@gmail.com', '0348376592', 'Long Xuyên, An Giang', '1988-02-22', 'Nam', NULL, NULL),
+(3, 'Nguyễn Vĩnh Cùi', 'vinhcui@gmail.com', '0328300079', 'Chợ Mới, An Giang', '1977-11-04', 'Nam', NULL, NULL),
+(4, 'Lê Minh Hổ', 'minhho@gmail.com', '555-1212', 'Chợ Cũ, An Giang', '1999-09-15', 'Nam', NULL, NULL),
+(5, 'Lý Bạch', 'lybach@gmail.com', '555-1313', 'Châu Đốc, An Giang', '1992-12-30', 'Nam', 36, NULL),
+(6, 'Lê Thị Lựu', 'ltluu@gmail.com', '0364522823', 'Châu Thành, An Giang', '2001-01-07', 'Nữ', NULL, NULL),
+(9, 'Bùi Bé Thơ', 'thobui@gmail.com', '2334443', 'Châu Phú - An Giang', '1998-09-02', 'Nữ', NULL, NULL),
+(11, 'Bùi Bé Hai', 'behai@gmail.com', '03938437', 'Tân Châu-An Giang', '1986-04-20', 'Nam', NULL, NULL),
+(13, 'Bùi Bé Naa', 'bena@gmail.com', '02928373', 'Châu Phú - An Giang', '2004-11-04', 'Nam', 35, NULL);
 
 -- --------------------------------------------------------
 
@@ -366,7 +370,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT cho bảng `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `billing`
