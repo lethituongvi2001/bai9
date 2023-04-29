@@ -10,15 +10,13 @@ require("../../model/cuochen.php");
 $isLogin = isset($_SESSION["nguoidung"]);
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
-}
-// elseif ($isLogin == FALSE) {
-//     $action = "dangxuat1";
-// } 
-else {
+} elseif ($isLogin == FALSE) {
+    $action = "dangxuat1";
+} else {
     $action = "macdinh";
 }
 
-$ch = new CUOCHEN();
+$ch = new BOOKING();
 $bn = new BENHNHAN();
 $cm = new CHUYENMON();
 $bs = new BACSI();
@@ -55,7 +53,7 @@ switch ($action) {
         break;
     case "dangxuat1":
         unset($_SESSION["nguoidung"]);
-        $tb = "Cảm ơn!";
+        $message = '';
         //SignIn.php
         //loginform.php
         include("login.php");
@@ -63,15 +61,17 @@ switch ($action) {
 
 
     case "dangnhap":
+        $message = '';
         include("login.php");
         break;
 
     case "xldangnhap":
-        $Email = $_POST["your_name"];
-        $Password = $_POST["your_pass"];
-        if ($nguoidung->kiemtranguoidunghople($Email, $Password, true) == TRUE) {
-            $role = $nguoidung->kiemtra_role($Email);
-            $session = $nguoidung->laythongtinnguoidung($Email, $role['role']);
+        $Username = $_POST["username"];
+        $Password = $_POST["password"];
+
+        if ($nguoidung->kiemtranguoidunghople($Username, $Password, true) == TRUE) {
+            $role = $nguoidung->kiemtra_role($Username);
+            $session = $nguoidung->laythongtinnguoidung($Username, $role['role']);
             $_SESSION["nguoidung"] = $session;
             // print_r($session);
             switch ($session['role']) {
@@ -81,12 +81,14 @@ switch ($action) {
                         break;
                     }
                 case 2: {
-                        include("../doctor/main.php");
+                        header('Location: http://127.0.0.1/bai9/admin/doctor/index.php');
+                        exit;
+                        // include("../doctor/main.php");
                         break;
                     }
             }
         } else {
-            $tb = "Đăng nhập không thành công!";
+            $message = "Tên đăng nhập hoặc mật khẩu không đúng!";
             include("login.php");
         }
         $action = '';

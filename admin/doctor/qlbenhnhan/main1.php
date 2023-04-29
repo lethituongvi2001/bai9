@@ -1,6 +1,6 @@
 <?php include("../view_doctor/top.php"); ?>
 
-<div class="col-md-7 col-lg-8 col-xl-9">
+<div class="col-md-8 col-lg-9 col-xl-10">
 
 	<div class="row">
 		<div class="col-sm-12">

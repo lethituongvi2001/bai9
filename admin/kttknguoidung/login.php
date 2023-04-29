@@ -44,11 +44,16 @@
 							<!-- Form -->
 							<form method="post">
 								<div class="form-group">
-									<input class="form-control" name="your_name" type="text" placeholder="Email">
+									<input class="form-control" name="username" type="text" placeholder="Email">
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="your_pass" type="password" placeholder="Password">
+									<input class="form-control" name="password" type="password" placeholder="Password">
 								</div>
+								<?php if ($message && $message != '') { ?>
+									<div class="text-center text-danger">
+										<?php echo $message; ?>
+									</div>
+								<?php } ?>
 								<div class="form-group">
 									<input type="hidden" name="action" value="xldangnhap">
 									<input class="btn btn-primary btn-user btn-block" name="signin" id="signin" type="submit" value="Đăng nhập">

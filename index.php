@@ -7,12 +7,12 @@ require("model/bacsi.php");
 require("model/lichbacsi.php");
 require("model/nguoidung.php");
 
-$ch = new CUOCHEN();
+$ch = new BOOKING();
 $bn = new BENHNHAN();
 $cm = new CHUYENMON();
 $bs = new BACSI();
 $lbs = new LICHBACSI();
-$nd = new NGUOIDUNG();
+$nguoidung = new NGUOIDUNG();
 
 $chuyenmon = $cm->laychuyenmon();
 
@@ -32,33 +32,19 @@ if (isset($_REQUEST["action"])) {
 
 $search = 0;
 $txtSearch = "";
-
+$message = '';
 // $mathangnoibat = $mh->laymathangnoibat();
 
 switch ($action) {
     case "macdinh":
-        // $tongmh = $mh->demtongsomathang();
-        // $soluong = 8;
-        // $tongsotrang = ceil($tongmh / $soluong);
-        // if (!isset($_REQUEST["trang"]))
-        //     $tranghh = 1;
-        // else
-        //     $tranghh = $_REQUEST["trang"];
-        // if ($tranghh > $tongsotrang)
-        //     $tranghh = $tongsotrang;
-        // else if ($tranghh < 1)
-        //     $tranghh = 1;
-        // $batdau = ($tranghh - 1) * $soluong;
-        // $mathang = $mh->laymathangphantrang($batdau, $soluong);
-
-
-
-        // $bsct = $ct->laybacsitheoid($id);
-
-        // $macm = $bsct["id_speciality"];
-        // $chuyenmon = $bs->laybacsitheochuyenmon($id_speciality);
-
-        $bacsi = $bs->laybacsitheochuyenmon();
+        $doctor_onlly = $bs->laybacsi();
+        $doctor = array();
+        foreach ($doctor_onlly as $item) {
+            $speciality = $cm->getSpecialityByDoctor($item['ID']);
+            $item['Speciality'] = $speciality;
+            array_push($doctor, $item);
+        }
+        // print_r($doctor);
         include("main.php");
         break;
 
@@ -112,71 +98,52 @@ switch ($action) {
         break;
 
     case "dangnhap":
+        $message = '';
         include("login.php");
         break;
 
+
     case "xldangnhap":
-        $Email = $_POST["your_name"];
-        $Password = $_POST["your_pass"];
-        if ($nguoidung->kiemtranguoidunghople($Email, $Password, true) == TRUE) {
-            $role = $nguoidung->kiemtra_role($Email);
-            $session = $nguoidung->laythongtinnguoidung($Email, $role['role']);
+        $Username = $_POST["username"];
+        $Password = $_POST["password"];
+
+        if ($nguoidung->kiemtranguoidunghople($Username, $Password, false) == TRUE) {
+            $role = $nguoidung->kiemtra_role($Username);
+            $session = $nguoidung->laythongtinnguoidung($Username, $role['role']);
             $_SESSION["nguoidung"] = $session;
             // print_r($session);
-            switch ($session['role']) {
-                case 1: {
-                        include("main.php");
-                        break;
-                    }
-                case 2: {
-                        include("../doctor/main.php");
-                        break;
-                    }
+            $isLogin = true;
+            $doctor_onlly = $bs->laybacsi();
+            $doctor = array();
+            foreach ($doctor_onlly as $item) {
+                $speciality = $cm->getSpecialityByDoctor($item['ID']);
+                $item['Speciality'] = $speciality;
+                array_push($doctor, $item);
             }
+            $sitemap = 'mainPage';
+            include("main.php");
+            break;
         } else {
-            $tb = "Đăng nhập không thành công!";
+            $message = 'Sai tên đăng nhập hoặc mật khẩu!';
+            $isLogin = false;
             include("login.php");
         }
         $action = '';
         break;
 
-
-
-    case "xldangnhap":
-        $email = $_POST["your_name"];
-        $password = $_POST["your_pass"];
-        if ($nd->kiemtranguoidunghople($email, $password, true) == TRUE) {
-            $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email, $loai_tk);
-
-            // $tongmh = $mh->demtongsomathang();
-            // $soluong = 8;
-            // $tongsotrang = ceil($tongmh / $soluong);
-            // if (!isset($_REQUEST["trang"]))
-            //     $tranghh = 1;
-            // else
-            //     $tranghh = $_REQUEST["trang"];
-            // if ($tranghh > $tongsotrang)
-            //     $tranghh = $tongsotrang;
-            // else if ($tranghh < 1)
-            //     $tranghh = 1;
-            // $batdau = ($tranghh - 1) * $soluong;
-            // $mathang = $mh->laymathangphantrang($batdau, $soluong);
-
-            include("main.php");
-        } else {
-            $tb = "Đăng nhập không thành công!";
-            include("login.php");
-        }
-        break;
-
-    case "dangxuat2":
-
+    case "dangxuat":
         unset($_SESSION["nguoidung"]);
-
-        $tb = "Cảm ơn chị iu!";
-
-        include("SignIn1.php");
+        $doctor_onlly = $bs->laybacsi();
+        $doctor = array();
+        foreach ($doctor_onlly as $item) {
+            $speciality = $cm->getSpecialityByDoctor($item['ID']);
+            $item['Speciality'] = $speciality;
+            array_push($doctor, $item);
+        }
+        $isLogin = false;
+        include("main.php");
         break;
+
 
     case "themkhachhang":
         $hoten = $_POST["txthoten"];
@@ -200,6 +167,12 @@ switch ($action) {
 
         break;
     default:
+        //validate
+        if ($nguoidung->isEmailExist(($Email))) {
+            $message = 'Tên đăng nhập đã tồn tại. Vui lòng sử dụng tên khác!';
+            include('login.php');
+            break;
+        }
         break;
 }
 ?>

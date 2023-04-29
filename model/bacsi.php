@@ -36,7 +36,7 @@ class BACSI
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM doctors";
+            $sql = "SELECT doctors.*, imagerecord.AbsolutePath from doctors, imagerecord where Image_Id=imagerecord.id and doctors.Active";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();

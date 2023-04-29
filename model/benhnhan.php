@@ -30,7 +30,7 @@ class BENHNHAN
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM patients";
+            $sql = "SELECT * FROM customers where active";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -64,7 +64,7 @@ class BENHNHAN
         $dbcon = DATABASE::connect();
         try {
             //INSERT INTO `doctors`(`ID`, `Name`, `Last Name`, `Gender`, `DOB`, `Email`, `Phone Number`, `Specialty`, `License Number`, `Address`, `image`)
-            $sql = "INSERT INTO patients(Name,Email,PhoneNumber,Address,DOB,Gender,id_account) 
+            $sql = "INSERT INTO customers(Name,Email,PhoneNumber,Address,DOB,Gender,id_account) 
 				VALUES(:Name,:Email,:PhoneNumber,:Address,:DOB,:Gender,:id_account)";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":Name", $Name);
@@ -88,7 +88,7 @@ class BENHNHAN
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "DELETE FROM patients WHERE ID=:ID";
+            $sql = "DELETE FROM customers WHERE ID=:ID";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":ID", $id);
             $result = $cmd->execute();
@@ -106,7 +106,7 @@ class BENHNHAN
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE patients SET Name=:Name,
+            $sql = "UPDATE customers SET Name=:Name,
                                         Email=:Email,
 										PhoneNumber=:PhoneNumber,
                                         Address=:Address,
@@ -137,7 +137,7 @@ class BENHNHAN
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM patients WHERE ID=:ID";
+            $sql = "SELECT * FROM customers WHERE ID=:ID";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":ID", $id);
             $cmd->execute();
@@ -156,7 +156,7 @@ class BENHNHAN
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT p.*, dc.DoctorID FROM `doctorschedule` as dc, patients as p, appointments as a WHERE p.ID = a.PatientID and dc.DoctorID = :DoctorID group by dc.DoctorID";
+            $sql = "SELECT p.*, dc.DoctorID FROM `doctorschedule` as dc, customers as p, appointments as a WHERE p.ID = a.PatientID and dc.DoctorID = :DoctorID group by dc.DoctorID";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":DoctorID", $id);
             $cmd->execute();
@@ -174,7 +174,7 @@ class BENHNHAN
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT COUNT(*) FROM patients";
+            $sql = "SELECT COUNT(*) FROM customers";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchColumn();

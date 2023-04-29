@@ -1,57 +1,3 @@
-/*
-Author       : Dreamguys
-Template Name: Doccure - Bootstrap Template
-Version      : 1.0
-*/
-
-/*============================
- [Table of CSS]
-
-1. General
-2. Table
-3. Bootstrap Classes
-4. Avatar
-5. Select2
-6. Nav Tabs
-7. Modal
-8. Components
-9. Slick Slider
-10. Focus Label
-11. Header
-12. Mobile Menu
-13. Footer
-14. Login
-15. Home
-16. Search
-17. Doctor Profile
-18. Booking
-19. Checkout
-20. Booking Success
-21. Invoice View
-22. Schedule Timings
-23. Doctor Dashboard
-24. Patient Profile
-25. Add Billing
-26. Chat
-27. Doctor Profile Settings
-28. Calendar
-29. Patient Dashboard
-30. Profile Settings
-31. Appoitment List
-32. Reviews
-33. Voice call
-34. Video Call
-35. Outgoing Call
-36. Incoming Call
-37. Terms and Conditions
-38. Responsive
-
-========================================*/
-
-/*-----------------
-	1. General
------------------------*/
-
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900');
 @font-face {
 	font-family: 'Material Icons';
@@ -82,6 +28,11 @@ Version      : 1.0
 	font-feature-settings: 'liga';
 }
 
+/* my css */
+.slick-list.draggable {
+    padding-left: 20px;
+}
+/* end my css */
 html {
     height: 100%;
 }
@@ -1417,7 +1368,8 @@ button.bg-danger:hover {
     display: block;
     overflow: hidden;
     margin: 0;
-    padding: 0 0 0 20px;
+    padding: 0;
+	padding-left: 20px;
 }
 .slick-list:focus {
     outline: none;
@@ -2466,7 +2418,6 @@ html.menu-opened body {
 }
 .section-doctor .section-header {
 	margin-bottom: 30px;
-	margin-top: 10px;
 }
 .section-doctor .section-header p {
 	margin-top: 10px;
@@ -2488,9 +2439,8 @@ html.menu-opened body {
     -o-transition:all .3s ease 0s;
     transition:all .3s ease 0s;
 	padding: 15px;
-	min-height: 430px;
+	/* min-height: 430px; */
 }
-
 .doc-img {
     position: relative;
     overflow: hidden;
@@ -2546,14 +2496,6 @@ html.menu-opened body {
 }
 .pro-content {
     padding: 15px 0 0;
-	min-height: 245px;
-}
-.doctor-profile-bottom {
-    bottom: 0;
-    position: absolute;
-    margin-bottom: 10px;
-	width: 100%;
-	padding-right: 28px;
 }
 .pro-content .title {
     font-size: 17px;

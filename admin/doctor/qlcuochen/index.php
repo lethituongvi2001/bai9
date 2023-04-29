@@ -21,9 +21,8 @@ $lbs = new LICHBACSI();
 switch ($action) {
     case "xem":
         // print_r($_SESSION['nguoidung']);
-        $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
-
-        include("main1.php");
+        // $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
+        include("main.php");
         break;
 
     case "them":
@@ -41,13 +40,13 @@ switch ($action) {
         $lbs->themlichbacsi($DoctorID, $scheduleDay, $startTime, $endTime, $bookAvail);
         // $lichbacsi = $lbs->laylichbacsi();
         $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
-        include("main1.php");
+        include("main.php");
         break;
     case "xoa":
         if (isset($_GET["ID"]))
             $lbs->xoalichbacsi($_GET["ID"]);
         $lichbacsi = $lbs->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
-        include("main1.php");
+        include("main.php");
         break;
     case "sua":
 
@@ -60,7 +59,7 @@ switch ($action) {
             for ($i = 0; $i < count($lichbacsi); $i++) {
                 $lichbacsi[$i]['STT'] = $i + 1;
             }
-            include("main1.php");
+            include("main.php");
         }
         break;
     case "xulysua":
@@ -77,7 +76,7 @@ switch ($action) {
 
         // hiển thị ds lịch bác sĩ
         $lichbacsi = $lbs->laylichbacsi();
-        include("main1.php");
+        include("main.php");
         break;
 
     case "xemnhom":
@@ -86,7 +85,7 @@ switch ($action) {
 
 
         $lichbacsi = $lbs->laylichtheobacsi($mabs);
-        include("main1.php");
+        include("main.php");
 
         break;
     default:

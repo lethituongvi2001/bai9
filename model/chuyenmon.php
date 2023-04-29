@@ -29,7 +29,7 @@ class CHUYENMON
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM speciality";
+            $sql = "select speciality.id, Name, imagerecord.AbsolutePath  from speciality, imagerecord where Image_Id = imagerecord.id";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -122,6 +122,25 @@ class CHUYENMON
             $cmd->execute();
             $result = $cmd->fetchColumn();
             //rsort($result); // sắp xếp giảm thay cho order by desc
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
+    // Lấy chuyen mon by id
+    public function getSpecialityByDoctor($id)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT h.id, h.doctor_id, h.speciality_id, doctors.Name as 'doctor_name', speciality.Name as 'speciality_name' 
+            from has_speciality_doctor as h, doctors, speciality where doctor_id=doctors.ID and speciality_id=speciality.ID and doctor_id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $id);
+            $cmd->execute();
+            $result = $cmd->fetchAll();
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();

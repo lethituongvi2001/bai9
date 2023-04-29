@@ -1,7 +1,5 @@
-<?php include("../view_doctor/top.php"); ?>
-
-<div class="col-md-7 col-lg-8 col-xl-9">
-
+<?php include("view_doctor/top.php"); ?>
+<div class="col-md-8 col-lg-9 col-xl-10">
     <div class="row">
         <div class="col-md-12">
             <div class="card dash-card">
@@ -11,7 +9,7 @@
                             <div class="dash-widget dct-border-rht">
                                 <div class="circle-bar circle-bar1">
                                     <div class="circle-graph1" data-percent="75">
-                                        <img src="../assets_doctor/img/icon-01.png" class="img-fluid" alt="patient">
+                                        <img src="assets_doctor/img/icon-01.png" class="img-fluid" alt="patient">
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
@@ -26,7 +24,7 @@
                             <div class="dash-widget dct-border-rht">
                                 <div class="circle-bar circle-bar2">
                                     <div class="circle-graph2" data-percent="65">
-                                        <img src="../assets_doctor/img/icon-02.png" class="img-fluid" alt="Patient">
+                                        <img src="assets_doctor/img/icon-02.png" class="img-fluid" alt="Patient">
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
@@ -41,7 +39,7 @@
                             <div class="dash-widget">
                                 <div class="circle-bar circle-bar3">
                                     <div class="circle-graph3" data-percent="50">
-                                        <img src="../assets_doctor/img/icon-03.png" class="img-fluid" alt="Patient">
+                                        <img src="assets_doctor/img/icon-03.png" class="img-fluid" alt="Patient">
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
@@ -95,7 +93,7 @@
                                             <tr>
                                                 <td>
                                                     <h2 class="table-avatar">
-                                                        <a href="patient-profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="../assets_doctor/img/patients/patient.jpg" alt="User Image"></a>
+                                                        <a href="patient-profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets_doctor/img/patients/patient.jpg" alt="User Image"></a>
                                                         <a href="patient-profile.html">Châu Ngô <span>#10</span></a>
                                                     </h2>
                                                 </td>
@@ -134,4 +132,4 @@
 
 </div>
 <!-- /Page Wrapper -->
-<?php include("../view_doctor/bottom.php"); ?>
+<?php include("view_doctor/bottom.php"); ?>

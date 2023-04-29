@@ -1,19 +1,23 @@
 <?php
-class CUOCHEN
+class BOOKING
 {
-
-
-
     // Lấy danh sách
-    public function laycuochen()
+    public function laycuochentheoid($id)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT a.*, p.Name FROM `appointments` as a, patients as p WHERE a.PatientID = p.ID";
+            $sql = "SELECT b.*, c.Name as customer_name, ward.name as ward_name, district.name as district_name, province.name as province_name
+            FROM booking as b
+            INNER JOIN customers as c ON b.Customer_id = c.ID
+            LEFT JOIN ward ON b.Ward_id = ward.xaid
+            LEFT JOIN district ON b.District_id = district.maqh
+            LEFT JOIN province ON b.Province_id = province.matp
+            WHERE b.id = :id
+            ";
             $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $id);
             $cmd->execute();
-            $result = $cmd->fetchAll();
-            rsort($result); // sắp xếp giảm thay cho order by desc
+            $result = $cmd->fetch();
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
@@ -24,15 +28,15 @@ class CUOCHEN
 
 
     // Lấy mặt hàng theo id
-    public function laycuochentheoid($id)
+    public function laydscuochentheoiddoctor($id)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM appointments WHERE ID=:ID";
+            $sql = "SELECT * FROM `booking` WHERE Doctor_id =:id";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":ID", $id);
+            $cmd->bindValue(":id", $id);
             $cmd->execute();
-            $result = $cmd->fetch();
+            $result = $cmd->fetchAll();
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();

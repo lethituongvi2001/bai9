@@ -15,17 +15,22 @@
 						</div>
 						<div class="col-md-12 col-lg-6 login-right">
 							<div class="login-header">
-								<h3>Đăng nhập <span>tại đây</span></h3>
+								<h3>Đăng nhập</h3>
 							</div>
 							<form method="post" class="register-form" id="login-form">
 								<div class="form-group form-focus">
-									<input name="your_name" type="email" class="form-control floating">
+									<input name="username" type="text" class="form-control floating">
 									<label class="focus-label">Email</label>
 								</div>
 								<div class="form-group form-focus">
-									<input name="your_pass" type="password" class="form-control floating">
+									<input name="password" type="password" class="form-control floating">
 									<label class="focus-label">Mật khẩu</label>
 								</div>
+								<?php if ($message && $message != '') { ?>
+									<div class="text-center text-danger">
+										<?php echo $message; ?>
+									</div>
+								<?php } ?>
 								<div class="text-right">
 									<a class="forgot-link" href="forgot-password.html">Quên mật khẩu ?</a>
 								</div>

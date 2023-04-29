@@ -1,5 +1,14 @@
+/*
+Author       : Dreamguys
+Template Name: Doccure - Bootstrap Template
+Version      : 1.0
+*/
+
 (function ($) {
   "use strict";
+
+  // Stick Sidebar
+
   if ($(window).width() > 767) {
     if ($(".theiaStickySidebar").length > 0) {
       $(".theiaStickySidebar").theiaStickySidebar({
@@ -49,12 +58,12 @@
 
   // Select 2
 
-  // if ($(".select").length > 0) {
-  //   $(".select").select2({
-  //     minimumResultsForSearch: -1,
-  //     width: "100%",
-  //   });
-  // }
+  if ($(".select").length > 0) {
+    $(".select").select2({
+      minimumResultsForSearch: -1,
+      width: "100%",
+    });
+  }
 
   // Date Time Picker
 
@@ -213,6 +222,17 @@
 
   // Slick Slider
 
+  //   if ($(".specialities-slider").length > 0) {
+  //     $(".specialities-slider").slick({
+  //       dots: true,
+  //       autoplay: false,
+  //       infinite: true,
+  //       variableWidth: true,
+  //       prevArrow: false,
+  //       nextArrow: false,
+  //     });
+  //   }
+
   if ($(".specialities-slider").length > 0) {
     $(".specialities-slider").slick({
       slidesToShow: 3,
@@ -226,7 +246,7 @@
     $(".doctor-slider").slick({
       dots: false,
       autoplay: false,
-      infinite: false,
+      infinite: true,
       variableWidth: true,
     });
   }

@@ -20,7 +20,7 @@ if (isset($_REQUEST["action"])) {
 $lbs = new LICHBACSI();
 $bn = new BENHNHAN();
 $bs = new BACSI();
-$ch = new CUOCHEN();
+$ch = new BOOKING();
 $sitemap = 'cuochen';
 
 $cuochen = $ch->laycuochen();
@@ -72,10 +72,6 @@ switch ($action) {
         $appointments = array();
         foreach ($cuochen as $appointment) {
             $currentday = getDateOfCurrentWeek(convertDateToEng($appointment["scheduleDay"]));
-            // $sunday = getSundayOfWeek($currentday);
-            // if (strtotime($currentday) <= strtotime('today') || strtotime($currentday) > strtotime($sunday)) {
-            //     continue;
-            // }
             $appointments[] = array(
                 "value" => $appointment["ID"],
                 "label" => $appointment["scheduleDay"] . " - " . $currentday

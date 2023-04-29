@@ -8,16 +8,16 @@ class NGUOIDUNG
 	}
 	// khai báo các thuộc tính (SV tự viết)
 
-	public function kiemtranguoidunghople($Email, $Password, $admin)
+	public function kiemtranguoidunghople($Username, $Password, $admin)
 	{
 		$db = DATABASE::connect();
 		try {
 			if ($admin == 1)
-				$sql = "SELECT * FROM account WHERE Email=:Email AND Password=:Password AND ActiveStatus=1 and role !=3";
+				$sql = "SELECT * FROM account WHERE Username=:Username AND Password=:Password AND ActiveStatus=1 and role !=3";
 			else
-				$sql = "SELECT * FROM account WHERE Email=:Email AND Password=:Password AND ActiveStatus=1 and role =3";
+				$sql = "SELECT * FROM account WHERE Username=:Username AND Password=:Password AND ActiveStatus=1 and role =3";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(":Email", $Email);
+			$cmd->bindValue(":Username", $Username);
 			$cmd->bindValue(":Password", md5($Password));
 			$cmd->execute();
 			$valid = ($cmd->rowCount() == 1);
@@ -33,16 +33,16 @@ class NGUOIDUNG
 	}
 
 
-	public function kiemtranguoidunghople1($Email, $Password, $doctor)
+	public function kiemtranguoidunghople1($Username, $Password, $doctor)
 	{
 		$db = DATABASE::connect();
 		try {
 			if ($doctor == 2)
-				$sql = "SELECT * FROM account WHERE Email=:Email AND Password=:Password AND ActiveStatus=1 and role =2";
+				$sql = "SELECT * FROM account WHERE Username=:Username AND Password=:Password AND ActiveStatus=1 and role =2";
 			else
-				$sql = "SELECT * FROM account WHERE Email=:Email AND Password=:Password AND ActiveStatus=1 and role !=2";
+				$sql = "SELECT * FROM account WHERE Username=:Username AND Password=:Password AND ActiveStatus=1 and role !=2";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(":Email", $Email);
+			$cmd->bindValue(":Username", $Username);
 			$cmd->bindValue(":Password", md5($Password));
 			$cmd->execute();
 			$valid = ($cmd->rowCount() == 2);
@@ -57,13 +57,13 @@ class NGUOIDUNG
 		}
 	}
 	// lấy thông tin người dùng có $email
-	public function kiemtra_role($Email)
+	public function kiemtra_role($Username)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = 'select role from account where Email=:Email';
+			$sql = 'select role from account where Username=:Username';
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(":Email", $Email);
+			$cmd->bindValue(":Username", $Username);
 			$cmd->execute();
 			$ketqua = $cmd->fetch();
 
@@ -75,19 +75,18 @@ class NGUOIDUNG
 			exit();
 		}
 	}
-	public function laythongtinnguoidung($Email, $loai_tk)
+	public function laythongtinnguoidung($Username, $loai_tk)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = 'select * from account where Email=:Email';
+			$sql = 'select * from account where Username=:Username';
 			if ($loai_tk == 2)
 				$sql = "select a.role, a.ActiveStatus, d.* from account as a, doctors as d 
-				where a.Email=:Email and a.ID = d.id_account";
+				where a.Username=:Username and a.ID = d.id_account";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(":Email", $Email);
+			$cmd->bindValue(":Username", $Username);
 			$cmd->execute();
 			$ketqua = $cmd->fetch();
-
 			$cmd->closeCursor();
 			return $ketqua;
 		} catch (PDOException $e) {
@@ -96,6 +95,25 @@ class NGUOIDUNG
 			exit();
 		}
 	}
+
+	function isUsernameExist($Username)
+	{
+		$db = DATABASE::connect();
+		try {
+			$sql = 'select count(*) as count from account where Username=:Username';
+			$cmd = $db->prepare($sql);
+			$cmd->bindValue(":Username", $Username);
+			$cmd->execute();
+			$result = $cmd->fetch();
+			$cmd->closeCursor();
+			return $result['count'] > 0;
+		} catch (PDOException $e) {
+			$error_message = $e->getMessage();
+			echo "<p>Lỗi truy vấn: $error_message</p>";
+			exit();
+		}
+	}
+
 
 
 	// lấy tất cả ng dùng
@@ -116,13 +134,13 @@ class NGUOIDUNG
 	}
 
 	// Thêm khách
-	public function themkhachhang($Email, $Password, $name)
+	public function themkhachhang($Username, $Password, $name)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = "INSERT INTO account(Email,Password,Name,role) VALUES(:Email,:Password,:name,3)";
+			$sql = "INSERT INTO account(Username,Password,Name,role) VALUES(:Username,:Password,:name,3)";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':Email', $Email);
+			$cmd->bindValue(':Username', $Username);
 			$cmd->bindValue(':Password', md5($Password));
 			$cmd->bindValue(':name', $name);
 			$cmd->execute();
@@ -136,13 +154,13 @@ class NGUOIDUNG
 	}
 
 	// Thêm nd mới, trả về khóa của dòng mới thêm
-	public function themnguoidung($Email, $Password, $role)
+	public function themnguoidung($Username, $Password, $role)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = "INSERT INTO account(Email,Password,role) VALUES(:Email,:Password,:role)";
+			$sql = "INSERT INTO account(Username,Password,role) VALUES(:Username,:Password,:role)";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':Email', $Email);
+			$cmd->bindValue(':Username', $Username);
 			$cmd->bindValue(':Password', md5($Password));
 			$cmd->bindValue(':role', $role);
 			$cmd->execute();
@@ -156,14 +174,14 @@ class NGUOIDUNG
 	}
 
 	// Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
-	public function capnhatnguoidung($id, $Email, $sodt, $name, $hinhanh)
+	public function capnhatnguoidung($id, $Username, $sodt, $name, $hinhanh)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = "UPDATE account set Name=:name, Email=:Email, PhoneNumber=:sodt, image=:hinhanh where id=:id";
+			$sql = "UPDATE account set Name=:name, Username=:Username, PhoneNumber=:sodt, image=:hinhanh where id=:id";
 			$cmd = $db->prepare($sql);
 			$cmd->bindValue(':id', $id);
-			$cmd->bindValue(':Email', $Email);
+			$cmd->bindValue(':Username', $Username);
 			$cmd->bindValue(':sodt', $sodt);
 			$cmd->bindValue(':name', $name);
 			$cmd->bindValue(':hinhanh', $hinhanh);
@@ -177,13 +195,13 @@ class NGUOIDUNG
 	}
 
 	// Đổi mật khẩu
-	public function doimatkhau($Email, $Password)
+	public function doimatkhau($Username, $Password)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = "UPDATE account set Password=:Password where Email=:Email";
+			$sql = "UPDATE account set Password=:Password where Username=:Username";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':Email', $Email);
+			$cmd->bindValue(':Username', $Username);
 			$cmd->bindValue(':Password', md5($Password));
 			$ketqua = $cmd->execute();
 			return $ketqua;
@@ -195,13 +213,13 @@ class NGUOIDUNG
 	}
 
 	// Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3-khách hàng)
-	public function doiloainguoidung($Email, $role)
+	public function doiloainguoidung($Username, $role)
 	{
 		$db = DATABASE::connect();
 		try {
-			$sql = "UPDATE account set role=:role where Email=:Email";
+			$sql = "UPDATE account set role=:role where Username=:Username";
 			$cmd = $db->prepare($sql);
-			$cmd->bindValue(':Email', $Email);
+			$cmd->bindValue(':Username', $Username);
 			$cmd->bindValue(':role', $role);
 			$ketqua = $cmd->execute();
 			return $ketqua;
