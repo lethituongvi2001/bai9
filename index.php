@@ -8,7 +8,7 @@ require("model/lichbacsi.php");
 require("model/nguoidung.php");
 
 $ch = new BOOKING();
-$bn = new BENHNHAN();
+$bn = new KHACHHANG();
 $cm = new CHUYENMON();
 $bs = new BACSI();
 $lbs = new LICHBACSI();
@@ -44,7 +44,6 @@ switch ($action) {
             $item['Speciality'] = $speciality;
             array_push($doctor, $item);
         }
-        // print_r($doctor);
         include("main.php");
         break;
 

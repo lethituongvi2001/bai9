@@ -2,22 +2,19 @@
 
 <!-- /Main Wrapper -->
 <div class="page-wrapper">
-
     <div class="content container-fluid">
-
         <!-- Page Header -->
-        <div class="page-header">
+        <div class="page">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="page-title">Chào quản trị !</h3>
                     <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Bảng điều khiển</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ul>
                 </div>
             </div>
         </div>
         <!-- /Page Header -->
-
         <div class="row">
             <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card">
@@ -68,7 +65,7 @@
                                 <i class="fe fe-money"></i>
                             </span>
                             <div class="dash-count">
-                                <h3><?php echo $ch->demtongcuochen(); ?></h3>
+                                <h3><?php echo $book->countBooking(); ?></h3>
                             </div>
                         </div>
                         <div class="dash-widget-info">

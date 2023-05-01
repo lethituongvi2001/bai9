@@ -32,8 +32,9 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <form class="form-horizontal" method="post" action="?action=xulysua">
-                                                <input type="hidden" name="action" value="xulysua">
+                                            <form class="form-horizontal" method="post" action="?action=onSubmitBooking">
+                                                <input type="hidden" name="submitType" value="edit">
+                                                <input type="hidden" name="booking_id" value="<?php echo  $booking_detail['id'] ?>">
                                                 <div class="form-group form-group-lg">
                                                     <label class="control-label col-sm-2 requiredField" for="scheduleday">
                                                         Bác sĩ
@@ -42,7 +43,7 @@
                                                         </span>
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <select disabled class="select form-control" id="select_doctor" name="select_doctor" required value="<?php echo $booking_detail["Doctor_id"]; ?>">
+                                                        <select disabled class="select form-control" id="select_doctor" name="select_doctor" value="<?php echo $booking_detail["Doctor_id"]; ?>">
                                                             <?php foreach ($doctor_only as $d) : ?>
                                                                 <option value=<?php echo $d['ID'] ?>>
                                                                     <?php echo $d['Name'] ?>
@@ -59,7 +60,7 @@
                                                         </span>
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <select disabled class="select form-control" id="select_customer" name="select_customer" required value="<?php echo $booking_detail["Customer_id"]; ?>">
+                                                        <select class="select form-control" id="select_customer" name="select_customer" value="<?php echo $booking_detail["Customer_id"]; ?>">
                                                             <?php foreach ($customers as $c) : ?>
                                                                 <option value=<?php echo $c['ID'] ?>>
                                                                     <?php echo $c['Name'] ?>
@@ -73,7 +74,7 @@
                                                         Triệu chứng
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="trieu_chung" placeholder="Sốt, ho, đau họng..." />
+                                                        <input value="<?php echo $booking_detail["Symptom"]; ?>" type="text" class="form-control" name=" trieu_chung" placeholder="Sốt, ho, đau họng..." />
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-group-lg">
@@ -81,7 +82,7 @@
                                                         Dịch vụ yêu cầu
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="dich_vu" placeholder="Chăm sóc tại nhà, Khám sức khỏe định kỳ..." />
+                                                        <input value="<?php echo $booking_detail["ServiceRequirement"]; ?>" type="text" class="form-control" name="dich_vu" placeholder="Chăm sóc tại nhà, Khám sức khỏe định kỳ..." />
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-group-lg">
@@ -96,7 +97,7 @@
                                                             <div class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-th"></span>
                                                             </div>
-                                                            <input type="text" class="form-control" name="booking_date">
+                                                            <input value="<?php echo date('d/m/Y', strtotime($booking_detail["BookingDate"])); ?>" type="text" class="form-control" name="booking_date">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-5">
@@ -105,7 +106,7 @@
                                                                 <i class="fa fa-clock-o">
                                                                 </i>
                                                             </div>
-                                                            <input class="form-control" id="endtime" name="booking_time" type="text" required value="" />
+                                                            <input value="<?php echo date('H:i', strtotime($booking_detail['BookingTime'])); ?>" class="form-control" id="endtime" name="booking_time" type="text" value="" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -114,7 +115,7 @@
                                                         Người liên hệ
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="contactName" placeholder="" />
+                                                        <input value="<?php echo $booking_detail["ContactName"]; ?>" type="text" class="form-control" name="contactName" placeholder="" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-group-lg">
@@ -122,7 +123,7 @@
                                                         SĐT liên hệ
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="contactPhone" placeholder="" />
+                                                        <input value="<?php echo $booking_detail["ContactPhone"]; ?>" type="text" class="form-control" name="contactPhone" placeholder="" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-group-lg">
@@ -130,39 +131,51 @@
                                                         Địa chỉ liên hệ
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="contactAddress" placeholder="" />
+                                                        <input value="<?php echo $booking_detail["ContactAddress"]; ?>" type="text" class="form-control" name="contactAddress" placeholder="" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-group-lg">
                                                     <label class=" col-sm-2 ">
                                                     </label>
                                                     <div class="col-sm-3">
-                                                        <select class="select form-control" id="select_province" name="select_province" required value=''>
-                                                            <option value="" selected disabled>Chọn tỉnh / TP</option>
+                                                        <select class="select form-control" id="select_province" name="select_province">
+                                                            <option value="" disabled selected>Chọn tỉnh / TP</option>
                                                             <?php foreach ($cities as $c) : ?>
-                                                                <option value=<?php echo $c['matp'] ?>>
+                                                                <option value="<?php echo $c['matp'] ?>" <?php echo ($booking_detail['Province_id'] == $c['matp']) ? 'selected' : ''; ?>>
                                                                     <?php echo $c['name'] ?>
                                                                 </option>
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        <select class="select form-control" id="select_district" name="select_district" required value=''>
-                                                            <option value="" selected disabled>Chọn quận / huyện</option>
+                                                        <select class="select form-control" id="select_district" name="select_district">
+                                                            <option value="" disabled>Chọn quận / huyện</option>
+                                                            <?php foreach ($districts as $d) : ?>
+                                                                <option value="<?php echo $d['maqh'] ?>" <?php echo ($booking_detail['District_id'] == $d['maqh']) ? 'selected' : ''; ?>>
+                                                                    <?php echo $d['name'] ?>
+                                                                </option>
+                                                            <?php endforeach ?>
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <select class="select form-control" id="select_ward" name="select_ward" required value=''>
-                                                            <option value="" selected disabled>Chọn phường / xã</option>
+                                                        <select class="select form-control" id="select_ward" name="select_ward">
+                                                            <option value="" disabled>Chọn phường / xã</option>
+                                                            <?php foreach ($wards as $w) : ?>
+                                                                <option value="<?php echo $w['xaid'] ?>" <?php echo ($booking_detail['Ward_id'] == $w['xaid']) ? 'selected' : ''; ?>>
+                                                                    <?php echo $w['name'] ?>
+                                                                </option>
+                                                            <?php endforeach ?>
                                                         </select>
                                                     </div>
+
                                                 </div>
                                                 <div class="form-group form-group-lg">
                                                     <label class="control-label col-sm-2 requiredField" for="scheduleday">
                                                         Khoảng cách
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" name="distance" disabled value="4.5km" />
+                                                        <input type="text" class="form-control" name="distanceDisplay" disabled value="4.5km" />
+                                                        <input type="hidden" name="distance" value="4.5">
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-group-lg">
@@ -170,25 +183,30 @@
                                                         Trạng thái
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control" name="trangthai" disabled value="Đã hủy" />
-                                                        </div>
+                                                        <input type="text" class="form-control" name="trangthai" disabled value="<?php echo $status; ?>" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-sm-10 col-sm-offset-2">
-                                                        <button class="btn btn-warning " name="deleteBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
-                                                            Hủy lịch
-                                                        </button>
-                                                        <button class="btn btn-primary " name="openBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
-                                                            Mở lại
-                                                        </button>
-                                                        <button class="btn btn-primary " name="approveBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
-                                                            Hoàn thành
-                                                        </button>
-                                                        <button class="btn btn-primary " name="saveBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
-                                                            Lưu
-                                                        </button>
+                                                        <?php if ($status == 'Đang mở') : ?>
+                                                            <button onclick="return confirm('Xác nhận hủy lịch hẹn?')" class="btn btn-warning " name="deleteBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
+                                                                Hủy lịch
+                                                            </button>
+                                                            <button onclick="return confirm('Xác nhận duyệt lịch hẹn?')" class="btn btn-primary " name="approveBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
+                                                                Duyệt
+                                                            </button>
+                                                            <button class="btn btn-primary " name="saveBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
+                                                                Lưu
+                                                            </button>
+                                                        <?php endif ?>
+                                                        <?php if ($status == 'Chờ khám') : ?>
+                                                            <button onclick="return confirm('Xác nhận mở lại lịch hẹn?')" class="btn btn-primary " name="openBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
+                                                                Mở lại
+                                                            </button>
+                                                            <button class="btn btn-primary " name="closeBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
+                                                                Hoàn thành
+                                                            </button>
+                                                        <?php endif ?>
                                                     </div>
                                                 </div>
                                             </form>

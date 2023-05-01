@@ -1,65 +1,147 @@
 <?php
-if (!isset($_SESSION["nguoidung"])) {
-    header("location:../index.php");
-}
 require("../../model/database.php");
+require("../../model/nguoidung.php");
 require("../../model/bacsi.php");
 require("../../model/chuyenmon.php");
-require("../../model/nguoidung.php");
+require("../../model/benhnhan.php");
+require("../../model/cuochen.php");
+require("../../model/common.php");
 
-
-// Xét xem có thao tác nào được chọn
+// Biến cho biết ng dùng đăng nhập chưa
+$isLogin = isset($_SESSION["nguoidung"]);
+if (!$isLogin) {
+    header('Location: http://127.0.0.1/bai9/admin/kttknguoidung/index.php');
+    exit;
+}
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } else {
     $action = "xem";
 }
+$book = new BOOKING();
+$bn = new KHACHHANG();
+$cm = new CHUYENMON();
+$bs = new BACSI();
+$nguoidung = new NGUOIDUNG();
+$common = new COMMON();
+$tb = "";
 $sitemap = 'bacsi';
 
-$bs = new BACSI();
-$cm = new CHUYENMON();
-$tk = new NGUOIDUNG();
 switch ($action) {
-
     case "xem":
-        $bacsi = $bs->laybacsi();
+        $doctors = $bs->laybacsi();
+        $chuyenmon = $cm->laychuyenmon();
+        $bacsi = array();
+        $i = 1;
+        foreach ($doctors as $bs) {
+            $bs['index'] = $i;
+            $speciality = $cm->getSpecialityByDoctor($bs['ID']);
+            $specialityNames = implode(', ', array_map(function ($s) {
+                return $s['speciality_name'];
+            }, $speciality));
+            ($speciality);
+            $bs['specialities'] = $specialityNames;
+            array_push($bacsi, $bs);
+            $i++;
+        }
+        // print_r($bacsi);
         include("main.php");
         break;
     case "them":
+        $doctor['ID'] = '';
+        $doctor['Name'] = '';
+        $doctor['Gender'] = '';
+        $doctor['DOB'] = '';
+        $doctor['Email'] = '';
+        $doctor['PhoneNumber'] = '';
+        $doctor['speciality_0'] = '';
+        $doctor['speciality_1'] = '';
+        $doctor['speciality_2'] = '';
+        $doctor['LicenseNumber'] = '';
+        $doctor['Address'] = '';
+        $doctor['province_id'] = '';
+        $doctor['district_id'] = '';
+        $doctor['ward_id'] = '';
+        $doctor['FileName'] = 'Chọn ảnh';
+        $doctor['AbsolutePath'] = '';
+
         $chuyenmon = $cm->laychuyenmon();
-        include("addform3.php");
+        $cities = $common->takeAllProvince();
+        include("addform.php");
+        break;
+    case "doctor_detail":
+        if (isset($_GET["ID"])) {
+            $doctor = $bs->laybacsitheoid($_GET["ID"]);
+            $doctor_specialities = $cm->getSpecialityByDoctor(($doctor['ID']));
+            for ($i = 0; $i  < 3; $i++) {
+                $doctor['speciality_' . $i] = count($doctor_specialities) - 1 >= $i ? $doctor_specialities[$i]['speciality_id'] : '';
+            }
+            $chuyenmon = $cm->laychuyenmon();
+            $cities = $common->takeAllProvince();
+            $districts = $common->getDistrictByCity($doctor['province_id']);
+            $wards = $common->getWardByDistrict($doctor['district_id']);
+            include("addform.php");
+        } else {
+            $bacsi = $bs->laybacsi();
+            include("main.php");
+        }
         break;
     case "xulythem":
+        $image = "../../assets/img/doctor/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
+        move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $image);
+        $imageRecord_id = $common->insertImageRecord(basename($_FILES["filehinhanh"]["name"]));
 
-        // xử lý file upload 
-        $image = "assets/img/doctors/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
-        $duongdan = "../../" . $image; // nơi lưu file upload
-        move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
-        // xử lý thêm	$FirstName, $LastName, $Gender, $DOB, $Email, $PhoneNumber, $Specialty, $LicenseNumber, $Address, $image
-        $Name = $_POST["txtName"];
-        $Gender = $_POST["txtGender"];
-        $newDate = $_POST["txtDOB"];
+        $Name = $_POST["name"];
+        $Gender = $_POST["gender"];
+        $newDate = $_POST["dob"];
         $DOB = date("Y-m-d", strtotime($newDate));
-        $Email = $_POST["txtEmail"];
-        $PhoneNumber = $_POST["txtPhoneNumber"];
-        $id_speciality = $_POST["optSpeciality"];
+        $Email = $_POST["email"];
+        $PhoneNumber = $_POST["phone_number"];
+        $id_speciality_1 = $_POST["select_cm1"];
+        $id_speciality_2 = $_POST["select_cm2"];
+        $id_speciality_3 = $_POST["select_cm3"];
+        $LicenseNumber = $_POST["licenseNumber"];
+        $Address = $_POST["address"];
+        $ward_id = $_POST["select_ward"];
+        $district_id = $_POST["select_district"];
+        $province_id = $_POST["select_province"];
 
-        $LicenseNumber = $_POST["txtLicenseNumber"];
-        $Address = $_POST["txtAddress"];
         //them tk
-        $id_moi_nhat = $tk->themnguoidung($Email, '123', 2);
-        //them bs
-        $bs->thembacsi($Name, $Gender, $DOB, $Email, $PhoneNumber, $id_speciality, $LicenseNumber, $Address, $image, $id_moi_nhat);
-        $bacsi = $bs->laybacsi();
+        $user_id = $nguoidung->themnguoidung($PhoneNumber, '123', 2);
 
+        //them bs
+        $doctor_id = $bs->thembacsi(
+            $Name,
+            $Gender,
+            $DOB,
+            $Email,
+            $PhoneNumber,
+            $Address,
+            $ward_id,
+            $district_id,
+            $province_id,
+            $LicenseNumber,
+            $imageRecord_id,
+            $user_id
+        );
+
+        //add chuyen mon
+        $id_specialities = array($id_speciality_1, $id_speciality_2, $id_speciality_3);
+        $id_specialities = array_unique($id_specialities);
+        foreach ($id_specialities as $item) {
+            $cm->insert_has_speciality_doctor($doctor_id, $item);
+        }
+
+        header("Location: /bai9/admin/qlbacsi/index.php?action=xem");
+        exit();
         include("main.php");
         break;
 
-    case "xoa":
+    case "delete_doctor":
         if (isset($_GET["ID"]))
-            $bs->xoabacsi($_GET["ID"]);
-        $bacsi = $bs->laybacsi();
-        include("main.php");
+            $bs->delete_doctor($_GET["ID"]);
+        header("Location: /bai9/admin/qlbacsi/index.php?action=xem");
+        exit();
         break;
     case "sua":
         if (isset($_GET["ID"])) {
@@ -72,34 +154,72 @@ switch ($action) {
         }
         break;
     case "xulysua":
-        $id = $_POST["txtid"];
-        $Name = $_POST["txtName"];
-        $Gender = $_POST["txtGender"];
-        $DOB = $_POST["txtDOB"];
-        $Email = $_POST["txtEmail"];
-        $PhoneNumber = $_POST["txtPhoneNumber"];
-        $id_speciality = $_POST["txtSpeciality"];
-        $LicenseNumber = $_POST["txtLicenseNumber"];
-        $Address = $_POST["txtAddress"];
-        $image = $_POST["txthinhcu"];
-
-        // upload file mới (nếu có)
-        if ($_FILES["filehinhanh"]["name"] != "") {
-            // xử lý file upload -- Cần bổ dung kiểm tra: dung lượng, kiểu file, ...       
-            $image = "assets/img/doctors/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn lưu csdl
-            $duongdan = "../../" . $image; // đường dẫn lưu upload file        
-            move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
+        $b = $bs->laybacsitheoid($_POST["doctor_id"]);
+        if (basename($_FILES["filehinhanh"]["name"]) != '') {
+            $image = "../../assets/img/doctor/" . basename($_FILES["filehinhanh"]["name"]);
+            move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $image);
+            $imageRecord_id = $common->insertImageRecord(basename($_FILES["filehinhanh"]["name"]));
+        } else {
+            $imageRecord_id = $b['Image_Id'];
         }
 
-        // sửa mặt hàng
-        $bs->suabacsi($id, $Name, $Gender, $DOB, $Email, $PhoneNumber, $id_speciality, $LicenseNumber, $Address, $image);
+        $Name = $_POST["name"];
+        $Gender = $_POST["gender"];
+        $newDate = $_POST["dob"];
+        $DOB = date("Y-m-d", strtotime($newDate));
+        $Email = $_POST["email"];
+        $PhoneNumber = $_POST["phone_number"];
+        $id_speciality_1 = $_POST["select_cm1"];
+        $id_speciality_2 = $_POST["select_cm2"];
+        $id_speciality_3 = $_POST["select_cm3"];
+        $LicenseNumber = $_POST["licenseNumber"];
+        $Address = $_POST["address"];
+        $ward_id = $_POST["select_ward"];
+        $district_id = $_POST["select_district"];
+        $province_id = $_POST["select_province"];
 
-        // hiển thị ds mặt hàng
-        $bacsi = $bs->laybacsi();
+        //update doctor info
+        $bs->update_doctor(
+            $b['ID'],
+            $Name,
+            $Gender,
+            $DOB,
+            $Email,
+            $PhoneNumber,
+            $Address,
+            $ward_id,
+            $district_id,
+            $province_id,
+            $LicenseNumber,
+            $imageRecord_id
+        );
 
+        //remove and add chuyen mon
+        $cm->delete_has_speciality_doctor($b['ID']);
+        $id_specialities = array($id_speciality_1, $id_speciality_2, $id_speciality_3);
+        $id_specialities = array_unique($id_specialities);
+        foreach ($id_specialities as $item) {
+            $cm->insert_has_speciality_doctor($b['ID'], $item);
+        }
+
+        header("Location: /bai9/admin/qlbacsi/index.php?action=xem");
+        exit();
         include("main.php");
         break;
 
+    case 'get-district-by-city':
+        $cityId = $_POST['province_id'];
+        $districts = $common->getDistrictByCity($cityId);
+        header('Content-Type: application/json');
+        echo json_encode($districts);
+        break;
+
+    case 'get-ward-by-district':
+        $districtId = $_POST['district_id'];
+        $wards = $common->getWardByDistrict($districtId);
+        header('Content-Type: application/json');
+        echo json_encode($wards);
+        break;
     default:
         break;
 }

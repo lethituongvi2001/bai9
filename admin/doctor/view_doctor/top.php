@@ -80,7 +80,6 @@
 
                 <div class="row">
                     <div class="col-md-4 col-lg-3 col-xl-2 theiaStickySidebar">
-
                         <!-- Profile Sidebar -->
                         <div class="profile-sidebar">
                             <div class="widget-profile pro-widget-content">

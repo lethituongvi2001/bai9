@@ -1402,7 +1402,7 @@ a.bg-danger:focus {
 }
 .page-header {
   padding-bottom: 10.5px;
-  margin: 46px 0 23px;
+  margin-top: 20px;
   border-bottom: 1px solid #eeeeee;
 }
 ul,
@@ -4727,6 +4727,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   list-style: none;
   background-color: #f5f5f5;
   border-radius: 3px;
+  font-size: 16px;
 }
 .breadcrumb > li {
   display: inline-block;

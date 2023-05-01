@@ -1,86 +1,76 @@
-<?php include("../view/top.php"); ?>
-<!-- Page Wrapper -->
-<div class="page-wrapper">
-	<div class="content container-fluid">
-		<h3 class="page-title">Bệnh nhân</h3>
-		<!-- Page Header -->
-		<div class="page">
+<?php include("../view_doctor/top.php"); ?>
 
-			<div class="row">
+<div class="col-md-8 col-lg-9 col-xl-10">
 
-				<div class="col-sm-12">
+	<div class="row row-grid">
 
+		<?php
 
-					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">Bảng điều khiển</a></li>
-
-						<li class="breadcrumb-item active">Bệnh nhân</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- /Page Header -->
-
-		<div class="row">
-
-			<div class="col-sm-12">
-				<a href="index.php?action=them" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Thêm Bệnh nhân</a>
-				<div class="card">
+		foreach ($benhnhan as $b) :
+		?>
+			<div class="col-md-6 col-lg-4 col-xl-3">
+				<div class="card widget-profile pat-widget-profile">
 					<div class="card-body">
-						<div class="table-responsive">
-							<table class="datatable table table-hover table-center mb-0">
-								<thead>
-									<tr>
-										<th>Họ tên</th>
-										<th>Email</th>
-										<th>Số điện thoai</th>
-										<th>Địa chỉ</th>
-										<th>Ngày sinh</th>
-										<th>Giới tính</th>
-										<th>Sửa</th>
-										<th>Xoá</th>
+						<div class="pro-widget-content">
+							<div class="profile-info-widget">
+								<a href="patient-profile.html" class="booking-doc-img">
+									<img src="assets/img/patients/patient.jpg" alt="User Image">
+								</a>
+								<div class="profile-det-info">
+									<h3><a href="patient-profile.html"><?php echo $b["Name"]; ?></a></h3>
 
-									</tr>
-								</thead>
-
-								<?php
-
-								foreach ($benhnhan as $b) :
-								?>
-									<tbody>
-										<tr>
-
-											<td><?php echo $b["Name"]; ?></td>
-											<td><?php echo $b["Email"]; ?></td>
-											<td><?php echo $b["PhoneNumber"]; ?></td>
-											<td><?php echo $b["Address"]; ?></td>
-											<td><?php echo $b["DOB"]; ?></td>
-											<td><?php echo $b["Gender"]; ?></td>
-
-											<td><a class="btn btn-warning" href="index.php?action=sua&ID=<?php echo $b["ID"]; ?>"><span class="glyphicon glyphicon-edit"> </span></a></td>
-											<td><a class="btn btn-danger" href="index.php?action=xoa&ID=<?php echo $b["ID"]; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
-										</tr>
-
-
-
-									<?php
-								endforeach;
-									?>
-
-									</tbody>
-
-							</table>
-
+									<div class="patient-details">
+										<h5><b>Patient ID :</b> P0016</h5>
+										<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> <?php echo $b["Address"]; ?></h5>
+									</div>
+								</div>
+							</div>
 						</div>
-
+						<div class="patient-info">
+							<ul>
+								<li>Phone <span>+1 952 001 8563</span></li>
+								<li>Age <span>38 Years, Male</span></li>
+								<li>Blood Group <span>AB+</span></li>
+							</ul>
+						</div>
 					</div>
+				</div>
+			</div>
+		<?php
+		endforeach;
+		?>
 
+		<div class="col-md-6 col-lg-4 col-xl-3">
+			<div class="card widget-profile pat-widget-profile">
+				<div class="card-body">
+					<div class="pro-widget-content">
+						<div class="profile-info-widget">
+							<a href="#" class="booking-doc-img">
+								<img src="../../assets/img/patients/patient11.jpg" alt="User Image">
+							</a>
+							<div class="profile-det-info">
+								<h3>Harry Williams</h3>
+								<div class="patient-details">
+									<h5><b>Patient ID :</b> PT0011</h5>
+									<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Colorado, USA</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="patient-info">
+						<ul>
+							<li>Phone <span>+1 303 607 7075</span></li>
+							<li>Age <span>9 Years, Male</span></li>
+							<li>Blood Group <span>A-</span></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-
 
 	</div>
+
 </div>
-<!-- /Page Wrapper -->
-<?php include("../view/bottom.php"); ?>
+
+
+<?php include("../view_doctor/bottom.php"); ?>

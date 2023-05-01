@@ -1,8 +1,8 @@
 <?php
-class BENHNHAN
+class KHACHHANG
 {
     private $id;
-    private $tenbenhnhan;
+    private $tenkhachhang;
 
     public function getID()
     {
@@ -14,23 +14,26 @@ class BENHNHAN
         $this->id = $value;
     }
 
-    public function getTenbenhnhan()
+    public function getTenkhachhang()
     {
-        return $this->tenbenhnhan;
+        return $this->tenkhachhang;
     }
 
-    public function setTenbenhnhan($value)
+    public function setTenkhachhang($value)
     {
-        $this->tenbenhnhan = $value;
+        $this->tenkhachhang = $value;
     }
 
 
     // Lấy danh sách
-    public function laybenhnhan()
+    public function laykhachhang()
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM customers where active";
+            $sql = "SELECT customers.*, imagerecord.AbsolutePath 
+            from customers 
+            LEFT JOIN imagerecord ON customers.Image_Id = imagerecord.id
+            where customers.active";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -42,7 +45,7 @@ class BENHNHAN
         }
     }
 
-    public function laybenhnhantheobacsi()
+    public function laykhachhangtheobacsi()
     {
         $dbcon = DATABASE::connect();
         try {
@@ -59,23 +62,39 @@ class BENHNHAN
         }
     }
     // Thêm mới
-    public function thembenhnhan($Name, $Email, $PhoneNumber, $Address, $DOB, $Gender, $id_account)
-    {
+    public function themkhachhang(
+        $Name,
+        $Gender,
+        $DOB,
+        $Email,
+        $PhoneNumber,
+        $Address,
+        $ward_id,
+        $district_id,
+        $province_id,
+        $Image_Id,
+        $id_account
+    ) {
         $dbcon = DATABASE::connect();
         try {
-            //INSERT INTO `doctors`(`ID`, `Name`, `Last Name`, `Gender`, `DOB`, `Email`, `Phone Number`, `Specialty`, `License Number`, `Address`, `image`)
-            $sql = "INSERT INTO customers(Name,Email,PhoneNumber,Address,DOB,Gender,id_account) 
-				VALUES(:Name,:Email,:PhoneNumber,:Address,:DOB,:Gender,:id_account)";
+            $sql = "INSERT INTO customers(Name,Gender,DOB,Email,PhoneNumber,Address, ward_id, district_id, province_id ,Image_Id, id_account, create_at) 
+				VALUES(:Name,:Gender,:DOB,:Email,:PhoneNumber,:Address,:ward_id, :district_id, :province_id ,:Image_Id,:id_account, :create_at)";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":Name", $Name);
+            $cmd->bindValue(":Gender", $Gender);
+            $cmd->bindValue(":DOB", $DOB);
             $cmd->bindValue(":Email", $Email);
             $cmd->bindValue(":PhoneNumber", $PhoneNumber);
             $cmd->bindValue(":Address", $Address);
-            $cmd->bindValue(":DOB", $DOB);
-            $cmd->bindValue(":Gender", $Gender);
+            $cmd->bindValue(":ward_id", $ward_id);
+            $cmd->bindValue(":district_id", $district_id);
+            $cmd->bindValue(":province_id", $province_id);
+            $cmd->bindValue(":Image_Id", $Image_Id);
             $cmd->bindValue(":id_account", $id_account);
-            $result = $cmd->execute();
-            return $result;
+            $cmd->bindValue(":create_at", date('Y-m-d'));
+            $cmd->execute();
+            $id = $dbcon->lastInsertId();
+            return $id;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -84,11 +103,11 @@ class BENHNHAN
     }
 
     // Xóa 
-    public function xoabenhnhan($id)
+    public function xoakhachhang($id)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "DELETE FROM customers WHERE ID=:ID";
+            $sql = "UPDATE customers set active = 0 WHERE ID=:ID";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":ID", $id);
             $result = $cmd->execute();
@@ -102,27 +121,50 @@ class BENHNHAN
 
 
     // Cập nhật 
-    public function suabenhnhan($id, $Name, $Email, $PhoneNumber, $Address, $DOB, $Gender)
-    {
+    // update
+    public function update_khachhang(
+        $id,
+        $Name,
+        $Gender,
+        $DOB,
+        $Email,
+        $PhoneNumber,
+        $Address,
+        $ward_id,
+        $district_id,
+        $province_id,
+        $Image_Id
+    ) {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE customers SET Name=:Name,
-                                        Email=:Email,
-										PhoneNumber=:PhoneNumber,
-                                        Address=:Address,
-                                        DOB=:DOB,
-                                        Gender=:Gender																											
-										WHERE ID=:ID";
+            $sql = "UPDATE customers 
+                SET Name = :Name,
+                    Gender = :Gender,
+                    DOB = :DOB,
+                    Email = :Email,
+                    PhoneNumber = :PhoneNumber,
+                    Address = :Address,
+                    ward_id = :ward_id,
+                    district_id = :district_id,
+                    province_id = :province_id,
+                    Image_Id = :Image_Id,
+                    update_at = :update_at
+                WHERE ID = :id";
             $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $id);
             $cmd->bindValue(":Name", $Name);
+            $cmd->bindValue(":Gender", $Gender);
+            $cmd->bindValue(":DOB", $DOB);
             $cmd->bindValue(":Email", $Email);
             $cmd->bindValue(":PhoneNumber", $PhoneNumber);
             $cmd->bindValue(":Address", $Address);
-            $cmd->bindValue(":DOB", $DOB);
-            $cmd->bindValue(":Gender", $Gender);
-            $cmd->bindValue(":ID", $id);
-            $result = $cmd->execute();
-            return $result;
+            $cmd->bindValue(":ward_id", $ward_id);
+            $cmd->bindValue(":district_id", $district_id);
+            $cmd->bindValue(":province_id", $province_id);
+            $cmd->bindValue(":Image_Id", $Image_Id);
+            $cmd->bindValue(":update_at", date('Y-m-d'));
+            $cmd->execute();
+            return true;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -133,11 +175,14 @@ class BENHNHAN
 
 
     // Lấy bệnh nhơn theo id
-    public function laybenhnhantheoid($id)
+    public function laykhachhangtheoid($id)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM customers WHERE ID=:ID";
+            $sql = "SELECT customers.*, imagerecord.FileName , imagerecord.AbsolutePath 
+            from customers 
+            LEFT JOIN imagerecord ON customers.Image_Id = imagerecord.id
+            where customers.ID=:ID";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":ID", $id);
             $cmd->execute();
@@ -170,7 +215,7 @@ class BENHNHAN
         }
     }
 
-    public function demtongbenhnhan()
+    public function demtongkhachhang()
     {
         $dbcon = DATABASE::connect();
         try {

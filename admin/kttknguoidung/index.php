@@ -11,13 +11,13 @@ $isLogin = isset($_SESSION["nguoidung"]);
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } elseif ($isLogin == FALSE) {
-    $action = "dangxuat1";
+    $action = "dangxuat";
 } else {
-    $action = "macdinh";
+    $action = "dashboard";
 }
 
-$ch = new BOOKING();
-$bn = new BENHNHAN();
+$book = new BOOKING();
+$bn = new KHACHHANG();
 $cm = new CHUYENMON();
 $bs = new BACSI();
 $nguoidung = new NGUOIDUNG();
@@ -26,15 +26,14 @@ $sitemap = 'dashboard';
 
 switch ($action) {
     case "get-data-chart":
-
         header('Content-Type: application/json');
         echo json_encode($appointments);
         break;
 
-    case "macdinh":
-        // $tongbs = $bs->demtongbacsi();
+    case "dashboard":
         switch ($_SESSION["nguoidung"]['role']) {
             case 1: {
+                    $mesage = "";
                     include("main.php");
                     break;
                 }
@@ -44,18 +43,16 @@ switch ($action) {
                 }
             default: {
                     unset($_SESSION["nguoidung"]);
-                    $tb = "Cảm ơn!";
+                    $mesage = "Cảm ơn!";
                     include("login.php");
                     break;
                 }
         }
         $action = '';
         break;
-    case "dangxuat1":
+    case "dangxuat":
         unset($_SESSION["nguoidung"]);
         $message = '';
-        //SignIn.php
-        //loginform.php
         include("login.php");
         break;
 
@@ -73,17 +70,15 @@ switch ($action) {
             $role = $nguoidung->kiemtra_role($Username);
             $session = $nguoidung->laythongtinnguoidung($Username, $role['role']);
             $_SESSION["nguoidung"] = $session;
-            // print_r($session);
             switch ($session['role']) {
                 case 1: {
                         $sitemap = 'dashboard';
-                        include("main.php");
+                        header('Location: http://127.0.0.1/bai9/admin/kttknguoidung/');
                         break;
                     }
                 case 2: {
                         header('Location: http://127.0.0.1/bai9/admin/doctor/index.php');
                         exit;
-                        // include("../doctor/main.php");
                         break;
                     }
             }
@@ -97,18 +92,15 @@ switch ($action) {
         include("SignUp.php");
         break;
 
-    case "capnhaths":
+    case "capnhat":
         $mand = $_POST["txtid"];
         $Email = $_POST["your_name"];
-
         $sodt = $_POST["txtdienthoai"];
         $name = $_POST["txthoten"];
         $hinhanh = basename($_FILES["fhinh"]["name"]);
         $duongdan = "../images/" . $hinhanh;
         move_uploaded_file($_FILES["fhinh"]["tmp_name"], $duongdan);
-
         $nguoidung->capnhatnguoidung($mand, $Email, $sodt, $name, $hinhanh);
-
         $_SESSION["nguoidung"] = $nguoidung->laythongtinnguoidung($Email, $loai_tk);
         include("main.php");
         break;
@@ -119,64 +111,31 @@ switch ($action) {
         include("main.php");
         break;
 
+        // Booking 
+    case "booking":
+        // $sitemap = 'booking';
+        // $bookings = $book->laydscuochentheoiddoctor(null);
+        // $i = 1;
+        // foreach ($bookings as &$booking) {
+        //     $booking['index'] = $i;
+        //     $booking['fullAddress'] = $booking["ContactAddress"];
+        //     $booking['fullAddress'] .= $booking['ward_name'] != '' ? ', ' . $booking["ward_name"] : '';
+        //     $booking['fullAddress'] .= $booking['district_name'] != '' ? ', ' . $booking["district_name"] : '';
+        //     $booking['fullAddress'] .= $booking['province_name'] != '' ? ', ' . $booking["province_name"] : '';
+        //     $booking['status'] = 'Đang mở';
+        //     if ($booking['IsDeleted'])
+        //         $status = 'Đã hủy';
+        //     else if ($booking['IsClosed'])
+        //         $status = 'Đã hoàn thành';
+        //     else if ($booking['IsApproved'])
+        //         $status = 'Chờ khám';
+        //     $i++;
+        // }
+        header("location:../qlcuochen");
 
-        // bac si
-        // case "macdinh":
+        exit();
+        break;
 
-        //     include("main.php");
-        //     break;
-        // case "dangxuat1":
-
-        //     unset($_SESSION["nguoidung"]);
-
-        //     $tb = "Cảm ơn!";
-        //     //SignIn.php
-        //     //loginform.php
-        //     include("login1.php");
-        //     break;
-
-
-        // case "dangnhap":
-        //     include("login1.php");
-        //     break;
-
-        // case "xldangnhap":
-        //     $Email = $_POST["your_name"];
-        //     $Password = $_POST["your_pass"];
-        //     if ($nguoidung->kiemtranguoidunghople($Email, $Password, true) == TRUE) {
-        //         $_SESSION["nguoidung"] = $nguoidung->laythongtinnguoidung($Email);
-        //         include("main.php");
-        //     } else {
-        //         $tb = "Đăng nhập không thành công!";
-        //         include("login1.php");
-        //     }
-        //     break;
-        // case "dangky":
-        //     include("SignUp.php");
-        //     break;
-
-        // case "capnhaths":
-        //     $mand = $_POST["txtid"];
-        //     $Email = $_POST["your_name"];
-
-        //     $sodt = $_POST["txtdienthoai"];
-        //     $name = $_POST["txthoten"];
-        //     $hinhanh = basename($_FILES["fhinh"]["name"]);
-        //     $duongdan = "../images/" . $hinhanh;
-        //     move_uploaded_file($_FILES["fhinh"]["tmp_name"], $duongdan);
-
-        //     $nguoidung->capnhatnguoidung($mand, $Email, $sodt, $name, $hinhanh);
-
-        //     $_SESSION["nguoidung"] = $nguoidung->laythongtinnguoidung($Email);
-        //     include("main.php");
-        //     break;
-
-        // case "doimatkhau":
-        //     if (isset($_POST["your_name"]) && isset($_POST["txtmatkhaumoi"]))
-        //         $nguoidung->doimatkhau($_POST["your_name"], $_POST["txtmatkhaumoi"]);
-        //     include("main.php");
-        //     break;
-        //end bac si
     default:
         break;
 }

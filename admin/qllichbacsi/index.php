@@ -1,23 +1,33 @@
 <?php
-if (!isset($_SESSION["nguoidung"])) {
-    header("location:../index.php");
-}
 require("../../model/database.php");
+require("../../model/nguoidung.php");
 require("../../model/bacsi.php");
-require("../../model/lichbacsi.php");
+require("../../model/chuyenmon.php");
+require("../../model/benhnhan.php");
+require("../../model/cuochen.php");
+require("../../model/common.php");
 
+// Biến cho biết ng dùng đăng nhập chưa
+$isLogin = isset($_SESSION["nguoidung"]);
+if (!$isLogin) {
+    header('Location: http://127.0.0.1/bai9/admin/kttknguoidung/index.php');
+    exit;
+}
 
-// Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } else {
     $action = "xem";
 }
 
+$book = new BOOKING();
+$bn = new KHACHHANG();
+$cm = new CHUYENMON();
 $bs = new BACSI();
-$lbs = new LICHBACSI();
-$sitemap = 'lichbacsi';
-
+$nguoidung = new NGUOIDUNG();
+$common = new COMMON();
+$tb = "";
+$sitemap = 'bacsi';
 
 switch ($action) {
     case "xem":

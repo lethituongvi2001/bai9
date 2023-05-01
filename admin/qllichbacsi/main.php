@@ -2,18 +2,12 @@
 <!-- Page Wrapper -->
 <div class="page-wrapper">
 	<div class="content container-fluid">
-		<h3 class="page-title">Lịch bác sĩ</h3>
 		<!-- Page Header -->
 		<div class="page">
-
 			<div class="row">
-
 				<div class="col-sm-12">
-
-
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html">Bảng điều khiển</a></li>
-
 						<li class="breadcrumb-item active">Lịch bác sĩ</li>
 					</ul>
 				</div>

@@ -1,4 +1,4 @@
-<?php include("../view_doctor/top.php"); ?>
+<?php include("view_doctor/top.php"); ?>
 
 <div class="col-md-8 col-lg-9 col-xl-10">
 
@@ -6,20 +6,14 @@
 		<div class="col-sm-12">
 			<div class="card">
 				<div class="card-body">
-
-
-
-
-
 					<!-- Page Heading -->
 					<div class="row">
 						<div class="col-lg-12">
 							<h3 class="page-header">
-								Thêm lịch bác sĩ
+								Sửa lịch bác sĩ
 							</h3>
 
 						</div>
-
 					</div>
 					<!-- Page Heading end-->
 
@@ -28,7 +22,7 @@
 
 						<!-- panel heading starat -->
 						<div class="panel-heading">
-							<h3 class="panel-title">Thêm lịch</h3>
+							<h3 style="font-weight: 600; font-size: 20px;" class="panel-title">Chi tiết lịch hẹn</h3>
 						</div>
 						<!-- panel heading end -->
 
@@ -38,102 +32,153 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xs-12">
-											<form class="form-horizontal" method="post" action="index.php">
-
-												<input type="hidden" name="action" value="xulythem">
-
-												<input type="hidden" name="otpDoctor" value="<?php echo $_SESSION['nguoidung']['ID']; ?>">
-
+											<form class="form-horizontal" method="post" action="?action=onSubmitBooking">
+												<input type="hidden" name="submitType" value="add">
 												<div class="form-group form-group-lg">
-													<label class="control-label col-sm-2 requiredField" for="scheduleday">
-														Thứ
+													<label class="control-label col-sm-2 ">
+														Bác sĩ
 														<span class="asteriskField">
 															*
 														</span>
 													</label>
 													<div class="col-sm-10">
-														<select class="select form-control" id="scheduleday" name="otpcheduleDay" required>
-															<option value="Thứ hai">
-																Thứ hai
-															</option>
-															<option value="Thứ ba">
-																Thứ ba
-															</option>
-															<option value="Thứ tư">
-																Thứ tư
-															</option>
-															<option value="Thứ năm">
-																Thứ năm
-															</option>
-															<option value="Thứ sáu">
-																Thứ sáu
-															</option>
-															<option value="Thứ bảy">
-																Thứ bảy
-															</option>
-															<option value="Chủ nhật">
-																Chủ nhật
-															</option>
+														<select disabled class="select form-control" id="select_doctor" name="select_doctor" required value="<?php echo $booking_detail["Doctor_id"]; ?>">
+															<?php foreach ($doctor_only as $d) : ?>
+																<option value=<?php echo $d['ID'] ?>>
+																	<?php echo $d['Name'] ?>
+																</option>
+															<?php endforeach ?>
 														</select>
 													</div>
 												</div>
 												<div class="form-group form-group-lg">
-													<label class="control-label col-sm-2 requiredField" for="starttime">
-														Giờ bắt đầu
+													<label class="control-label col-sm-2 ">
+														Khách hàng
 														<span class="asteriskField">
 															*
 														</span>
 													</label>
-
 													<div class="col-sm-10">
-														<div class="input-group clockpicker" data-align="top" data-autoclose="true">
-															<div class="input-group-addon">
-																<i class="fa fa-clock-o">
-																</i>
-															</div>
-															<input class="form-control" id="starttime" name="txtstartTime" type="text" required />
-														</div>
+														<select class="select form-control" id="select_customer" name="select_customer" required>
+															<option value="" selected disabled>Chọn khách hàng</option>
+															<?php foreach ($customers as $c) : ?>
+																<option value=<?php echo $c['ID'] ?>>
+																	<?php echo $c['Name'] ?>
+																</option>
+															<?php endforeach ?>
+														</select>
+													</div>
+												</div>
+												<div class="form-group form-group-lg">
+													<label class="control-label col-sm-2 requiredField" for="scheduleday">
+														Triệu chứng
+													</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" name="trieu_chung" placeholder="Sốt, ho, đau họng..." />
+													</div>
+												</div>
+												<div class="form-group form-group-lg">
+													<label class="control-label col-sm-2 requiredField" for="scheduleday">
+														Dịch vụ yêu cầu
+													</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" name="dich_vu" placeholder="Chăm sóc tại nhà, Khám sức khỏe định kỳ..." />
 													</div>
 												</div>
 												<div class="form-group form-group-lg">
 													<label class="control-label col-sm-2 requiredField" for="endtime">
-														Giờ kết thúc
+														Ngày & giờ khám
 														<span class="asteriskField">
 															*
 														</span>
 													</label>
-													<div class="col-sm-10">
+													<div class="col-sm-5">
+														<div class="input-group date" data-date-format="dd/mm/yyyy" data-provide="datepicker">
+															<div class="input-group-addon">
+																<span class="glyphicon glyphicon-th"></span>
+															</div>
+															<input type="text" class="form-control" name="booking_date">
+														</div>
+													</div>
+													<div class="col-sm-5">
 														<div class="input-group clockpicker" data-align="top" data-autoclose="true">
 															<div class="input-group-addon">
 																<i class="fa fa-clock-o">
 																</i>
 															</div>
-															<input class="form-control" id="endtime" name="txtendTime" type="text" required />
+															<input class="form-control" id="endtime" name="booking_time" type="text" required value="" />
 														</div>
+													</div>
+												</div>
+												<div class="form-group form-group-lg">
+													<label class="control-label col-sm-2 requiredField">
+														Người liên hệ
+													</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" name="contactName" placeholder="" />
+													</div>
+												</div>
+												<div class="form-group form-group-lg">
+													<label class="control-label col-sm-2 requiredField">
+														SĐT liên hệ
+													</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" name="contactPhone" placeholder="" />
+													</div>
+												</div>
+												<div class="form-group form-group-lg">
+													<label class="control-label col-sm-2 requiredField">
+														Địa chỉ liên hệ
+													</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" name="contactAddress" placeholder="" />
+													</div>
+												</div>
+												<div class="form-group form-group-lg">
+													<label class=" col-sm-2 ">
+													</label>
+													<div class="col-sm-3">
+														<select class="select form-control" id="select_province" name="select_province" required value=''>
+															<option value="" selected disabled>Chọn tỉnh / TP</option>
+															<?php foreach ($cities as $c) : ?>
+																<option value=<?php echo $c['matp'] ?>>
+																	<?php echo $c['name'] ?>
+																</option>
+															<?php endforeach ?>
+														</select>
+													</div>
+													<div class="col-sm-3">
+														<select class="select form-control" id="select_district" name="select_district" required value=''>
+															<option value="" selected disabled>Chọn quận / huyện</option>
+														</select>
+													</div>
+													<div class="col-sm-4">
+														<select class="select form-control" id="select_ward" name="select_ward" required value=''>
+															<option value="" selected disabled>Chọn phường / xã</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group form-group-lg">
+													<label class="control-label col-sm-2 requiredField">
+														Khoảng cách
+													</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" name="distanceDisplay" disabled value="4.5km" />
+														<input type="hidden" name="distance" value="4.5">
 													</div>
 												</div>
 												<div class="form-group form-group-lg">
 													<label class="control-label col-sm-2 requiredField" for="bookavail">
 														Trạng thái
-														<span class="asteriskField">
-															*
-														</span>
 													</label>
 													<div class="col-sm-10">
-														<select class="select form-control" id="bookavail" name="otpbookAvail" required>
-															<option value="Có sẵn">
-																Có sẵn
-															</option>
-															<option value="Không có sẵn">
-																Không có sẵn
-															</option>
-														</select>
+														<input type="text" class="form-control" name="trangthai" disabled value="Đã hủy" />
 													</div>
 												</div>
 												<div class="form-group">
 													<div class="col-sm-10 col-sm-offset-2">
-														<button class="btn btn-primary " name="submit" type="submit">
-															Lưu lại
+														<button class="btn btn-primary " name="saveBooking" type="submit" style="float: right; margin-left:10px; font-weight: 600; padding: 6px 12px;">
+															Lưu
 														</button>
 													</div>
 												</div>
@@ -150,8 +195,6 @@
 
 
 
-
-
 				</div>
 			</div>
 		</div>
@@ -160,31 +203,19 @@
 </div>
 
 
-
 <!-- jQuery -->
-<script src="assets/js/jquery.js"></script>
+<script src="assets_doctor/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/bootstrap-clockpicker.js"></script>
+<script src="assets_doctor/js/bootstrap.min.js"></script>
+<script src="assets_doctor/js/bootstrap-clockpicker.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <!-- script for jquery datatable start-->
 <!-- Include Date Range Picker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
-<script>
-	$(document).ready(function() {
-		var date_input = $('input[name="date"]'); //our date input has the name "date"
-		var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-		date_input.datepicker({
-			format: 'yyyy/mm/dd',
-			container: container,
-			todayHighlight: true,
-			autoclose: true,
-		})
-	})
-</script>
+
 <script type="text/javascript">
 	$('.clockpicker').clockpicker();
 </script>
@@ -257,4 +288,4 @@
 	});
 </script>
 
-<?php include("../view_doctor/bottom.php"); ?>
+<?php include("view_doctor/bottom.php"); ?>

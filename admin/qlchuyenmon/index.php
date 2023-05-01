@@ -1,85 +1,95 @@
 <?php
-if (!isset($_SESSION["nguoidung"])) {
-    header("location:../index.php");
-}
 require("../../model/database.php");
-
 require("../../model/chuyenmon.php");
-require("../../model/nguoidung.php");
+require("../../model/common.php");
 
-// Xét xem có thao tác nào được chọn
+// Biến cho biết ng dùng đăng nhập chưa
+$isLogin = isset($_SESSION["nguoidung"]);
+if (!$isLogin) {
+    header('Location: http://127.0.0.1/bai9/admin/kttknguoidung/index.php');
+    exit;
+}
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } else {
     $action = "xem";
 }
+$cm = new CHUYENMON();
+$common = new COMMON();
+$tb = "";
 $sitemap = 'chuyenmon';
 
-
-$cm = new CHUYENMON();
-$tk = new NGUOIDUNG();
 switch ($action) {
-
     case "xem":
-        $chuyenmon = $cm->laychuyenmon();
+        $base = $cm->laychuyenmon();
+        $chuyenmon = array();
+        $i = 1;
+        foreach ($base as $c) {
+            $c['index'] = $i;
+            array_push($chuyenmon, $c);
+            $i++;
+        }
         include("main.php");
+        break;
+    case "chitiet":
+        if (isset($_GET["ID"])) {
+            $chuyenmon = $cm->laychuyenmontheoid($_GET["ID"]);
+            include("addform.php");
+        } else {
+            $bacsi = $bs->laybacsi();
+            include("main.php");
+        }
         break;
     case "them":
-
-        include("addform3.php");
+        $chuyenmon['id'] = '';
+        $chuyenmon['Name'] = '';
+        $chuyenmon['FileName'] = 'Chọn ảnh';
+        $chuyenmon['AbsolutePath'] = '';
+        include("addform.php");
         break;
     case "xulythem":
-
-        // xử lý file upload 
-        $image = "assets/img/specialities/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
-        $duongdan = "../../" . $image; // nơi lưu file upload
-        move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
-        // xử lý thêm	$FirstName, $LastName, $Gender, $DOB, $Email, $PhoneNumber, $Specialty, $LicenseNumber, $Address, $image
-        $Speciality = $_POST["txtSpeciality"];
-
-        $cm->themchuyenmon($Speciality, $image);
-        $chuyenmon = $cm->laychuyenmon();
+        $image = "../../assets/img/doctor/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
+        move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $image);
+        $imageRecord_id = $common->insertImageRecord(basename($_FILES["filehinhanh"]["name"]));
+        $Name = $_POST["name"];
+        $cm->themchuyenmon($Name, $imageRecord_id);
+        header("Location: /bai9/admin/qlchuyenmon/index.php?action=xem");
+        exit();
         include("main.php");
         break;
 
-    case "xoa":
+    case "delete_doctor":
         if (isset($_GET["ID"]))
             $cm->xoachuyenmon($_GET["ID"]);
-        $chuyenmon = $cm->laychuyenmon();
-        include("main.php");
+        header("Location: /bai9/admin/qlchuyenmon/index.php?action=xem");
+        exit();
         break;
     case "sua":
         if (isset($_GET["ID"])) {
-            $c = $cm->laychuyenmontheoid($_GET["ID"]);
-
+            $b = $bs->laybacsitheoid($_GET["ID"]);
+            $chuyenmon = $cm->laychuyenmon();
             include("updateform.php");
         } else {
-            $chuyenmon = $cm->laychuyenmon();
+            $bacsi = $bs->laybacsi();
             include("main.php");
         }
         break;
     case "xulysua":
-        $id = $_POST["txtid"];
-        $Speciality = $_POST["txtSpeciality"];
-
-
-        // upload file mới (nếu có)
-        if ($_FILES["filehinhanh"]["name"] != "") {
-            // xử lý file upload -- Cần bổ dung kiểm tra: dung lượng, kiểu file, ...       
-            $image = "assets/img/specialities/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn lưu csdl
-            $duongdan = "../../" . $image; // đường dẫn lưu upload file        
-            move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
+        $chuyenmon = $cm->laychuyenmontheoid($_POST["chuyenmon_id"]);
+        if (basename($_FILES["filehinhanh"]["name"]) != '') {
+            $image = "../../assets/img/doctor/" . basename($_FILES["filehinhanh"]["name"]);
+            move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $image);
+            $imageRecord_id = $common->insertImageRecord(basename($_FILES["filehinhanh"]["name"]));
+        } else {
+            $imageRecord_id = $chuyenmon['Image_Id'];
         }
 
-        // sửa mặt hàng
-        $cm->suachuyenmon($id, $Speciality, $image);
-
-        // hiển thị ds mặt hàng
-        $chuyenmon = $cm->laychuyenmon();
-
+        $Name = $_POST["name"];
+        $cm->suachuyenmon($chuyenmon['id'], $Name, $imageRecord_id);
+        header("Location: /bai9/admin/qlchuyenmon/index.php?action=xem");
+        exit();
         include("main.php");
         break;
-
     default:
         break;
 }

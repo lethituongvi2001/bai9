@@ -2,9 +2,9 @@
 if (!isset($_SESSION["nguoidung"])) {
     header("location:../index.php");
 }
-require("../../model/database.php");
-require("../../model/benhnhan.php");
-require("../../model/nguoidung.php");
+require("../../../model/database.php");
+require("../../../model/benhnhan.php");
+require("../../../model/nguoidung.php");
 
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
@@ -13,15 +13,14 @@ if (isset($_REQUEST["action"])) {
     $action = "xem";
 }
 
-$bn = new BENHNHAN();
+$bn = new KHACHHANG();
 $tk = new NGUOIDUNG();
-$sitemap = 'benhnhan';
 
 switch ($action) {
     case "xem":
-
-        $benhnhan = $bn->laybenhnhan();
-        include("main.php");
+        // print_r($_SESSION['nguoidung']);
+        $benhnhan = $bn->laylichbacsitheoidbacsi($_SESSION['nguoidung']['ID']);
+        include("main1.php");
         break;
     case "them":
 
