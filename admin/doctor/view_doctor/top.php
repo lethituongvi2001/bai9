@@ -85,7 +85,7 @@
                             <div class="widget-profile pro-widget-content">
                                 <div class="profile-info-widget">
                                     <a href="#" class="booking-doc-img">
-                                        <img src="../assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+                                        <img src="../../assets/img/doctor/doctor-1.jpg" alt="User Image">
                                     </a>
                                     <div class="profile-det-info">
                                         <h3><?php echo $_SESSION['nguoidung']['Name'] == '' ? $_SESSION['nguoidung']['Email'] : $_SESSION['nguoidung']['Name']   ?></h3>

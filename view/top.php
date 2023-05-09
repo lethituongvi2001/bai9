@@ -60,19 +60,19 @@
                         </a>
                     </div>
                     <ul class="main-nav">
-                        <li class="active">
+                        <li <?php if ($sitemap == 'index') { ?>class="active" <?php } ?>>
                             <a href="index.php">Trang chủ</a>
                         </li>
                         <?php if ($isLogin) { ?>
-                            <li class="">
+                            <li <?php if ($sitemap == 'booking') { ?>class="active" <?php } ?>>
                                 <a href="index.php">Đặt lịch hẹn</a>
                             </li>
                         <?php } ?>
-                        <li class="">
-                            <a href="index.php">Tin tức</a>
+                        <li <?php if ($sitemap == 'tintuc') { ?>class="active" <?php } ?>>
+                            <a href="?action=tintuc">Tin tức</a>
                         </li>
-                        <li class="">
-                            <a href="index.php">Hoạt động</a>
+                        <li <?php if ($sitemap == 'hoatdong') { ?>class="active" <?php } ?>>
+                            <a href="?action=hoatdong">Hoạt động</a>
                         </li>
                     </ul>
                 </div>
@@ -86,7 +86,7 @@
                             <p class="contact-info-header"> 0364528586</p>
                         </div>
                     </li>
-                    <?php if (!$isLogin) { ?>
+                    <?php if (!isset($_SESSION['nguoidung'])) { ?>
                         <li class="nav-item">
                             <a class="nav-link header-login" href="?action=dangnhap">
                                 Đăng nhập </a>

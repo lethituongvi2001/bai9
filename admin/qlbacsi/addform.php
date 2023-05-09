@@ -114,7 +114,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
-                                            <select class="select form-control cm-select" id="select_cm2" name="select_cm2" required value=''>
+                                            <select class="select form-control cm-select" id="select_cm2" name="select_cm2" value=''>
                                                 <option value="" selected disabled>Chuyên môn 2</option>
                                                 <?php foreach ($chuyenmon as $c) : ?>
                                                     <option value=<?php echo $c['id'] ?> <?php echo ($doctor['speciality_1'] == $c['id']) ? 'selected' : ''; ?>>
@@ -124,7 +124,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
-                                            <select class="select form-control cm-select" id="select_cm3" name="select_cm3" required value=''>
+                                            <select class="select form-control cm-select" id="select_cm3" name="select_cm3" value=''>
                                                 <option value="" selected disabled>Chuyên môn 3</option>
                                                 <?php foreach ($chuyenmon as $c) : ?>
                                                     <option value=<?php echo $c['id'] ?> <?php echo ($doctor['speciality_2'] == $c['id']) ? 'selected' : ''; ?>>

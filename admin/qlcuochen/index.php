@@ -54,7 +54,7 @@ switch ($action) {
         if (isset($_GET["id"])) {
             $booking_detail = $book->laycuochentheoid($_GET["id"]);
             $doctor_only = $bs->laybacsi();
-            $customers = $bn->laybenhnhan();
+            $customers = $bn->laykhachhang();
             $cities = $common->takeAllProvince();
             $districts = $common->getDistrictByCity($booking_detail['Province_id']);
             $wards = $common->getWardByDistrict($booking_detail['District_id']);
@@ -164,7 +164,7 @@ switch ($action) {
     case "addBooking":
         $booking_detail['Doctor_id'] = $_SESSION['nguoidung']['ID'];
         $doctor_only = $bs->laybacsi();
-        $customers = $bn->laybenhnhan();
+        $customers = $bn->laykhachhang();
         $cities = $common->takeAllProvince();
         // print_r($booking_detail);
         include("addform.php");

@@ -44,7 +44,7 @@
                                 <i class="fe fe-credit-card"></i>
                             </span>
                             <div class="dash-count">
-                                <h3><?php echo $bn->demtongbenhnhan(); ?></h3>
+                                <h3><?php echo $bn->demtongkhachhang(); ?></h3>
                             </div>
                         </div>
                         <div class="dash-widget-info">

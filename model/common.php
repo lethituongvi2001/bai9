@@ -52,7 +52,7 @@ class COMMON
     }
 
     // Thêm image record
-    public function insertImageRecord($image, $is_customer = null)
+    public function insertImageRecord($image, $is_customer = null, $isPost = null)
     {
         $dbcon = DATABASE::connect();
         try {
@@ -62,6 +62,8 @@ class COMMON
             $cmd->bindValue(":image", $image);
             if ($is_customer != null) {
                 $cmd->bindValue(":absolutePath", 'http://127.0.0.1/bai9/assets/img/customer/' . $image);
+            } else if ($isPost != null) {
+                $cmd->bindValue(":absolutePath", 'http://127.0.0.1/bai9/assets/img/post/' . $image);
             } else {
                 $cmd->bindValue(":absolutePath", 'http://127.0.0.1/bai9/assets/img/doctor/' . $image);
             }

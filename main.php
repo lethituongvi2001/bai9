@@ -123,7 +123,7 @@
                                     </ul>
                                     <div class="row row-sm">
                                         <div class="col-6">
-                                            <a href="doctor-profile.html" class="btn view-btn">Chi tiết</a>
+                                            <a href="?action=doctor_detail&ID=<?php echo $bs["ID"]; ?>" class="btn view-btn">Chi tiết</a>
                                         </div>
                                         <div class="col-6">
                                             <a href="booking.html" class="btn book-btn">Đặt ngay</a>

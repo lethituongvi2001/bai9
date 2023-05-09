@@ -23,6 +23,7 @@ $bs = new BACSI();
 $nguoidung = new NGUOIDUNG();
 $tb = "";
 $sitemap = 'dashboard';
+$message = '';
 
 switch ($action) {
     case "get-data-chart":

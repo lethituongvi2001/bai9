@@ -51,7 +51,7 @@
                     <img src="../assets/img/logo.png" alt="Logo">
                 </a>
                 <a href="index.html" class="logo logo-small">
-                    <img src="../assets/img/logo-small.png" alt="Logo" width="30" height="30">
+                    <img src="../../assets/img/logo-small.png" alt="Logo" width="30" height="30">
                 </a>
             </div>
             <!-- /Logo -->
@@ -115,19 +115,19 @@
                             <a href="../qlcuochen/index.php"><i class="fe fe-layout"></i> <span>Cuộc hẹn</span></a>
                         </li>
                         <li <?php if ($sitemap == 'chuyenmon') { ?>class="active" <?php } ?>>
-                            <a href="../qlchuyenmon/index.php"><i class="fe fe-users"></i> <span>Chuyên môn</span></a>
+                            <a href="../qlchuyenmon/index.php"><i class="fe fe-tiled"></i> <span>Chuyên môn</span></a>
                         </li>
                         <li <?php if ($sitemap == 'bacsi') { ?>class="active" <?php } ?>>
-                            <a href="../qlbacsi/index.php"><i class="fe fe-user-plus"></i> <span>Bác sĩ</span></a>
+                            <a href="../qlbacsi/index.php"><i class="fe fe-plus"></i> <span>Bác sĩ</span></a>
                         </li>
                         <li <?php if ($sitemap == 'khachhang') { ?>class="active" <?php } ?>>
                             <a href="../qlkhachhang/index.php"><i class="fe fe-user"></i> <span>Khách hàng</span></a>
                         </li>
                         <li <?php if ($sitemap == 'lichbacsi') { ?>class="active" <?php } ?>>
-                            <a href="../qllichbacsi/index.php"><i class="fe fe-star-o"></i> <span>Lịch của bác sĩ</span></a>
+                            <a href="../qllichbacsi/index.php"><i class="fe fe-calendar"></i> <span>Lịch của bác sĩ</span></a>
                         </li>
-                        <li <?php if ($sitemap == 'phanhoi') { ?>class="active" <?php } ?>>
-                            <a href="transactions-list.html"><i class="fe fe-activity"></i> <span>Phản hồi</span></a>
+                        <li <?php if ($sitemap == 'tintuc') { ?>class="active" <?php } ?>>
+                            <a href="../qltintuc/index.php"><i class="fe fe-document"></i> <span>Tin tức / Hoạt động</span></a>
                         </li>
                     </ul>
                 </div>

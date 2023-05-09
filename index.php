@@ -6,6 +6,7 @@ require("model/cuochen.php");
 require("model/bacsi.php");
 require("model/lichbacsi.php");
 require("model/nguoidung.php");
+require("model/tintuc.php");
 
 $ch = new BOOKING();
 $bn = new KHACHHANG();
@@ -13,6 +14,7 @@ $cm = new CHUYENMON();
 $bs = new BACSI();
 $lbs = new LICHBACSI();
 $nguoidung = new NGUOIDUNG();
+$tt = new TINTUC();
 
 $chuyenmon = $cm->laychuyenmon();
 
@@ -30,13 +32,20 @@ if (isset($_REQUEST["action"])) {
     $action = "macdinh";
 }
 
+if ($isLogin && $_SESSION['nguoidung']['role'] != 3) {
+    unset($_SESSION["nguoidung"]);
+    $action = 'dangnhap';
+}
+
 $search = 0;
 $txtSearch = "";
 $message = '';
+$sitemap = '';
 // $mathangnoibat = $mh->laymathangnoibat();
 
 switch ($action) {
     case "macdinh":
+        $sitemap = 'index';
         $doctor_onlly = $bs->laybacsi();
         $doctor = array();
         foreach ($doctor_onlly as $item) {
@@ -45,6 +54,44 @@ switch ($action) {
             array_push($doctor, $item);
         }
         include("main.php");
+        break;
+
+    case "tintuc":
+        $sitemap = 'tintuc';
+        $post_list = $tt->laytintuc(1);
+        // print_r($post_list);
+        include("tintuc.php");
+        break;
+
+    case "post_detail":
+        if (isset($_GET["ID"])) {
+            $post = $tt->laytintuctheoid($_GET["ID"]);
+            if ($post['post_type_id'] == 1)
+                $sitemap = 'tintuc';
+            else
+                $sitemap = 'hoatdong';
+            include("tintuc_detail.php");
+        } else {
+            $bacsi = $bs->laybacsi();
+            include("main.php");
+        }
+        break;
+
+    case "hoatdong":
+        $sitemap = 'hoatdong';
+        $post_list = $tt->laytintuc(2);
+        include("tintuc.php");
+        break;
+
+    case "doctor_detail":
+        $sitemap = 'index';
+        if (isset($_GET["ID"])) {
+            $doctor = $bs->laybacsitheoid($_GET["ID"]);
+            include("doctor_detail.php");
+        } else {
+            $bacsi = $bs->laybacsi();
+            include("main.php");
+        }
         break;
 
     case "timkiem":
