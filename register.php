@@ -18,22 +18,28 @@
 							</div>
 
 							<!-- Register Form -->
-							<form action="https://dreamguys.co.in/demo/doccure/doctor-dashboard.html">
+							<form method="post" action="index.php">
+								<?php if ($message != null && $result == 0) { ?>
+									<label class="focus-label" style="color: red;"><?php echo $message ?></label>
+								<?php } else { ?>
+									<label class="focus-label" style="color: green;"><?php echo $message ?></label>
+								<?php } ?>
 								<div class="form-group form-focus">
-									<input type="text" class="form-control floating">
+									<input type="text" name="username" class="form-control floating" require>
 									<label class="focus-label">Tên đăng nhập</label>
 								</div>
 								<div class="form-group form-focus">
-									<input type="password" class="form-control floating">
+									<input type="password" name="password" class="form-control floating" require>
 									<label class="focus-label">Mật khẩu</label>
 								</div>
 								<div class="form-group form-focus">
-									<input type="password" class="form-control floating">
+									<input type="password" name="rewritepassword" class="form-control floating" require>
 									<label class="focus-label">Nhập lại mật khẩu</label>
 								</div>
 								<div class="text-right">
 									<a class="forgot-link" href="?action=dangnhap">Bạn đã có tài khoản?</a>
 								</div>
+								<input type="hidden" name="action" value="xldangky">
 								<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Đăng ký</button>
 								<div class="login-or">
 									<span class="or-line"></span>

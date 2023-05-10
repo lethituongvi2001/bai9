@@ -283,6 +283,42 @@ switch ($action) {
         }
 
         break;
+
+    case "xldangky":
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        $rewritepassword = $_POST["rewritepassword"];
+        $checkUser = $nguoidung->checkPhoneNumber($username);
+        if ($checkUser == null) {
+            if ($password == $rewritepassword) {
+                $user_id = $nguoidung->themnguoidung($username, $password, 3);
+                $khachhang_id = $bn->themkhachhang(
+                    $username,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    $user_id
+                );
+
+                $result = 1;
+                $message = 'Đăng ký thành công';
+            } else {
+                $result = 0;
+                $message = 'Nhập lại mật khẩu chưa đúng';
+            }
+        } else {
+            $result = 0;
+            $message = 'Tên tài khoản đã được sử dụng';
+        }
+        include('register.php');
+        break;
+
     case 'get-district-by-city':
         $cityId = $_POST['province_id'];
         $districts = $common->getDistrictByCity($cityId);

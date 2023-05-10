@@ -84,7 +84,7 @@ class NGUOIDUNG
 				$sql = "select a.role, a.ActiveStatus, d.* from account as a, doctors as d 
 				where a.Username=:Username and a.ID = d.id_account";
 			if ($loai_tk == 3)
-				$sql = "select * from account as a, customers as d 
+				$sql = "select a.*, d.* from account as a, customers as d 
 				where a.Username=:Username and a.ID = d.id_account";
 			$cmd = $db->prepare($sql);
 			$cmd->bindValue(":Username", $Username);
@@ -250,6 +250,7 @@ class NGUOIDUNG
 			exit();
 		}
 	}
+
 	public function checkPhoneNumber($Username)
 	{
 		$db = DATABASE::connect();

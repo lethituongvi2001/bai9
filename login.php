@@ -31,6 +31,9 @@
 										<?php echo $message; ?>
 									</div>
 								<?php } ?>
+								<input type="hidden" name="action" value="xldangnhap">
+
+								<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Đăng nhập</button>
 
 								<div class="text-center dont-have">Bạn chưa có tài khoản? <a href="?action=dangky">Đăng ký ngay</a></div>
 							</form>
