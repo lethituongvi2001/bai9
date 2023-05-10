@@ -83,6 +83,9 @@ class NGUOIDUNG
 			if ($loai_tk == 2)
 				$sql = "select a.role, a.ActiveStatus, d.* from account as a, doctors as d 
 				where a.Username=:Username and a.ID = d.id_account";
+			if ($loai_tk == 3)
+				$sql = "select * from account as a, customers as d 
+				where a.Username=:Username and a.ID = d.id_account";
 			$cmd = $db->prepare($sql);
 			$cmd->bindValue(":Username", $Username);
 			$cmd->execute();
@@ -240,6 +243,23 @@ class NGUOIDUNG
 			$cmd->bindValue(':id', $id);
 			$cmd->bindValue(':ActiveStatus', $ActiveStatus);
 			$ketqua = $cmd->execute();
+			return $ketqua;
+		} catch (PDOException $e) {
+			$error_message = $e->getMessage();
+			echo "<p>Lỗi truy vấn: $error_message</p>";
+			exit();
+		}
+	}
+	public function checkPhoneNumber($Username)
+	{
+		$db = DATABASE::connect();
+		try {
+			$sql = 'select * from account where Username=:Username';
+			$cmd = $db->prepare($sql);
+			$cmd->bindValue(":Username", $Username);
+			$cmd->execute();
+			$ketqua = $cmd->fetch();
+			$cmd->closeCursor();
 			return $ketqua;
 		} catch (PDOException $e) {
 			$error_message = $e->getMessage();

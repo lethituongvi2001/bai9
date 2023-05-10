@@ -11,14 +11,14 @@
 
             <!-- Search -->
             <div class="search-box">
-                <form action="templateshub.net">
+                <form action="">
                     <div class="form-group search-location">
-                        <input type="text" class="form-control" placeholder="Search Location">
-                        <span class="form-text">Based on your Location</span>
+                        <button value="" style="width: 100%;" class="btn btn-primary search-btn" placeholder="Search Location">
+                            <i class="fa-sharp fa-regular fa-location" style="margin-right: 10px;">Tìm quanh đây</i>
+                        </button>
                     </div>
                     <div class="form-group search-info">
-                        <input type="text" class="form-control" placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
-                        <span class="form-text">Ex : Dental or Sugar Check up etc</span>
+                        <input type="text" class="form-control" placeholder="Nhập tên bác sĩ...">
                     </div>
                     <button type="submit" class="btn btn-primary search-btn"><i class="fas fa-search"></i> <span>Search</span></button>
                 </form>

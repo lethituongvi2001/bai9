@@ -4,11 +4,16 @@ class LICHBACSI
 
 
     // Lấy danh sách
-    public function laylichbacsi()
+    public function laylichbacsi($DoctorID = null)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT d.Name, ds.* FROM doctorschedule as ds, doctors as d where ds.DoctorID = d.ID ";
+            $sql = "SELECT d.Name, ds.* 
+            FROM doctor_schedule as ds, doctors as d";
+            if ($DoctorID != null)
+                $sql = "SELECT d.Name, ds.* 
+                FROM doctorschedule as ds, doctors as d 
+                where ds.DoctorID = d.ID ";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();

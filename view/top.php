@@ -64,8 +64,8 @@
                             <a href="index.php">Trang chủ</a>
                         </li>
                         <?php if ($isLogin) { ?>
-                            <li <?php if ($sitemap == 'booking') { ?>class="active" <?php } ?>>
-                                <a href="index.php">Đặt lịch hẹn</a>
+                            <li <?php if ($sitemap == 'booking_history') { ?>class="active" <?php } ?>>
+                                <a href="?action=booking_history">Lịch sử đặt lịch</a>
                             </li>
                         <?php } ?>
                         <li <?php if ($sitemap == 'tintuc') { ?>class="active" <?php } ?>>

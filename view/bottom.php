@@ -152,6 +152,7 @@
 
 			<!-- Custom JS -->
 			<script src="assets/js/script.js"></script>
+			<script src="assets/js/my_script.js"></script>
 
 			</body>
 

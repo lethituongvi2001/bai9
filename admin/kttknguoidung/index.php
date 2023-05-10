@@ -107,11 +107,24 @@ switch ($action) {
         break;
 
     case "doimatkhau":
-        if (isset($_POST["your_name"]) && isset($_POST["txtmatkhaumoi"]))
-            $nguoidung->doimatkhau($_POST["your_name"], $_POST["txtmatkhaumoi"]);
-        include("main.php");
+        $message = null;
+        include("profile.php");
         break;
-
+    case "xldoimatkhau":
+        if ($_SESSION["nguoidung"]['Password'] == md5($_POST["oldpass"])) {
+            if ($_POST["newpass"] == $_POST["confirmpass"]) {
+                $nguoidung->doimatkhau($_SESSION["nguoidung"]['Username'], $_POST["confirmpass"]);
+                $message = 'Đổi mật khẩu thành công!';
+                include("main.php");
+            } else {
+                $message = 'Xác nhận mật khẩu mới không hợp lệ!';
+                include("profile.php");
+            }
+        } else {
+            $message = 'Mật khẩu cũ không đúng!';
+            include("profile.php");
+        }
+        break;
         // Booking 
     case "booking":
         // $sitemap = 'booking';

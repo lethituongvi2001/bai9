@@ -24,7 +24,8 @@
 							<tr>
 								<th>#</th>
 								<th>Mã cuộc hẹn</th>
-								<th>Thời gian</th>
+								<th>Ngày hẹn</th>
+								<th>Giờ hẹn</th>
 								<th>Triệu chứng</th>
 								<th>Dịch vụ</th>
 								<th>Bác sĩ</th>
@@ -40,7 +41,8 @@
 								<tr>
 									<td><?php echo $book["index"]; ?></td>
 									<td><?php echo $book["Code"]; ?></td>
-									<td><?php echo $book["BookingDate"]; ?> </td>
+									<td><?php echo date('d/m/Y', strtotime($book["BookingDate"])); ?> </td>
+									<td><?php echo date('H:i', strtotime($book["BookingTime"])); ?> </td>
 									<td><?php echo $book["Symptom"]; ?></td>
 									<td><?php echo $book["ServiceRequirement"]; ?></td>
 									<td><?php echo $book["DoctorName"]; ?></td>

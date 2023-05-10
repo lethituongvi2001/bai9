@@ -93,8 +93,14 @@
                                         <div class="col-sm-10">
                                             <div class="input-group" data-align="top" data-autoclose="true">
                                                 <input value="<?php echo $doctor['PhoneNumber']; ?>" class="form-control" name="phone_number" type="text" required />
+                                                <?php if ($message != null) { ?>
+                                                    <span class="asteriskField" style="color: red;">
+                                                        <?php echo $message ?>
+                                                    </span>
+                                                <?php } ?>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="form-group form-group-lg">
                                         <label class="control-label col-sm-2 requiredField" for="scheduleday">

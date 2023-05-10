@@ -55,6 +55,30 @@ class BOOKING
             exit();
         }
     }
+
+    public function laydscuochentheoidcustomer($id)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT b.*, d.Name as DoctorName, c.Name as customer_name, ward.name as ward_name, district.name as district_name, province.name as province_name
+            FROM booking as b
+            INNER JOIN customers as c ON b.Customer_id = c.ID
+            INNER JOIN doctors as d ON b.Doctor_id = d.ID
+            LEFT JOIN ward ON b.Ward_id = ward.xaid
+            LEFT JOIN district ON b.District_id = district.maqh
+            LEFT JOIN province ON b.Province_id = province.matp
+            where Customer_id =:id order by b.IsDeleted, b.IsClosed, b.IsApproved desc";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $id);
+            $cmd->execute();
+            $result = $cmd->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     function generateCode()
     {
         $date = date('ymd'); // Get the current date in yymmdd format

@@ -154,7 +154,14 @@ class BACSI
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT doctors.*, imagerecord.FileName, imagerecord.AbsolutePath FROM doctors, imagerecord WHERE Image_Id = imagerecord.id and doctors.ID=:ID";
+            $sql = "SELECT doctors.*, imagerecord.FileName, imagerecord.AbsolutePath, ward.name as ward_name, district.name as district_name, province.name as province_name
+            FROM doctors
+            LEFT JOIN imagerecord ON Image_Id = imagerecord.id
+            LEFT JOIN ward ON doctors.ward_id = ward.xaid
+            LEFT JOIN district ON doctors.district_id = district.maqh
+            LEFT JOIN province ON doctors.province_id = province.matp
+            WHERE doctors.ID=:ID";
+
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":ID", $id);
             $cmd->execute();

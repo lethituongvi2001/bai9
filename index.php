@@ -7,6 +7,7 @@ require("model/bacsi.php");
 require("model/lichbacsi.php");
 require("model/nguoidung.php");
 require("model/tintuc.php");
+require("model/common.php");
 
 $ch = new BOOKING();
 $bn = new KHACHHANG();
@@ -15,6 +16,7 @@ $bs = new BACSI();
 $lbs = new LICHBACSI();
 $nguoidung = new NGUOIDUNG();
 $tt = new TINTUC();
+$common = new COMMON();
 
 $chuyenmon = $cm->laychuyenmon();
 
@@ -87,6 +89,13 @@ switch ($action) {
         $sitemap = 'index';
         if (isset($_GET["ID"])) {
             $doctor = $bs->laybacsitheoid($_GET["ID"]);
+            $speciality = $cm->getSpecialityByDoctor($doctor['ID']);
+            $doctor['fullAddress'] = $doctor["Address"];
+            $doctor['fullAddress'] .= $doctor['ward_name'] != '' ? ', ' . $doctor["ward_name"] : '';
+            $doctor['fullAddress'] .= $doctor['district_name'] != '' ? ', ' . $doctor["district_name"] : '';
+            $doctor['fullAddress'] .= $doctor['province_name'] != '' ? ', ' . $doctor["province_name"] : '';
+
+            $doctor['Speciality'] = $speciality;
             include("doctor_detail.php");
         } else {
             $bacsi = $bs->laybacsi();
@@ -148,6 +157,63 @@ switch ($action) {
         include("login.php");
         break;
 
+    case "dangky":
+        $message = '';
+        include("register.php");
+        break;
+
+    case "booking":
+        $doctor = $bs->laybacsitheoid($_GET['ID']);
+        $cities = $common->takeAllProvince();
+        include("booking.php");
+        break;
+
+    case "booking_history":
+        $sitemap = 'booking_history';
+        $bookings = $ch->laydscuochentheoidcustomer($_SESSION['nguoidung']['ID']);
+        $i = 1;
+        foreach ($bookings as &$booking) {
+            $booking['index'] = $i;
+            $booking['fullAddress'] = $booking["ContactAddress"];
+            $booking['fullAddress'] .= $booking['ward_name'] != '' ? ', ' . $booking["ward_name"] : '';
+            $booking['fullAddress'] .= $booking['district_name'] != '' ? ', ' . $booking["district_name"] : '';
+            $booking['fullAddress'] .= $booking['province_name'] != '' ? ', ' . $booking["province_name"] : '';
+            $booking['status'] = 'Đang mở';
+            if ($booking['IsDeleted'])
+                $booking['status'] = 'Đã hủy';
+            else if ($booking['IsClosed'])
+                $booking['status'] = 'Đã hoàn thành';
+            else if ($booking['IsApproved'])
+                $booking['status'] = 'Chờ khám';
+            $i++;
+        }
+        include("booking_history.php");
+        break;
+
+    case 'onSubmitBooking':
+        $doctor_id = $_POST['doctor_id'];
+        $customer_id = $_SESSION['nguoidung']['ID'];
+        $trieu_chung = $_POST['trieu_chung'];
+        $dich_vu = $_POST['dich_vu'];
+        $booking_date = $_POST['booking_date'];
+        $booking_time = $_POST['booking_time'];
+        $contactName = $_POST['contactName'];
+        $contactPhone = $_POST['contactPhone'];
+        $contactAddress = $_POST['contactAddress'];
+        $select_province = $_POST['select_province'];
+        $select_district = $_POST['select_district'];
+        $select_ward = $_POST['select_ward'];
+        $distance = $_POST['distance'];
+
+        $result = $ch->addBooking($doctor_id, $customer_id, $trieu_chung, $dich_vu, $booking_date, $booking_time, $contactName, $contactPhone, $contactAddress, $select_province, $select_district, $select_ward, $distance);
+        if ($result) {
+            include('booking_success.php');
+            break;
+        } else {
+            $message = "Thêm thất bại. Vui lòng kiểm tra lại dữ liệu đã nhập!";
+            break;
+        }
+        break;
 
     case "xldangnhap":
         $Username = $_POST["username"];
@@ -212,14 +278,19 @@ switch ($action) {
         }
 
         break;
+    case 'get-district-by-city':
+        $cityId = $_POST['province_id'];
+        $districts = $common->getDistrictByCity($cityId);
+        header('Content-Type: application/json');
+        echo json_encode($districts);
+        break;
+
+    case 'get-ward-by-district':
+        $districtId = $_POST['district_id'];
+        $wards = $common->getWardByDistrict($districtId);
+        header('Content-Type: application/json');
+        echo json_encode($wards);
+        break;
     default:
-        //validate
-        if ($nguoidung->isEmailExist(($Email))) {
-            $message = 'Tên đăng nhập đã tồn tại. Vui lòng sử dụng tên khác!';
-            include('login.php');
-            break;
-        }
         break;
 }
-?>
-<!--hjd-->

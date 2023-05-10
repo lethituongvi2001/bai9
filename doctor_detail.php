@@ -1,64 +1,107 @@
 <?php include("view/top.php"); ?>
 
-<section class="section section-doctor">
+<!-- Page Content -->
+<div class="content">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
-                <!-- Doctor Widget -->
+
+        <!-- Doctor Widget -->
+        <div class="card">
+            <div class="card-body">
                 <div class="doctor-widget">
-                    <div class="doc-img">
-                        <img class="img-fluid" src="<?php echo $doctor['AbsolutePath']; ?>" alt="<?php echo $doctor['Name']; ?>">
-                    </div>
-                    <div class="pro-content">
-                        <div class="doctor-profile-top" style="display: flex;">
-                            <h1 style="width: 220px;" class="title"><?php echo $doctor['Name']; ?></h1>
-                            <i class="fas fa-check-circle verified" style="font-size: 24px; color: green;"></i>
+                    <div class="doc-info-left">
+                        <div class="doctor-img">
+                            <img src="<?php echo $doctor['AbsolutePath']; ?>" width="225" height="150" class="img-fluid" alt="User Image">
                         </div>
-                        <div class="doctor-profile-bottom">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="info-widget">
-                                        <h4><i class="far fa-user"></i> Thông tin cá nhân</h4>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <span><i class="far fa-id-card"></i> Giới tính:</span> <?php echo $doctor['Gender']; ?>
-                                            </li>
-                                            <li>
-                                                <span><i class="far fa-calendar"></i> Ngày sinh:</span> <?php echo $doctor['DOB']; ?>
-                                            </li>
-                                            <li>
-                                                <span><i class="fas fa-mobile"></i> Điện thoại:</span> <?php echo $doctor['PhoneNumber']; ?>
-                                            </li>
-                                            <li>
-                                                <span><i class="far fa-envelope"></i> Email:</span> <?php echo $doctor['Email']; ?>
-                                            </li>
-                                            <li>
-                                                <span><i class="fas fa-map-marker-alt"></i> Địa chỉ:</span> <?php echo $doctor['Address']; ?>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="info-widget">
-                                        <h4><i class="far fa-address-card"></i> Thông tin bác sĩ</h4>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>
-                                                <span><i class="far fa-id-badge"></i> Số bằng:</span> <?php echo $doctor['LicenseNumber']; ?>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="doc-info-cont">
+                            <h4 class="doc-name"><?php echo $doctor['Name']; ?></h4>
+                            <p class="doc-speciality"><?php foreach ($doctor['Speciality'] as $item) : ?>
+                                    - <?php echo $item['speciality_name'] ?>
+                                <?php endforeach ?></p>
+
                             <div class="clinic-details">
-                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> <?php echo $doctor['Address']; ?></p>
+                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> <?php echo $doctor['fullAddress'] ?></p>
                             </div>
+                        </div>
+                    </div>
+                    <div class="doc-info-right">
+                        <div class="clini-infos">
+                            <ul>
+                                <li><i class="fas fa-envelope"></i> <?php echo $doctor['Email']; ?></li>
+                                <li><i class="fas fa-id-card"></i> <?php echo $doctor['LicenseNumber']; ?></li>
+                                <li><i class="fas fa-phone"></i><?php echo $doctor['PhoneNumber']; ?></li>
+                            </ul>
+                        </div>
+                        <div class="clinic-booking">
+                            <a class="apt-btn" href="index.php?action=booking&ID=<?php echo $_GET['ID']; ?>">Đặt lịch</a>
                         </div>
                     </div>
                 </div>
-                <!-- /Doctor Widget -->
             </div>
         </div>
+        <!-- /Doctor Widget -->
+
+
+        <!-- Business Hours Widget -->
+        <div class="widget business-widget">
+            <div class="widget-content">
+                <div class="listing-hours">
+                    <div class="listing-day current">
+                        <div class="day">Sắp tới <span>5 Nov 2019</span></div>
+                        <div class="time-items">
+                            <span class="open-status"><span class="badge bg-success-light">Open Now</span></span>
+                            <span class="time">07:00 AM - 09:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="listing-day">
+                        <div class="day">Monday</div>
+                        <div class="time-items">
+                            <span class="time">07:00 AM - 09:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="listing-day">
+                        <div class="day">Tuesday</div>
+                        <div class="time-items">
+                            <span class="time">07:00 AM - 09:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="listing-day">
+                        <div class="day">Wednesday</div>
+                        <div class="time-items">
+                            <span class="time">07:00 AM - 09:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="listing-day">
+                        <div class="day">Thursday</div>
+                        <div class="time-items">
+                            <span class="time">07:00 AM - 09:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="listing-day">
+                        <div class="day">Friday</div>
+                        <div class="time-items">
+                            <span class="time">07:00 AM - 09:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="listing-day">
+                        <div class="day">Saturday</div>
+                        <div class="time-items">
+                            <span class="time">07:00 AM - 09:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="listing-day closed">
+                        <div class="day">Sunday</div>
+                        <div class="time-items">
+                            <span class="time"><span class="badge bg-danger-light">Closed</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Business Hours Widget -->
+
+
     </div>
-</section>
+</div>
+<!-- /Page Content -->
 
 <?php include("view/bottom.php"); ?>

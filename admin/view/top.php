@@ -87,7 +87,7 @@
                                 <p class="text-muted mb-0">Administrator</p>
                             </div>
                         </div>
-                        <a class="dropdown-item" href="../kttknguoidung/profile.php">Hồ sơ</a>
+                        <a class="dropdown-item" href="../kttknguoidung/index.php?action=doimatkhau">Đổi mật khẩu</a>
                         <!-- <a class="dropdown-item" href="settings.html">Cài đặt</a> -->
                         <a class="dropdown-item" href="../kttknguoidung/index.php?action=dangxuat1">Đăng xuất</a>
                     </div>
