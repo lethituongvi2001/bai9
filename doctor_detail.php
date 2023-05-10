@@ -48,50 +48,50 @@
                     <div class="listing-day current">
                         <div class="day">Sắp tới <span>5 Nov 2019</span></div>
                         <div class="time-items">
-                            <span class="open-status"><span class="badge bg-success-light">Open Now</span></span>
+                            <span class="open-status"><span class="badge bg-success-light">Lịch trống</span></span>
                             <span class="time">07:00 AM - 09:00 PM</span>
                         </div>
                     </div>
                     <div class="listing-day">
-                        <div class="day">Monday</div>
+                        <div class="day">Thứ 2</div>
                         <div class="time-items">
                             <span class="time">07:00 AM - 09:00 PM</span>
                         </div>
                     </div>
                     <div class="listing-day">
-                        <div class="day">Tuesday</div>
+                        <div class="day">Thứ 3</div>
                         <div class="time-items">
                             <span class="time">07:00 AM - 09:00 PM</span>
                         </div>
                     </div>
                     <div class="listing-day">
-                        <div class="day">Wednesday</div>
+                        <div class="day">Thứ 4</div>
                         <div class="time-items">
                             <span class="time">07:00 AM - 09:00 PM</span>
                         </div>
                     </div>
                     <div class="listing-day">
-                        <div class="day">Thursday</div>
+                        <div class="day">Thứ 5</div>
                         <div class="time-items">
                             <span class="time">07:00 AM - 09:00 PM</span>
                         </div>
                     </div>
                     <div class="listing-day">
-                        <div class="day">Friday</div>
+                        <div class="day">Thứ 6</div>
                         <div class="time-items">
                             <span class="time">07:00 AM - 09:00 PM</span>
                         </div>
                     </div>
                     <div class="listing-day">
-                        <div class="day">Saturday</div>
+                        <div class="day">Thứ 7</div>
                         <div class="time-items">
                             <span class="time">07:00 AM - 09:00 PM</span>
                         </div>
                     </div>
                     <div class="listing-day closed">
-                        <div class="day">Sunday</div>
+                        <div class="day">Chủ nhật</div>
                         <div class="time-items">
-                            <span class="time"><span class="badge bg-danger-light">Closed</span></span>
+                            <span class="time"><span class="badge bg-danger-light">Nghỉ</span></span>
                         </div>
                     </div>
                 </div>

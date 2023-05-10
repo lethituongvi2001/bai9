@@ -172,4 +172,16 @@
 </div>
 <!-- /Page Content -->
 
+<script>
+    // Get the date for tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    // Format the date as yyyy-mm-dd for the input value
+    const formattedDate = tomorrow.toISOString().split('T')[0];
+
+    // Set the min attribute of the input element to tomorrow's date
+    document.getElementById('booking_date').setAttribute('min', formattedDate);
+</script>
+
 <?php include("view/bottom.php"); ?>

@@ -163,6 +163,11 @@ switch ($action) {
         break;
 
     case "booking":
+        if (!isset($_SESSION['nguoidung'])) {
+            header("location: ../bai9/index.php?action=dangnhap");
+            exit();
+            break;
+        }
         $doctor = $bs->laybacsitheoid($_GET['ID']);
         $cities = $common->takeAllProvince();
         include("booking.php");
